@@ -7,7 +7,6 @@ Welcome to my GitHub profile! I'm a passionate graduate student pursuing a Maste
 ## 🚀 About Me
 - 🔭 Currently working as a **Graduate Research Assistant** at UTA
 - 🌱 Exploring advanced applications in **AI** and **NLP**
-- 🎓 Completed courses in **Distributed Systems**, **Machine Learning**, and **Data Mining**
 - 🤝 Open to collaborating on impactful projects and open-source contributions
 - 📫 Reach me at: **abhinaykotla@gmail.com**
 
