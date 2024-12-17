@@ -39,8 +39,8 @@ Find all my projects [here](https://github.com/Abhinaykotla?tab=repositories).
 
 ---
 
-<!-- ## 📊 GitHub Stats
-![Abhinay's GitHub stats](https://github-readme-stats.vercel.app/api?username=Abhinaykotla&show_icons=true&theme=radical) -->
+## 📊 GitHub Stats
+![Abhinay's GitHub stats](https://github-readme-stats.vercel.app/api?username=Abhinaykotla&show_icons=true&theme=radical)
 
 ---
 
