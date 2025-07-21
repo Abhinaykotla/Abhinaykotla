@@ -167,6 +167,13 @@ class WebInterface {
     }
 
     loadContent() {
+        // Ensure portfolioData is available
+        if (typeof portfolioData === 'undefined') {
+            console.error('portfolioData is not available, retrying in 100ms...');
+            setTimeout(() => this.loadContent(), 100);
+            return;
+        }
+
         this.loadAboutContent();
         this.loadSkillsContent();
         this.loadExperienceContent();
@@ -179,11 +186,11 @@ class WebInterface {
         const educationList = document.getElementById('education-list');
         const certificationsList = document.getElementById('certifications-list');
 
-        if (aboutSummary) {
+        if (aboutSummary && portfolioData?.personal?.summary) {
             aboutSummary.textContent = portfolioData.personal.summary;
         }
 
-        if (educationList) {
+        if (educationList && portfolioData?.education) {
             educationList.innerHTML = portfolioData.education.map(edu => `
                 <div class="education-item">
                     <div class="degree">${edu.degree}</div>
@@ -193,7 +200,7 @@ class WebInterface {
             `).join('');
         }
 
-        if (certificationsList) {
+        if (certificationsList && portfolioData?.certifications) {
             certificationsList.innerHTML = `
                 <ul class="certification-list">
                     ${portfolioData.certifications.map(cert => `
@@ -419,7 +426,7 @@ class WebInterface {
     }
 }
 
-// Initialize web interface when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new WebInterface();
-});
+// Export for use in main.js
+if (typeof window !== 'undefined') {
+    window.WebInterface = WebInterface;
+}

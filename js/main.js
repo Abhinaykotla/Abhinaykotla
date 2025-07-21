@@ -18,7 +18,7 @@ class PortfolioApp {
     setupLoadingScreen() {
         // Simulate loading time for a more polished experience
         const loadingScreen = document.getElementById('loading-screen');
-        const minLoadTime = 2000; // Minimum 2 seconds for effect
+        const minLoadTime = 1500; // Reduced to 1.5 seconds
         const startTime = Date.now();
 
         const hideLoading = () => {
@@ -31,7 +31,7 @@ class PortfolioApp {
                     this.isLoading = false;
 
                     // Initialize interfaces after loading
-                    this.initializeInterfaces();
+                    setTimeout(() => this.initializeInterfaces(), 100);
                 }
             }, remainingTime);
         };
@@ -45,8 +45,18 @@ class PortfolioApp {
     }
 
     initializeInterfaces() {
-        // Web interface is initialized in its own file
-        // CLI interface is initialized in its own file
+        // Initialize web interface
+        if (!window.webInterface) {
+            window.webInterface = new WebInterface();
+        }
+
+        // Initialize CLI interface
+        if (!window.cliInterface) {
+            window.cliInterface = new CLIInterface();
+            if (typeof window.cliInterface.setupEasterEggs === 'function') {
+                window.cliInterface.setupEasterEggs();
+            }
+        }
 
         // Setup additional features
         this.setupSmoothAnimations();

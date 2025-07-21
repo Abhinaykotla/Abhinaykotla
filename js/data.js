@@ -439,7 +439,12 @@ View complete profile on LinkedIn for verification and additional certifications
     }
 };
 
-// Export for use in other modules
+// Ensure data is available globally immediately
+window.portfolioData = portfolioData;
+
+// Also for Node.js compatibility
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = portfolioData;
 }
+
+console.log('portfolioData loaded and assigned to window:', window.portfolioData);

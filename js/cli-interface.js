@@ -379,8 +379,7 @@ drwxr-xr-x  2 abhinay abhinay   64 Dec 20 2024 blog/`);
     }
 }
 
-// Initialize CLI interface
-document.addEventListener('DOMContentLoaded', () => {
-    window.cliInterface = new CLIInterface();
-    window.cliInterface.setupEasterEggs();
-});
+// Export for use in main.js
+if (typeof window !== 'undefined') {
+    window.CLIInterface = CLIInterface;
+}
