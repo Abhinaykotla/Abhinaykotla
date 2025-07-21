@@ -45,11 +45,8 @@ class PortfolioApp {
     }
 
     initializeInterfaces() {
-        console.log('Initializing interfaces...');
-
         // Verify data is available before initializing
         if (typeof portfolioData === 'undefined' || !window.portfolioData) {
-            console.error('Portfolio data not available, cannot initialize interfaces');
             return;
         }
 
@@ -57,7 +54,6 @@ class PortfolioApp {
         if (!window.webInterface) {
             try {
                 window.webInterface = new WebInterface();
-                console.log('WebInterface initialized successfully');
             } catch (error) {
                 console.error('Error initializing WebInterface:', error);
             }
@@ -70,7 +66,6 @@ class PortfolioApp {
                 if (typeof window.cliInterface.setupEasterEggs === 'function') {
                     window.cliInterface.setupEasterEggs();
                 }
-                console.log('CLIInterface initialized successfully');
             } catch (error) {
                 console.error('Error initializing CLIInterface:', error);
             }

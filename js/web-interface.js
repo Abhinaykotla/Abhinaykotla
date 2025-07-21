@@ -167,10 +167,6 @@ class WebInterface {
     }
 
     loadContent() {
-        console.log('WebInterface loadContent called');
-        console.log('portfolioData type:', typeof portfolioData);
-        console.log('window.portfolioData type:', typeof window.portfolioData);
-
         // Try multiple ways to access the data
         let data = portfolioData;
         if (typeof data === 'undefined') {
@@ -178,12 +174,10 @@ class WebInterface {
         }
 
         if (typeof data === 'undefined') {
-            console.error('portfolioData is not available anywhere, retrying in 200ms...');
             setTimeout(() => this.loadContent(), 200);
             return;
         }
 
-        console.log('Data found, proceeding with content loading...');
         window.portfolioData = data; // Ensure it's globally available
 
         this.loadAboutContent();
@@ -191,30 +185,17 @@ class WebInterface {
         this.loadExperienceContent();
         this.loadProjectsContent();
         this.loadBlogContent();
-
-        console.log('Content loading completed');
     }
 
     loadAboutContent() {
-        console.log('loadAboutContent called');
         const aboutSummary = document.getElementById('about-summary');
         const educationList = document.getElementById('education-list');
         const certificationsList = document.getElementById('certifications-list');
-
-        console.log('Elements found:', { aboutSummary: !!aboutSummary, educationList: !!educationList, certificationsList: !!certificationsList });
 
         const data = window.portfolioData || portfolioData;
 
         if (aboutSummary && data?.personal?.summary) {
             aboutSummary.textContent = data.personal.summary;
-            aboutSummary.style.border = '2px solid green';
-            console.log('About summary updated successfully');
-        } else {
-            console.error('Failed to update about summary:', {
-                element: !!aboutSummary,
-                data: !!data,
-                summary: !!data?.personal?.summary
-            });
         }
 
         if (educationList && data?.education) {
@@ -225,8 +206,6 @@ class WebInterface {
                     <div class="period">${edu.period} | GPA: ${edu.gpa}</div>
                 </div>
             `).join('');
-            educationList.style.border = '2px solid blue';
-            console.log('Education list updated successfully');
         }
 
         if (certificationsList && data?.certifications) {
@@ -237,8 +216,6 @@ class WebInterface {
                     `).join('')}
                 </ul>
             `;
-            certificationsList.style.border = '2px solid purple';
-            console.log('Certifications list updated successfully');
         }
     }
 

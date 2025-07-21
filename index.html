@@ -254,21 +254,17 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="js/data.js?v=5"></script>
-    <script src="js/data-patch.js?v=5"></script>
+    <script src="js/data.js?v=6"></script>
+    <script src="js/data-patch.js?v=6"></script>
     <script>
         // Ensure data is loaded before initializing interfaces
         function initializeApp() {
             if (typeof portfolioData !== 'undefined' && window.portfolioData) {
-                console.log('SUCCESS: portfolioData is available');
-                console.log('Personal name:', portfolioData.personal.name);
-
                 // Initialize the application
                 if (typeof PortfolioApp !== 'undefined') {
                     window.app = new PortfolioApp();
                 }
             } else {
-                console.log('Data not ready, retrying...');
                 setTimeout(initializeApp, 50);
             }
         }
@@ -280,9 +276,9 @@
             initializeApp();
         }
     </script>
-    <script src="js/web-interface.js?v=5"></script>
-    <script src="js/cli-interface.js?v=5"></script>
-    <script src="js/main.js?v=5"></script>
+    <script src="js/web-interface.js?v=6"></script>
+    <script src="js/cli-interface.js?v=6"></script>
+    <script src="js/main.js?v=6"></script>
 </body>
 
 </html>

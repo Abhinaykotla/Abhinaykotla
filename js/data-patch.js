@@ -13,10 +13,7 @@ function patchPortfolioDataReferences() {
             if (!skillsContent) return;
 
             const data = window.portfolioData;
-            if (!data?.skills) {
-                console.error('Skills data not available');
-                return;
-            }
+            if (!data?.skills) return;
 
             const skillsHTML = Object.entries(data.skills).map(([category, skillData]) => {
                 const icon = this.getSkillIcon(category);
@@ -36,7 +33,6 @@ function patchPortfolioDataReferences() {
             }).join('');
 
             skillsContent.innerHTML = skillsHTML;
-            console.log('Skills content updated successfully');
         };
 
         // Patch loadExperienceContent
@@ -45,10 +41,7 @@ function patchPortfolioDataReferences() {
             if (!timeline) return;
 
             const data = window.portfolioData;
-            if (!data?.experience) {
-                console.error('Experience data not available');
-                return;
-            }
+            if (!data?.experience) return;
 
             const experienceHTML = data.experience.map(exp => `
                 <div class="timeline-item">
@@ -67,7 +60,6 @@ function patchPortfolioDataReferences() {
             `).join('');
 
             timeline.innerHTML = experienceHTML;
-            console.log('Experience content updated successfully');
         };
 
         // Patch loadProjectsContent
@@ -76,10 +68,7 @@ function patchPortfolioDataReferences() {
             if (!projectsGrid) return;
 
             const data = window.portfolioData;
-            if (!data?.projects) {
-                console.error('Projects data not available');
-                return;
-            }
+            if (!data?.projects) return;
 
             const projectsHTML = data.projects.map(project => `
                 <div class="project-card" data-category="${project.category}">
@@ -107,7 +96,6 @@ function patchPortfolioDataReferences() {
             `).join('');
 
             projectsGrid.innerHTML = projectsHTML;
-            console.log('Projects content updated successfully');
         };
 
         // Patch loadBlogContent
@@ -116,10 +104,7 @@ function patchPortfolioDataReferences() {
             if (!blogGrid) return;
 
             const data = window.portfolioData;
-            if (!data?.blogPosts) {
-                console.error('Blog data not available');
-                return;
-            }
+            if (!data?.blogPosts) return;
 
             const blogHTML = data.blogPosts.map(post => `
                 <article class="blog-card">
@@ -141,10 +126,7 @@ function patchPortfolioDataReferences() {
             `).join('');
 
             blogGrid.innerHTML = blogHTML;
-            console.log('Blog content updated successfully');
         };
-
-        console.log('Portfolio data reference patches applied successfully');
     }
 }
 

@@ -446,11 +446,3 @@ window.portfolioData = portfolioData;
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = portfolioData;
 }
-
-// Dispatch a custom event when data is ready
-if (typeof window !== 'undefined') {
-    window.dispatchEvent(new CustomEvent('portfolioDataReady', { detail: portfolioData }));
-}
-
-console.log('portfolioData loaded and assigned to window:', !!window.portfolioData);
-console.log('Data verification - personal name:', portfolioData?.personal?.name);
