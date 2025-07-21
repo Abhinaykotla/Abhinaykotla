@@ -272,7 +272,7 @@ Tip: Use tab completion for project names!`
             description: "Display personal information",
             response: `Abhinay Kotla - AI/ML Engineer & Researcher
 
-${portfolioData.personal.summary}
+Passionate Computer Science graduate specializing in AI and machine learning, with notable experience in developing solutions like emotion-aware chatbots and image recognition systems. Proficient in TensorFlow, PyTorch, and NLP frameworks, with skills in model development and scalable AI implementation. Proven track record in enhancing AI applications, optimizing machine learning models, and engaging in research-driven innovation.
 
 Current Status: Graduate Student at UT Arlington (GPA: 4.0/4.0)
 Location: Arlington, TX
@@ -447,4 +447,10 @@ if (typeof module !== 'undefined' && module.exports) {
     module.exports = portfolioData;
 }
 
-console.log('portfolioData loaded and assigned to window:', window.portfolioData);
+// Dispatch a custom event when data is ready
+if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('portfolioDataReady', { detail: portfolioData }));
+}
+
+console.log('portfolioData loaded and assigned to window:', !!window.portfolioData);
+console.log('Data verification - personal name:', portfolioData?.personal?.name);

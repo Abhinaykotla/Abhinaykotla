@@ -254,33 +254,35 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="js/data.js?v=2"></script>
+    <script src="js/data.js?v=5"></script>
+    <script src="js/data-patch.js?v=5"></script>
     <script>
-        // Debug: Check if data is loaded
-        setTimeout(() => {
-            if (typeof portfolioData !== 'undefined') {
+        // Ensure data is loaded before initializing interfaces
+        function initializeApp() {
+            if (typeof portfolioData !== 'undefined' && window.portfolioData) {
                 console.log('SUCCESS: portfolioData is available');
                 console.log('Personal name:', portfolioData.personal.name);
 
-                // Force update the about section directly
-                const aboutSummary = document.getElementById('about-summary');
-                if (aboutSummary) {
-                    aboutSummary.textContent = portfolioData.personal.summary;
-                    aboutSummary.style.backgroundColor = 'lightgreen';
+                // Initialize the application
+                if (typeof PortfolioApp !== 'undefined') {
+                    window.app = new PortfolioApp();
                 }
             } else {
-                console.error('FAILED: portfolioData is not available');
-                const aboutSummary = document.getElementById('about-summary');
-                if (aboutSummary) {
-                    aboutSummary.textContent = 'ERROR: Data not loaded';
-                    aboutSummary.style.backgroundColor = 'lightcoral';
-                }
+                console.log('Data not ready, retrying...');
+                setTimeout(initializeApp, 50);
             }
-        }, 100);
+        }
+
+        // Start initialization when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeApp);
+        } else {
+            initializeApp();
+        }
     </script>
-    <script src="js/web-interface.js?v=2"></script>
-    <script src="js/cli-interface.js?v=2"></script>
-    <script src="js/main.js?v=2"></script>
+    <script src="js/web-interface.js?v=5"></script>
+    <script src="js/cli-interface.js?v=5"></script>
+    <script src="js/main.js?v=5"></script>
 </body>
 
 </html>
