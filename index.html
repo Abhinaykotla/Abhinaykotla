@@ -19,7 +19,7 @@
     <div id="loading-screen" class="loading-screen">
         <div class="loading-content">
             <div class="terminal-cursor"></div>
-            <div class="loading-text">Initializing portfolio...</div>
+            <div class="loading-text">Initializing...</div>
         </div>
     </div>
 
@@ -254,6 +254,29 @@
 
     <!-- Scripts -->
     <script src="js/data.js?v=2"></script>
+    <script>
+        // Debug: Check if data is loaded
+        setTimeout(() => {
+            if (typeof portfolioData !== 'undefined') {
+                console.log('SUCCESS: portfolioData is available');
+                console.log('Personal name:', portfolioData.personal.name);
+
+                // Force update the about section directly
+                const aboutSummary = document.getElementById('about-summary');
+                if (aboutSummary) {
+                    aboutSummary.textContent = portfolioData.personal.summary;
+                    aboutSummary.style.backgroundColor = 'lightgreen';
+                }
+            } else {
+                console.error('FAILED: portfolioData is not available');
+                const aboutSummary = document.getElementById('about-summary');
+                if (aboutSummary) {
+                    aboutSummary.textContent = 'ERROR: Data not loaded';
+                    aboutSummary.style.backgroundColor = 'lightcoral';
+                }
+            }
+        }, 100);
+    </script>
     <script src="js/web-interface.js?v=2"></script>
     <script src="js/cli-interface.js?v=2"></script>
     <script src="js/main.js?v=2"></script>
