@@ -322,7 +322,7 @@ body {
 
 .hero-title {
     font-size: var(--font-size-5xl);
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: var(--space-lg);
     line-height: 1.2;
 }
