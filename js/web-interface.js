@@ -167,47 +167,78 @@ class WebInterface {
     }
 
     loadContent() {
-        // Ensure portfolioData is available
-        if (typeof portfolioData === 'undefined') {
-            console.error('portfolioData is not available, retrying in 100ms...');
-            setTimeout(() => this.loadContent(), 100);
+        console.log('WebInterface loadContent called');
+        console.log('portfolioData type:', typeof portfolioData);
+        console.log('window.portfolioData type:', typeof window.portfolioData);
+
+        // Try multiple ways to access the data
+        let data = portfolioData;
+        if (typeof data === 'undefined') {
+            data = window.portfolioData;
+        }
+
+        if (typeof data === 'undefined') {
+            console.error('portfolioData is not available anywhere, retrying in 200ms...');
+            setTimeout(() => this.loadContent(), 200);
             return;
         }
+
+        console.log('Data found, proceeding with content loading...');
+        window.portfolioData = data; // Ensure it's globally available
 
         this.loadAboutContent();
         this.loadSkillsContent();
         this.loadExperienceContent();
         this.loadProjectsContent();
         this.loadBlogContent();
+
+        console.log('Content loading completed');
     }
 
     loadAboutContent() {
+        console.log('loadAboutContent called');
         const aboutSummary = document.getElementById('about-summary');
         const educationList = document.getElementById('education-list');
         const certificationsList = document.getElementById('certifications-list');
 
-        if (aboutSummary && portfolioData?.personal?.summary) {
-            aboutSummary.textContent = portfolioData.personal.summary;
+        console.log('Elements found:', { aboutSummary: !!aboutSummary, educationList: !!educationList, certificationsList: !!certificationsList });
+
+        const data = window.portfolioData || portfolioData;
+
+        if (aboutSummary && data?.personal?.summary) {
+            aboutSummary.textContent = data.personal.summary;
+            aboutSummary.style.border = '2px solid green';
+            console.log('About summary updated successfully');
+        } else {
+            console.error('Failed to update about summary:', {
+                element: !!aboutSummary,
+                data: !!data,
+                summary: !!data?.personal?.summary
+            });
         }
 
-        if (educationList && portfolioData?.education) {
-            educationList.innerHTML = portfolioData.education.map(edu => `
+        if (educationList && data?.education) {
+            educationList.innerHTML = data.education.map(edu => `
                 <div class="education-item">
                     <div class="degree">${edu.degree}</div>
                     <div class="institution">${edu.institution}</div>
                     <div class="period">${edu.period} | GPA: ${edu.gpa}</div>
                 </div>
             `).join('');
+            educationList.style.border = '2px solid blue';
+            console.log('Education list updated successfully');
         }
 
-        if (certificationsList && portfolioData?.certifications) {
+        if (certificationsList && data?.certifications) {
             certificationsList.innerHTML = `
                 <ul class="certification-list">
-                    ${portfolioData.certifications.map(cert => `
+                    ${data.certifications.map(cert => `
                         <li>${cert}</li>
                     `).join('')}
                 </ul>
             `;
+            certificationsList.style.border = '2px solid purple';
+            console.log('Certifications list updated successfully');
         }
     }
 
