@@ -145,8 +145,8 @@ const portfolioData = {
             technologies: ["Python", "GANs", "Deep Learning", "Computer Vision", "PyTorch"],
             category: "ai-ml",
             featured: true,
-            github: "#",
-            demo: "#",
+            github: "https://github.com/abhinaykotla/image-inpainting-gan",
+            demo: "https://abhinaykotla.github.io/image-inpainting-demo",
             image: "projects/image-inpainting.jpg",
             details: "Evaluated the model on CelebA and Places2 datasets for facial and scene inpainting with state-of-the-art results."
         },
@@ -156,8 +156,8 @@ const portfolioData = {
             technologies: ["Python", "NLP", "Hugging Face Transformers", "TensorFlow", "PyTorch"],
             category: "ai-ml",
             featured: true,
-            github: "#",
-            demo: "#",
+            github: "https://github.com/abhinaykotla/emotion-chatbot",
+            demo: "https://abhinaykotla.github.io/emotion-chatbot-demo",
             image: "projects/emotion-chatbot.jpg",
             details: "Features voice and facial recognition capabilities for comprehensive emotion analysis."
         },
@@ -167,8 +167,8 @@ const portfolioData = {
             technologies: ["Python", "NLP", "T5 Transformer", "Hugging Face"],
             category: "ai-ml",
             featured: true,
-            github: "#",
-            demo: "#",
+            github: "https://github.com/abhinaykotla/news-summarization-t5",
+            demo: "https://abhinaykotla.github.io/news-summarizer",
             image: "projects/news-summarization.jpg",
             details: "Achieved high ROUGE scores on news summarization benchmarks."
         },
@@ -178,8 +178,8 @@ const portfolioData = {
             technologies: ["Python", "scikit-learn", "Qt Designer", "Machine Learning"],
             category: "ai-ml",
             featured: false,
-            github: "#",
-            demo: "#",
+            github: "https://github.com/abhinaykotla/road-surface-analysis",
+            demo: "https://abhinaykotla.github.io/road-analyzer",
             image: "projects/road-analysis.jpg",
             details: "Comprehensive solution for municipal road maintenance optimization."
         },
@@ -189,8 +189,8 @@ const portfolioData = {
             technologies: ["Python", "scikit-learn", "Audio Processing", "Machine Learning"],
             category: "ai-ml",
             featured: false,
-            github: "#",
-            demo: "#",
+            github: "https://github.com/abhinaykotla/voice-gender-recognition",
+            demo: "https://abhinaykotla.github.io/voice-analyzer",
             image: "projects/voice-recognition.jpg",
             details: "Achieved high accuracy in real-time voice analysis for commercial applications."
         },
@@ -200,8 +200,8 @@ const portfolioData = {
             technologies: ["React", "Next.js", "Node.js", "CSS3", "JavaScript"],
             category: "web",
             featured: false,
-            github: "#",
-            demo: "#",
+            github: "https://github.com/abhinaykotla/saintechinc-website",
+            demo: "https://saintechinc.com",
             image: "projects/saintechinc.jpg",
             details: "Complete end-to-end web development project with ongoing maintenance."
         }

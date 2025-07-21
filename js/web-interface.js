@@ -10,7 +10,6 @@ class WebInterface {
         this.setupAnimations();
         this.loadContent();
         this.setupContactForm();
-        this.setupProjectFilters();
         this.setupCounters();
     }
 
@@ -185,6 +184,9 @@ class WebInterface {
         this.loadExperienceContent();
         this.loadProjectsContent();
         this.loadBlogContent();
+        
+        // Setup project filters after content is loaded
+        setTimeout(() => this.setupProjectFilters(), 100);
     }
 
     loadAboutContent() {

@@ -20,7 +20,42 @@ class CLIInterface {
             this.setupTabCompletion();
         }
 
+        this.setupTerminalButtons();
         this.addWelcomeMessage();
+    }
+
+    setupTerminalButtons() {
+        // Close button - switch back to web view
+        const closeBtn = document.querySelector('.btn-close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                if (window.app && typeof window.app.toggleView === 'function') {
+                    window.app.toggleView();
+                }
+            });
+        }
+
+        // Minimize button - minimize the terminal (just visual effect)
+        const minimizeBtn = document.querySelector('.btn-minimize');
+        if (minimizeBtn) {
+            minimizeBtn.addEventListener('click', () => {
+                const terminal = document.querySelector('.terminal');
+                if (terminal) {
+                    terminal.classList.toggle('minimized');
+                }
+            });
+        }
+
+        // Maximize button - toggle fullscreen
+        const maximizeBtn = document.querySelector('.btn-maximize');
+        if (maximizeBtn) {
+            maximizeBtn.addEventListener('click', () => {
+                const cliInterface = document.getElementById('cli-interface');
+                if (cliInterface) {
+                    cliInterface.classList.toggle('fullscreen');
+                }
+            });
+        }
     }
 
     setupInputHandlers() {

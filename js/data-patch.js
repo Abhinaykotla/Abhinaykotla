@@ -96,6 +96,11 @@ function patchPortfolioDataReferences() {
             `).join('');
 
             projectsGrid.innerHTML = projectsHTML;
+            
+            // Setup project filters after projects are loaded
+            if (typeof this.setupProjectFilters === 'function') {
+                this.setupProjectFilters();
+            }
         };
 
         // Patch loadBlogContent
