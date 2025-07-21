@@ -184,7 +184,7 @@ class WebInterface {
         this.loadExperienceContent();
         this.loadProjectsContent();
         this.loadBlogContent();
-        
+
         // Setup project filters after content is loaded
         setTimeout(() => this.setupProjectFilters(), 100);
     }
