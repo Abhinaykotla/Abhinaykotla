@@ -20,8 +20,24 @@ class PortfolioApp {
     }
 
     setupLoadingScreen() {
-        // Simulate loading time for a more polished experience
+        // Check if loading screen has already been shown in this session
+        // But always show on manual page refresh (when performance.navigation.type === 1)
+        const hasShownLoading = sessionStorage.getItem('loadingShown');
+        const isPageRefresh = performance.navigation && performance.navigation.type === 1;
         const loadingScreen = document.getElementById('loading-screen');
+
+        if (hasShownLoading === 'true' && !isPageRefresh) {
+            // Skip loading animation - hide immediately
+            if (loadingScreen) {
+                loadingScreen.classList.add('hidden');
+                this.isLoading = false;
+                // Initialize interfaces immediately
+                setTimeout(() => this.initializeInterfaces(), 100);
+            }
+            return;
+        }
+
+        // Show loading animation for first time/reload
         const minLoadTime = 1500; // Reduced to 1.5 seconds
         const startTime = Date.now();
 
@@ -33,6 +49,9 @@ class PortfolioApp {
                 if (loadingScreen) {
                     loadingScreen.classList.add('hidden');
                     this.isLoading = false;
+
+                    // Mark loading as shown for this session
+                    sessionStorage.setItem('loadingShown', 'true');
 
                     // Initialize interfaces after loading
                     setTimeout(() => this.initializeInterfaces(), 100);
@@ -214,6 +233,13 @@ class PortfolioApp {
                     window.cliInterface.terminalInput.value = 'help';
                     window.cliInterface.processCommand();
                 }
+            }
+
+            // Debug: Ctrl + Alt + L to reset loading screen state (for testing)
+            if (e.ctrlKey && e.altKey && e.key === 'l') {
+                e.preventDefault();
+                sessionStorage.removeItem('loadingShown');
+                console.log('Loading screen state reset - refresh page to see loading animation again');
             }
         });
     }
