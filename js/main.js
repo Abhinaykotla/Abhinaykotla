@@ -684,20 +684,28 @@ function drawNeuralConnections() {
         let currentLayer = 1;
         function activateNextLayer() {
             if (currentLayer >= layers.length) {
-                // End of cycle, restart after short delay
-                setTimeout(runCycle, 700);
+                // End of cycle, restart after longer delay
+                setTimeout(runCycle, 1500);
                 return;
             }
             const nodes = Array.from(layers[currentLayer].querySelectorAll('.node'));
-            // Randomly activate 1-3 nodes per layer (or up to half for larger layers)
-            const numToActivate = Math.max(1, Math.floor(nodes.length / 2));
+            let numToActivate;
+            if (currentLayer === layers.length - 1) {
+                // Output layer: only one node active
+                numToActivate = 1;
+            } else {
+                // Hidden layers: randomly activate 2-5 nodes (or up to all nodes if fewer than 5)
+                const maxToActivate = Math.min(4, nodes.length);
+                const minToActivate = Math.min(2, nodes.length);
+                numToActivate = Math.floor(Math.random() * (maxToActivate - minToActivate + 1)) + minToActivate;
+            }
             const indices = randomIndices(nodes.length, numToActivate);
             setLayerActivation(currentLayer, indices);
             drawNeuralConnections(); // Redraw lines after activation
             currentLayer++;
-            setTimeout(activateNextLayer, 350);
+            setTimeout(activateNextLayer, 900);
         }
-        setTimeout(activateNextLayer, 350);
+        setTimeout(activateNextLayer, 900);
     }
 
     runCycle();

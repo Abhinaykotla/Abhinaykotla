@@ -101,7 +101,7 @@
     background: var(--accent-primary);
     border-radius: 50%;
     box-shadow: 0 0 16px var(--accent-primary), 0 0 2px #fff;
-    animation: pulse 2s infinite;
+    animation: pulse 3s infinite;
     position: relative;
     z-index: 2;
 }
@@ -112,6 +112,7 @@
     box-shadow: 0 0 40px 10px var(--accent-primary), 0 0 8px #fff;
     filter: brightness(1.5);
     transition: box-shadow 0.2s, filter 0.2s;
+    animation: pulse 3s infinite;
 }
 
 /* Inactive node: dimmer */
