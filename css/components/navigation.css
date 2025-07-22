@@ -1,0 +1,203 @@
+/* ==========================================
+   NAVIGATION
+   ========================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(15, 17, 28, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1000;
+    padding: 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    gap: 1rem;
+    /* Add gap to prevent overlap */
+}
+
+.nav-brand {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    /* Allow shrinking if needed */
+}
+
+.nav-brand .brand-link {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-family: var(--font-mono);
+}
+
+.nav-brand .brand-subtitle {
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-top: 2px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--accent-primary);
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent-primary);
+}
+
+.nav-btn {
+    margin-left: 1rem;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    z-index: 1001;
+}
+
+.hamburger-line {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--text-primary);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.hamburger.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Navigation Controls for Mobile/Tablet */
+.nav-controls {
+    display: none;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+    /* Prevent controls from shrinking */
+}
+
+/* Medium screens - show controls but ensure no overlap */
+@media (min-width: 900px) and (max-width: 1024px) {
+    .nav-controls {
+        display: flex;
+    }
+
+    .mobile-toggle {
+        display: flex;
+        font-size: 0.8rem;
+        /* Smaller font on medium screens */
+        padding: 6px 12px;
+        /* Reduce padding */
+    }
+
+    .mobile-toggle span {
+        display: none;
+        /* Hide text, show only icon */
+    }
+
+    .hamburger {
+        display: block;
+    }
+}
+
+/* Desktop view - show normal nav, hide mobile controls */
+@media (min-width: 1025px) {
+    .nav-controls {
+        display: none;
+    }
+
+    .nav-menu {
+        display: flex;
+        position: static;
+        width: auto;
+        height: auto;
+        background: transparent;
+        backdrop-filter: none;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 2rem;
+        transition: none;
+        z-index: auto;
+    }
+}
+
+.mobile-toggle {
+    display: none;
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    border: 2px solid var(--accent-primary);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-items: center;
+    gap: 8px;
+    min-height: 40px;
+}
+
+.mobile-toggle:hover {
+    background: transparent;
+    color: var(--accent-primary);
+}
+
+.mobile-toggle i {
+    font-size: 0.8rem;
+}
+
+.mobile-toggle span {
+    display: inline-block;
+}

@@ -1,0 +1,36 @@
+/* ==========================================
+   VIEW TOGGLE
+   ========================================== */
+.view-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: var(--z-fixed);
+}
+
+.toggle-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border-accent);
+    color: var(--text-primary);
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: var(--shadow-md);
+}
+
+.toggle-btn:hover {
+    background: var(--bg-hover);
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+}
+
+.toggle-btn i {
+    font-size: var(--font-size-base);
+}

@@ -1,0 +1,30 @@
+/* ==========================================
+   MAIN CSS FILE - IMPORTS ALL MODULES
+   ========================================== */
+
+/* Base styles and variables */
+@import url('./variables.css');
+@import url('./animations.css');
+@import url('./utilities.css');
+
+/* Components */
+@import url('./components/loading.css');
+@import url('./components/toggle.css');
+@import url('./components/navigation.css');
+@import url('./components/buttons.css');
+@import url('./components/sections.css');
+@import url('./components/cli.css');
+@import url('./components/footer.css');
+@import url('./components/scrollbar.css');
+
+/* Page sections */
+@import url('./sections/hero.css');
+@import url('./sections/about.css');
+@import url('./sections/skills.css');
+@import url('./sections/experience.css');
+@import url('./sections/projects.css');
+@import url('./sections/blog.css');
+@import url('./sections/contact.css');
+
+/* Responsive design */
+@import url('./responsive.css');

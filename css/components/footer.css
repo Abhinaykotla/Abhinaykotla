@@ -1,0 +1,17 @@
+/* ==========================================
+   FOOTER
+   ========================================== */
+.footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    padding: var(--space-xl) 0;
+    text-align: center;
+}
+
+.footer-content {
+    color: var(--text-muted);
+}
+
+.footer-content p {
+    margin-bottom: var(--space-sm);
+}
