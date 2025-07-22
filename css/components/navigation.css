@@ -128,7 +128,7 @@
 }
 
 /* Medium screens - show controls but ensure no overlap */
-@media (min-width: 900px) and (max-width: 1024px) {
+@media (min-width: 900px) and (max-width: 1500px) {
     .nav-controls {
         display: flex;
     }

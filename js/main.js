@@ -461,7 +461,7 @@ class PortfolioApp {
 
     handleViewportChange() {
         const isMobile = window.innerWidth <= 768;
-        const isTablet = window.innerWidth <= 1024 && window.innerWidth > 768;
+        const isTablet = window.innerWidth <= 1500 && window.innerWidth > 768;
 
         // Update body classes for responsive styling
         document.body.classList.toggle('mobile-view', isMobile);

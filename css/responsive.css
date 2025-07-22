@@ -3,7 +3,7 @@
    ========================================== */
 
 /* Tablet and Mobile Navigation */
-@media (max-width: 1024px) {
+@media (max-width: 1500px) {
 
     /* Hide original desktop toggle button on tablet */
     .view-toggle {
@@ -233,15 +233,31 @@
 
     .hero-buttons {
         flex-direction: column;
-        gap: 1rem;
-        width: 100%;
+        gap: 12px;
     }
 
-    .btn {
-        width: 100%;
-        padding: 1rem;
+    .hero-buttons .btn {
+        min-height: 36px;
+        padding: 8px 12px;
         font-size: 1rem;
-        min-height: 44px;
+        border-radius: 8px;
+        width: 100%;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        margin: 0;
+    }
+
+    .hero-buttons .btn-primary {
+        font-weight: 600;
+        background: linear-gradient(90deg, #7f7fd5 0%, #86a8e7 100%);
+        color: #fff;
+        border: none;
+    }
+
+    .hero-buttons .btn-secondary {
+        font-weight: 600;
+        background: transparent;
+        color: var(--accent-primary);
+        border: 2px solid var(--accent-primary);
     }
 
     .timeline-item {
@@ -373,7 +389,7 @@
 }
 
 /* Tablet Responsive Design */
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 769px) and (max-width: 1500px) {
     .nav-container {
         padding: 1rem 1.5rem;
         gap: 1rem;
