@@ -631,6 +631,82 @@ function drawNeuralConnections() {
     }
 }
 
+// === Neural Network Node Activation Animation ===
+(function animateNeuralNetworkActivation() {
+    const network = document.querySelector('.neural-network');
+    if (!network) return;
+    const layers = Array.from(network.querySelectorAll('.layer'));
+    if (layers.length < 2) return;
+
+    // Helper to activate nodes
+    function setLayerActivation(layerIdx, activeIndices) {
+        const nodes = Array.from(layers[layerIdx].querySelectorAll('.node'));
+        nodes.forEach((node, idx) => {
+            if (activeIndices.includes(idx)) {
+                node.classList.add('active');
+                node.classList.remove('inactive');
+            } else {
+                node.classList.remove('active');
+                node.classList.add('inactive');
+            }
+        });
+    }
+
+    // Input layer always active
+    function activateInputLayer() {
+        const nodes = Array.from(layers[0].querySelectorAll('.node'));
+        nodes.forEach(node => {
+            node.classList.add('active');
+            node.classList.remove('inactive');
+        });
+    }
+
+    // Deactivate all except input
+    function resetAllExceptInput() {
+        for (let l = 1; l < layers.length; l++) {
+            const nodes = Array.from(layers[l].querySelectorAll('.node'));
+            nodes.forEach(node => {
+                node.classList.remove('active');
+                node.classList.add('inactive');
+            });
+        }
+    }
+
+    // Randomly select n indices from 0..max-1
+    function randomIndices(max, n) {
+        const arr = Array.from({ length: max }, (_, i) => i);
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr.slice(0, n);
+    }
+
+    // Animation cycle
+    function runCycle() {
+        activateInputLayer();
+        resetAllExceptInput();
+        let currentLayer = 1;
+        function activateNextLayer() {
+            if (currentLayer >= layers.length) {
+                // End of cycle, restart after short delay
+                setTimeout(runCycle, 700);
+                return;
+            }
+            const nodes = Array.from(layers[currentLayer].querySelectorAll('.node'));
+            // Randomly activate 1-3 nodes per layer (or up to half for larger layers)
+            const numToActivate = Math.max(1, Math.floor(nodes.length / 2));
+            const indices = randomIndices(nodes.length, numToActivate);
+            setLayerActivation(currentLayer, indices);
+            currentLayer++;
+            setTimeout(activateNextLayer, 350);
+        }
+        setTimeout(activateNextLayer, 350);
+    }
+
+    runCycle();
+})();
+
 // Initialize the application
 document.addEventListener('DOMContentLoaded', () => {
     window.portfolioApp = new PortfolioApp();
