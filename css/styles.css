@@ -210,11 +210,16 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
+    gap: 1rem;
+    /* Add gap to prevent overlap */
 }
 
 .nav-brand {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    /* Allow shrinking if needed */
 }
 
 .nav-brand .brand-link {
@@ -308,6 +313,32 @@ body {
     display: none;
     align-items: center;
     gap: 1rem;
+    flex-shrink: 0;
+    /* Prevent controls from shrinking */
+}
+
+/* Medium screens - show controls but ensure no overlap */
+@media (min-width: 900px) and (max-width: 1024px) {
+    .nav-controls {
+        display: flex;
+    }
+
+    .mobile-toggle {
+        display: flex;
+        font-size: 0.8rem;
+        /* Smaller font on medium screens */
+        padding: 6px 12px;
+        /* Reduce padding */
+    }
+
+    .mobile-toggle span {
+        display: none;
+        /* Hide text, show only icon */
+    }
+
+    .hamburger {
+        display: block;
+    }
 }
 
 /* Desktop view - show normal nav, hide mobile controls */
@@ -1942,10 +1973,45 @@ body {
     }
 }
 
-/* Tablet responsive fixes */
+/* Consolidated Tablet Responsive Design */
 @media (min-width: 769px) and (max-width: 1024px) {
+
+    /* Navigation fixes for overlap prevention */
     .nav-container {
         padding: 1rem 1.5rem;
+        gap: 1rem;
+    }
+
+    .nav-brand {
+        flex: 1;
+        min-width: 0;
+        max-width: 65%;
+        /* Limit brand width to prevent overlap */
+    }
+
+    .nav-brand .brand-link {
+        font-size: 1.3rem;
+        /* Slightly smaller brand text */
+    }
+
+    .nav-brand .brand-subtitle {
+        font-size: 0.75rem;
+        max-width: 300px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .nav-controls {
+        flex-shrink: 0;
+        justify-content: flex-end;
+        gap: 0.75rem;
+    }
+
+    .mobile-toggle {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        min-height: 38px;
     }
 
     .nav-menu {
