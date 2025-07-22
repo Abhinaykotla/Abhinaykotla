@@ -47,6 +47,6 @@ Find all my projects [here](https://github.com/Abhinaykotla?tab=repositories).
 ## 🌐 Let's Connect
 
 - [LinkedIn](https://linkedin.com/in/abhinaykotla)
-- [Personal Website](#) *(Coming Soon!)*
+- [Personal Website](abhinaykotla.com)
 
 Thank you for stopping by! Feel free to explore my repositories or reach out for collaboration. 😊

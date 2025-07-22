@@ -278,20 +278,44 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="js/data.js?v=9"></script>
+    <!-- Modular Data Files -->
+    <script src="js/data/personal.js?v=10"></script>
+    <script src="js/data/education.js?v=10"></script>
+    <script src="js/data/skills.js?v=10"></script>
+    <script src="js/data/experience.js?v=10"></script>
+    <script src="js/data/projects.js?v=10"></script>
+    <script src="js/data/blog.js?v=10"></script>
+    <script src="js/data/cli.js?v=10"></script>
+    <script src="js/data-loader.js?v=10"></script>
     <script src="js/data-patch.js?v=9"></script>
     <script>
+        // Debug: Track script loading
+        console.log('Starting portfolio initialization...');
+
         // Ensure data is loaded before initializing interfaces
         function initializeApp() {
+            console.log('initializeApp called, checking for portfolioData...');
             if (typeof portfolioData !== 'undefined' && window.portfolioData) {
+                console.log('portfolioData found:', window.portfolioData);
                 // Initialize the application
                 if (typeof PortfolioApp !== 'undefined') {
+                    console.log('Creating PortfolioApp...');
                     window.app = new PortfolioApp();
+                } else {
+                    console.warn('PortfolioApp not defined yet, retrying...');
+                    setTimeout(initializeApp, 50);
                 }
             } else {
+                console.log('portfolioData not ready, retrying...');
                 setTimeout(initializeApp, 50);
             }
         }
+
+        // Listen for data loaded event
+        window.addEventListener('portfolioDataLoaded', function (event) {
+            console.log('portfolioDataLoaded event received:', event.detail);
+            initializeApp();
+        });
 
         // Start initialization when DOM is ready
         if (document.readyState === 'loading') {
@@ -300,7 +324,7 @@
             initializeApp();
         }
     </script>
-    <script src="js/web-interface.js?v=9"></script>
+    <script src="js/web-interface.js?v=11"></script>
     <script src="js/cli-interface.js?v=9"></script>
     <script src="js/main.js?v=9"></script>
 </body>

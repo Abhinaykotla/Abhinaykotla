@@ -4,6 +4,12 @@ class PortfolioApp {
         this.currentView = 'web';
         this.isLoading = true;
 
+        // Listen for data loaded event
+        window.addEventListener('portfolioDataLoaded', () => {
+            console.log('Data loaded event received');
+            this.initializeInterfaces();
+        });
+
         this.init();
     }
 
@@ -68,10 +74,16 @@ class PortfolioApp {
     }
 
     initializeInterfaces() {
-        // Verify data is available before initializing
-        if (typeof portfolioData === 'undefined' || !window.portfolioData) {
+        // Ensure data is loaded before initializing
+        const data = window.portfolioData;
+
+        if (!data) {
+            console.warn('Portfolio data not available, retrying in 100ms...');
+            setTimeout(() => this.initializeInterfaces(), 100);
             return;
         }
+
+        console.log('Initializing interfaces with data:', data);
 
         // Initialize web interface
         if (!window.webInterface) {

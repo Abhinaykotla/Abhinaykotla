@@ -269,9 +269,13 @@ class WebInterface {
         const certificationsList = document.getElementById('certifications-list');
 
         const data = window.portfolioData || portfolioData;
+        console.log('loadAboutContent called with data:', data);
 
-        if (aboutSummary && data?.personal?.summary) {
-            aboutSummary.textContent = data.personal.summary;
+        if (aboutSummary && data?.summary) {
+            console.log('Setting about summary:', data.summary);
+            aboutSummary.textContent = data.summary;
+        } else {
+            console.warn('About summary not loaded:', { aboutSummary, summary: data?.summary });
         }
 
         if (educationList && data?.education) {

@@ -1,7 +1,7 @@
 // CLI Interface JavaScript
 class CLIInterface {
     constructor() {
-        this.commands = portfolioData.cliCommands;
+        this.commands = null;
         this.commandHistory = [];
         this.historyIndex = -1;
         this.terminalContent = null;
@@ -23,6 +23,23 @@ class CLIInterface {
         this.setupTerminalButtons();
         this.setupMobileOptimizations();
         this.addWelcomeMessage();
+    }
+
+    // Safely get data with fallback
+    getData() {
+        if (!this.commands && window.portfolioData) {
+            this.commands = window.portfolioData.cliCommands;
+        }
+        return window.portfolioData;
+    }
+
+    // Get CLI commands safely
+    getCommands() {
+        if (!this.commands) {
+            const data = this.getData();
+            this.commands = data?.cliCommands || {};
+        }
+        return this.commands;
     }
 
     setupMobileOptimizations() {
@@ -225,10 +242,13 @@ class CLIInterface {
     }
 
     setupTabCompletion() {
-        this.availableCommands = Object.keys(this.commands);
-        this.projectNames = portfolioData.projects.map(p =>
+        const commands = this.getCommands();
+        this.availableCommands = Object.keys(commands);
+
+        const data = this.getData();
+        this.projectNames = data?.projects?.map(p =>
             p.title.toLowerCase().replace(/[^a-z0-9\s]/g, '').trim()
-        );
+        ) || [];
     }
 
     addWelcomeMessage() {
@@ -289,8 +309,9 @@ class CLIInterface {
         }
 
         // Handle standard commands
-        if (this.commands[command]) {
-            this.addResponse(this.commands[command].response);
+        const commands = this.getCommands();
+        if (commands[command]) {
+            this.addResponse(commands[command].response);
         } else {
             this.addError(`Command not found: ${command}. Type 'help' for available commands.`);
         }
@@ -298,7 +319,8 @@ class CLIInterface {
 
     handleProjectCommand(projectName) {
         const normalizedName = projectName.toLowerCase();
-        const project = portfolioData.projects.find(p =>
+        const data = this.getData();
+        const project = data?.projects?.find(p =>
             p.title.toLowerCase().includes(normalizedName) ||
             normalizedName.includes(p.title.toLowerCase().split(' ')[0])
         );
@@ -337,7 +359,10 @@ Type 'projects' to see all projects.`;
 
     findSimilarProjects(input) {
         const inputLower = input.toLowerCase();
-        return portfolioData.projects
+        const data = this.getData();
+        if (!data?.projects) return [];
+
+        return data.projects
             .filter(p => {
                 const titleWords = p.title.toLowerCase().split(' ');
                 return titleWords.some(word =>
