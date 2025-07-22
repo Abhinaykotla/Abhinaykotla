@@ -587,9 +587,58 @@ class PortfolioApp {
     }
 }
 
+// === Neural Network Animated Connections ===
+function drawNeuralConnections() {
+    const network = document.querySelector('.neural-network');
+    const svg = network ? network.querySelector('svg.connections') : null;
+    if (!network || !svg) return;
+
+    // Clear previous lines
+    svg.innerHTML = '';
+
+    // Get all layers and their nodes
+    const layers = Array.from(network.querySelectorAll('.layer'));
+    const layerNodes = layers.map(layer => Array.from(layer.querySelectorAll('.node')));
+
+    // Get bounding rect for coordinate calculations
+    const networkRect = network.getBoundingClientRect();
+
+    // Set SVG size
+    svg.setAttribute('width', network.offsetWidth);
+    svg.setAttribute('height', network.offsetHeight);
+
+    // Draw lines between every node in adjacent layers
+    for (let l = 0; l < layerNodes.length - 1; l++) {
+        const currentLayer = layerNodes[l];
+        const nextLayer = layerNodes[l + 1];
+        currentLayer.forEach(nodeA => {
+            const rectA = nodeA.getBoundingClientRect();
+            const x1 = rectA.left + rectA.width / 2 - networkRect.left;
+            const y1 = rectA.top + rectA.height / 2 - networkRect.top;
+            nextLayer.forEach(nodeB => {
+                const rectB = nodeB.getBoundingClientRect();
+                const x2 = rectB.left + rectB.width / 2 - networkRect.left;
+                const y2 = rectB.top + rectB.height / 2 - networkRect.top;
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', x1);
+                line.setAttribute('y1', y1);
+                line.setAttribute('x2', x2);
+                line.setAttribute('y2', y2);
+                line.setAttribute('class', 'connection-line');
+                svg.appendChild(line);
+            });
+        });
+    }
+}
+
 // Initialize the application
 document.addEventListener('DOMContentLoaded', () => {
     window.portfolioApp = new PortfolioApp();
+    drawNeuralConnections(); // Call on DOMContentLoaded
+});
+
+window.addEventListener('resize', () => {
+    setTimeout(drawNeuralConnections, 100); // Call on resize
 });
 
 // Add CSS for view transitions

@@ -72,72 +72,90 @@
     animation: slideInRight 1s ease;
 }
 
+/* === Neural Network Visualization (4-layer) === */
 .neural-network {
-    position: relative;
-    width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 340px;
     height: 300px;
+    position: relative;
+}
+
+.layer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    height: 100%;
+    position: relative;
+    z-index: 2;
 }
 
 .node {
-    position: absolute;
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
+    margin: 18px 0;
     background: var(--accent-primary);
     border-radius: 50%;
-    box-shadow: 0 0 20px var(--accent-primary);
+    box-shadow: 0 0 16px var(--accent-primary), 0 0 2px #fff;
     animation: pulse 2s infinite;
+    position: relative;
+    z-index: 2;
 }
 
-.node:nth-child(1) {
-    top: 20%;
-    left: 20%;
-    animation-delay: 0s;
+/* Animate node pulse */
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 16px var(--accent-primary), 0 0 2px #fff;
+    }
+
+    50% {
+        box-shadow: 0 0 32px var(--accent-primary), 0 0 8px #fff;
+    }
 }
 
-.node:nth-child(2) {
-    top: 20%;
-    right: 20%;
-    animation-delay: 0.5s;
-}
-
-.node:nth-child(3) {
-    bottom: 20%;
-    left: 20%;
-    animation-delay: 1s;
-}
-
-.node:nth-child(4) {
-    bottom: 20%;
-    right: 20%;
-    animation-delay: 1.5s;
-}
-
-.connection {
+/* Connections using SVG overlay */
+.neural-network svg.connections {
     position: absolute;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
-    animation: flow 3s infinite;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
 }
 
-.connection:nth-child(5) {
-    top: 25%;
-    left: 25%;
-    width: 50%;
-    transform: rotate(15deg);
+.neural-network .connection-line {
+    stroke: var(--accent-primary);
+    stroke-width: 2;
+    opacity: 0.5;
+    stroke-dasharray: 6 6;
+    animation: dashmove 2.5s linear infinite;
 }
 
-.connection:nth-child(6) {
-    top: 50%;
-    left: 25%;
-    width: 50%;
-    transform: rotate(-15deg);
+@keyframes dashmove {
+    to {
+        stroke-dashoffset: -24;
+    }
 }
 
-.connection:nth-child(7) {
-    bottom: 25%;
-    left: 25%;
-    width: 50%;
-    transform: rotate(15deg);
+/* Responsive for smaller screens */
+@media (max-width: 600px) {
+    .neural-network {
+        width: 220px;
+        height: 180px;
+    }
+
+    .node {
+        width: 14px;
+        height: 14px;
+        margin: 8px 0;
+    }
 }
 
 .scroll-indicator {
