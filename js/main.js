@@ -593,25 +593,21 @@ function drawNeuralConnections() {
     const svg = network ? network.querySelector('svg.connections') : null;
     if (!network || !svg) return;
 
-    // Clear previous lines
     svg.innerHTML = '';
 
-    // Get all layers and their nodes
     const layers = Array.from(network.querySelectorAll('.layer'));
     const layerNodes = layers.map(layer => Array.from(layer.querySelectorAll('.node')));
-
-    // Get bounding rect for coordinate calculations
     const networkRect = network.getBoundingClientRect();
 
-    // Set SVG size
     svg.setAttribute('width', network.offsetWidth);
     svg.setAttribute('height', network.offsetHeight);
 
-    // Draw lines between every node in adjacent layers
     for (let l = 0; l < layerNodes.length - 1; l++) {
         const currentLayer = layerNodes[l];
         const nextLayer = layerNodes[l + 1];
-        currentLayer.forEach(nodeA => {
+        // For each active node in currentLayer, draw lines to all nodes in nextLayer
+        const activeCurrent = currentLayer.filter(node => node.classList.contains('active'));
+        activeCurrent.forEach(nodeA => {
             const rectA = nodeA.getBoundingClientRect();
             const x1 = rectA.left + rectA.width / 2 - networkRect.left;
             const y1 = rectA.top + rectA.height / 2 - networkRect.top;
@@ -638,17 +634,15 @@ function drawNeuralConnections() {
     const layers = Array.from(network.querySelectorAll('.layer'));
     if (layers.length < 2) return;
 
-    // Helper to activate nodes
+    // Helper to activate nodes (add to current active set)
     function setLayerActivation(layerIdx, activeIndices) {
         const nodes = Array.from(layers[layerIdx].querySelectorAll('.node'));
         nodes.forEach((node, idx) => {
             if (activeIndices.includes(idx)) {
                 node.classList.add('active');
                 node.classList.remove('inactive');
-            } else {
-                node.classList.remove('active');
-                node.classList.add('inactive');
             }
+            // Do not deactivate here; keep previously activated nodes active
         });
     }
 
@@ -661,7 +655,7 @@ function drawNeuralConnections() {
         });
     }
 
-    // Deactivate all except input
+    // Deactivate all except input (at start of cycle)
     function resetAllExceptInput() {
         for (let l = 1; l < layers.length; l++) {
             const nodes = Array.from(layers[l].querySelectorAll('.node'));
@@ -686,6 +680,7 @@ function drawNeuralConnections() {
     function runCycle() {
         activateInputLayer();
         resetAllExceptInput();
+        drawNeuralConnections(); // Draw initial state
         let currentLayer = 1;
         function activateNextLayer() {
             if (currentLayer >= layers.length) {
@@ -698,6 +693,7 @@ function drawNeuralConnections() {
             const numToActivate = Math.max(1, Math.floor(nodes.length / 2));
             const indices = randomIndices(nodes.length, numToActivate);
             setLayerActivation(currentLayer, indices);
+            drawNeuralConnections(); // Redraw lines after activation
             currentLayer++;
             setTimeout(activateNextLayer, 350);
         }
