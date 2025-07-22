@@ -36,24 +36,40 @@
         <!-- Navigation -->
         <nav class="navbar">
             <div class="nav-container">
-                <div class="nav-logo">
-                    <span class="logo-text">Abhinay Kotla</span>
-                    <span class="logo-subtitle">GRA at UTA | Machine Learning Enthusiast | Creative Problem Solver |
+                <div class="nav-brand">
+                    <a href="#" class="brand-link">Abhinay Kotla</a>
+                    <span class="brand-subtitle">GRA at UTA | Machine Learning Enthusiast | Creative Problem Solver |
                         MSCS @ UT Arlington</span>
                 </div>
-                <ul class="nav-menu">
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#skills" class="nav-link">Skills</a></li>
-                    <li><a href="#experience" class="nav-link">Experience</a></li>
-                    <li><a href="#projects" class="nav-link">Projects</a></li>
-                    <li><a href="#blog" class="nav-link">Blog</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
+
+                <!-- Hamburger Menu Button -->
+                <button class="hamburger" id="hamburger-menu" aria-label="Toggle navigation">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+
+                <!-- Navigation Menu -->
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#skills" class="nav-link">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#experience" class="nav-link">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#projects" class="nav-link">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#blog" class="nav-link">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </li>
                 </ul>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
             </div>
         </nav>
 
@@ -114,7 +130,7 @@
                             <span class="stat-label">Projects</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number" data-target="5000">0</span>
+                            <span class="stat-number" data-target="6000">0</span>
                             <span class="stat-label">Users Impacted</span>
                         </div>
                     </div>
@@ -254,8 +270,8 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="js/data.js?v=7"></script>
-    <script src="js/data-patch.js?v=7"></script>
+    <script src="js/data.js?v=9"></script>
+    <script src="js/data-patch.js?v=9"></script>
     <script>
         // Ensure data is loaded before initializing interfaces
         function initializeApp() {
@@ -276,9 +292,9 @@
             initializeApp();
         }
     </script>
-    <script src="js/web-interface.js?v=8"></script>
-    <script src="js/cli-interface.js?v=8"></script>
-    <script src="js/main.js?v=8"></script>
+    <script src="js/web-interface.js?v=9"></script>
+    <script src="js/cli-interface.js?v=9"></script>
+    <script src="js/main.js?v=9"></script>
 </body>
 
 </html>

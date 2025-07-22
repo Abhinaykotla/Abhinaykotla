@@ -14,6 +14,9 @@ class PortfolioApp {
         this.setupThemeSystem();
         this.setupPerformanceOptimizations();
         this.setupResponsiveHandling();
+        this.setupHamburgerMenu();
+        this.setupSmoothScrolling();
+        this.setupActiveNavigation();
     }
 
     setupLoadingScreen() {
@@ -94,6 +97,9 @@ class PortfolioApp {
         const webInterface = document.getElementById('web-interface');
         const cliInterface = document.getElementById('cli-interface');
 
+        // Close mobile menu when switching views
+        this.closeMobileMenu();
+
         if (this.currentView === 'web') {
             // Switch to CLI
             this.currentView = 'cli';
@@ -117,8 +123,8 @@ class PortfolioApp {
             cliInterface.classList.remove('active');
             webInterface.classList.add('active');
 
-            toggleBtn.innerHTML = '<i class="fas fa-terminal"></i><span>CLI Mode</span>';
-            toggleBtn.title = 'Switch to CLI Mode';
+            toggleBtn.innerHTML = '<i class="fas fa-terminal"></i><span>Dev Mode</span>';
+            toggleBtn.title = 'Switch to DEV Mode';
 
             // Deactivate CLI interface
             if (window.cliInterface) {
@@ -380,6 +386,7 @@ class PortfolioApp {
         window.addEventListener('orientationchange', () => {
             setTimeout(() => {
                 this.handleViewportChange();
+                this.closeMobileMenu();
             }, 100);
         });
 
@@ -389,6 +396,10 @@ class PortfolioApp {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
                 this.handleViewportChange();
+                // Close mobile menu on resize to desktop
+                if (window.innerWidth > 768) {
+                    this.closeMobileMenu();
+                }
             }, 250);
         });
 
@@ -420,6 +431,98 @@ class PortfolioApp {
         if (window.cliInterface && typeof window.cliInterface.handleResize === 'function') {
             window.cliInterface.handleResize();
         }
+    }
+
+    setupHamburgerMenu() {
+        const hamburger = document.getElementById('hamburger-menu');
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+
+                // Prevent body scroll when menu is open
+                if (navMenu.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Close menu when clicking on nav links
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    this.closeMobileMenu();
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                    this.closeMobileMenu();
+                }
+            });
+        }
+    }
+
+    closeMobileMenu() {
+        const hamburger = document.getElementById('hamburger-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        if (hamburger && navMenu) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    setupSmoothScrolling() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = target.offsetTop - navHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
+
+    setupActiveNavigation() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '-100px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Remove active class from all nav links
+                    navLinks.forEach(link => link.classList.remove('active'));
+
+                    // Add active class to current section's nav link
+                    const activeLink = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
     }
 }
 

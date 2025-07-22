@@ -116,17 +116,6 @@ class CLIInterface {
     addMobileCommandBar() {
         const commandBar = document.createElement('div');
         commandBar.className = 'mobile-command-bar';
-        commandBar.style.cssText = `
-            position: sticky;
-            bottom: 0;
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border-color);
-            padding: var(--space-sm);
-            display: flex;
-            gap: var(--space-xs);
-            flex-wrap: wrap;
-            z-index: 10;
-        `;
 
         const commands = ['help', 'about', 'skills', 'projects', 'contact', 'clear'];
 
@@ -134,22 +123,11 @@ class CLIInterface {
             const btn = document.createElement('button');
             btn.textContent = cmd;
             btn.className = 'mobile-cmd-btn';
-            btn.style.cssText = `
-                background: var(--accent-primary);
-                color: var(--bg-primary);
-                border: none;
-                padding: 6px 10px;
-                border-radius: 4px;
-                font-size: var(--font-size-xs);
-                cursor: pointer;
-                transition: all 0.2s ease;
-                flex: 1;
-                min-width: 50px;
-            `;
 
             btn.addEventListener('click', () => {
                 this.terminalInput.value = cmd;
-                this.processCommand();
+                this.processCommand(cmd);
+                this.terminalInput.value = '';
             });
 
             btn.addEventListener('touchstart', () => {
@@ -163,9 +141,10 @@ class CLIInterface {
             commandBar.appendChild(btn);
         });
 
-        const terminalBody = document.querySelector('.terminal-body');
-        if (terminalBody) {
-            terminalBody.appendChild(commandBar);
+        // Add the command bar to the terminal
+        const terminal = document.querySelector('.terminal');
+        if (terminal) {
+            terminal.appendChild(commandBar);
         }
     }
 
