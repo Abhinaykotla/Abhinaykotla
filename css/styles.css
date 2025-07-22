@@ -303,6 +303,42 @@ body {
     transform: rotate(-45deg) translate(7px, -6px);
 }
 
+/* Navigation Controls for Mobile/Tablet */
+.nav-controls {
+    display: none;
+    align-items: center;
+    gap: 1rem;
+}
+
+.mobile-toggle {
+    display: none;
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    border: 2px solid var(--accent-primary);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-items: center;
+    gap: 8px;
+    min-height: 40px;
+}
+
+.mobile-toggle:hover {
+    background: transparent;
+    color: var(--accent-primary);
+}
+
+.mobile-toggle i {
+    font-size: 0.8rem;
+}
+
+.mobile-toggle span {
+    display: inline-block;
+}
+
 /* ==========================================
    HERO SECTION
    ========================================== */
@@ -1488,6 +1524,25 @@ body {
 
 /* Tablet and Mobile Navigation */
 @media (max-width: 1024px) {
+
+    /* Hide original desktop toggle button on tablet */
+    .view-toggle {
+        display: none;
+    }
+
+    /* Show mobile controls on tablet too */
+    .nav-controls {
+        display: flex;
+    }
+
+    .mobile-toggle {
+        display: flex;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
     .nav-logo {
         flex-direction: column;
         align-items: flex-start;
@@ -1551,8 +1606,27 @@ body {
         /* Account for fixed navbar */
     }
 
+    /* Hide original desktop toggle button on mobile */
+    .view-toggle {
+        display: none;
+    }
+
+    /* Show mobile navigation controls */
+    .nav-controls {
+        display: flex;
+    }
+
+    .mobile-toggle {
+        display: flex;
+    }
+
     .hamburger {
         display: block;
+    }
+
+    /* Hide desktop navigation menu initially */
+    .nav-menu {
+        display: flex;
     }
 
     .nav-container {

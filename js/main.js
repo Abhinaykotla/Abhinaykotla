@@ -109,6 +109,13 @@ class PortfolioApp {
             toggleBtn.innerHTML = '<i class="fas fa-globe"></i><span>Web Mode</span>';
             toggleBtn.title = 'Switch to Web Mode';
 
+            // Update mobile toggle button
+            const mobileToggle = document.getElementById('toggle-view-mobile');
+            if (mobileToggle) {
+                mobileToggle.innerHTML = '<i class="fas fa-globe"></i><span>Web Mode</span>';
+                mobileToggle.title = 'Switch to Web Mode';
+            }
+
             // Activate CLI interface
             if (window.cliInterface) {
                 window.cliInterface.activate();
@@ -125,6 +132,13 @@ class PortfolioApp {
 
             toggleBtn.innerHTML = '<i class="fas fa-terminal"></i><span>Dev Mode</span>';
             toggleBtn.title = 'Switch to DEV Mode';
+
+            // Update mobile toggle button
+            const mobileToggle = document.getElementById('toggle-view-mobile');
+            if (mobileToggle) {
+                mobileToggle.innerHTML = '<i class="fas fa-terminal"></i><span>Dev Mode</span>';
+                mobileToggle.title = 'Switch to DEV Mode';
+            }
 
             // Deactivate CLI interface
             if (window.cliInterface) {
@@ -437,6 +451,7 @@ class PortfolioApp {
         const hamburger = document.getElementById('hamburger-menu');
         const navMenu = document.getElementById('nav-menu');
         const navLinks = document.querySelectorAll('.nav-link');
+        const mobileToggle = document.getElementById('toggle-view-mobile');
 
         if (hamburger && navMenu) {
             hamburger.addEventListener('click', () => {
@@ -457,6 +472,14 @@ class PortfolioApp {
                     this.closeMobileMenu();
                 });
             });
+
+            // Setup mobile toggle button
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', () => {
+                    this.toggleView();
+                    this.closeMobileMenu(); // Close menu after switching views
+                });
+            }
 
             // Close menu when clicking outside
             document.addEventListener('click', (e) => {
