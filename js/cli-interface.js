@@ -21,7 +21,158 @@ class CLIInterface {
         }
 
         this.setupTerminalButtons();
+        this.setupMobileOptimizations();
         this.addWelcomeMessage();
+    }
+
+    setupMobileOptimizations() {
+        this.setupMobileKeyboard();
+        this.setupTouchScrolling();
+        this.setupMobileCommandShortcuts();
+        this.adjustForMobile();
+    }
+
+    setupMobileKeyboard() {
+        // Prevent zoom on input focus for iOS
+        if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+            const meta = document.querySelector('meta[name="viewport"]');
+            if (meta) {
+                const originalContent = meta.content;
+
+                this.terminalInput.addEventListener('focus', () => {
+                    meta.content = 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no';
+                });
+
+                this.terminalInput.addEventListener('blur', () => {
+                    meta.content = originalContent;
+                });
+            }
+        }
+
+        // Show mobile keyboard helper
+        if (window.innerWidth <= 768) {
+            this.addMobileHelperMessage();
+        }
+    }
+
+    setupTouchScrolling() {
+        // Ensure smooth scrolling on mobile
+        if (this.terminalContent) {
+            this.terminalContent.style.webkitOverflowScrolling = 'touch';
+            this.terminalContent.style.overflowY = 'auto';
+
+            // Auto-scroll to bottom when new content is added
+            const observer = new MutationObserver(() => {
+                this.scrollToBottom();
+            });
+
+            observer.observe(this.terminalContent, {
+                childList: true,
+                subtree: true
+            });
+        }
+    }
+
+    setupMobileCommandShortcuts() {
+        // Add touch-friendly command buttons for mobile
+        if (window.innerWidth <= 768) {
+            this.addMobileCommandBar();
+        }
+    }
+
+    adjustForMobile() {
+        // Adjust terminal height for mobile viewports
+        const adjustHeight = () => {
+            if (window.innerWidth <= 768) {
+                const terminal = document.querySelector('.terminal');
+                const availableHeight = window.innerHeight - 20; // Account for padding
+                if (terminal) {
+                    terminal.style.height = `${availableHeight}px`;
+                }
+            }
+        };
+
+        adjustHeight();
+        window.addEventListener('resize', adjustHeight);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(adjustHeight, 100); // Delay for orientation change
+        });
+    }
+
+    addMobileHelperMessage() {
+        if (this.terminalContent) {
+            const helperLine = document.createElement('div');
+            helperLine.className = 'terminal-line mobile-helper';
+            helperLine.innerHTML = `
+                <span class="prompt">📱</span>
+                <span class="terminal-text" style="color: var(--accent-secondary);">
+                    Mobile tip: Type 'help' for commands, or use the shortcuts below
+                </span>
+            `;
+            this.terminalContent.appendChild(helperLine);
+        }
+    }
+
+    addMobileCommandBar() {
+        const commandBar = document.createElement('div');
+        commandBar.className = 'mobile-command-bar';
+        commandBar.style.cssText = `
+            position: sticky;
+            bottom: 0;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: var(--space-sm);
+            display: flex;
+            gap: var(--space-xs);
+            flex-wrap: wrap;
+            z-index: 10;
+        `;
+
+        const commands = ['help', 'about', 'skills', 'projects', 'contact', 'clear'];
+
+        commands.forEach(cmd => {
+            const btn = document.createElement('button');
+            btn.textContent = cmd;
+            btn.className = 'mobile-cmd-btn';
+            btn.style.cssText = `
+                background: var(--accent-primary);
+                color: var(--bg-primary);
+                border: none;
+                padding: 6px 10px;
+                border-radius: 4px;
+                font-size: var(--font-size-xs);
+                cursor: pointer;
+                transition: all 0.2s ease;
+                flex: 1;
+                min-width: 50px;
+            `;
+
+            btn.addEventListener('click', () => {
+                this.terminalInput.value = cmd;
+                this.processCommand();
+            });
+
+            btn.addEventListener('touchstart', () => {
+                btn.style.transform = 'scale(0.95)';
+            });
+
+            btn.addEventListener('touchend', () => {
+                btn.style.transform = 'scale(1)';
+            });
+
+            commandBar.appendChild(btn);
+        });
+
+        const terminalBody = document.querySelector('.terminal-body');
+        if (terminalBody) {
+            terminalBody.appendChild(commandBar);
+        }
+    }
+
+    scrollToBottom() {
+        if (this.terminalContent) {
+            this.terminalContent.scrollTop = this.terminalContent.scrollHeight;
+        }
     }
 
     setupTerminalButtons() {

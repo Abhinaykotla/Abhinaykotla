@@ -13,6 +13,7 @@ class PortfolioApp {
         this.setupKeyboardShortcuts();
         this.setupThemeSystem();
         this.setupPerformanceOptimizations();
+        this.setupResponsiveHandling();
     }
 
     setupLoadingScreen() {
@@ -372,6 +373,53 @@ class PortfolioApp {
                 });
             }
         };
+    }
+
+    setupResponsiveHandling() {
+        // Handle orientation changes
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                this.handleViewportChange();
+            }, 100);
+        });
+
+        // Handle window resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                this.handleViewportChange();
+            }, 250);
+        });
+
+        // Initial viewport setup
+        this.handleViewportChange();
+    }
+
+    handleViewportChange() {
+        const isMobile = window.innerWidth <= 768;
+        const isTablet = window.innerWidth <= 1024 && window.innerWidth > 768;
+
+        // Update body classes for responsive styling
+        document.body.classList.toggle('mobile-view', isMobile);
+        document.body.classList.toggle('tablet-view', isTablet);
+        document.body.classList.toggle('desktop-view', !isMobile && !isTablet);
+
+        // Adjust CLI height on mobile
+        if (this.currentView === 'cli' && isMobile) {
+            const terminal = document.querySelector('.terminal');
+            if (terminal) {
+                terminal.style.height = `${window.innerHeight - 20}px`;
+            }
+        }
+
+        // Trigger interface updates
+        if (window.webInterface && typeof window.webInterface.handleResize === 'function') {
+            window.webInterface.handleResize();
+        }
+        if (window.cliInterface && typeof window.cliInterface.handleResize === 'function') {
+            window.cliInterface.handleResize();
+        }
     }
 }
 

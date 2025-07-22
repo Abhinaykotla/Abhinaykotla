@@ -11,6 +11,80 @@ class WebInterface {
         this.loadContent();
         this.setupContactForm();
         this.setupCounters();
+        this.setupMobileOptimizations();
+    }
+
+    setupMobileOptimizations() {
+        this.setupTouchGestures();
+        this.setupViewportHandling();
+        this.setupMobileMenuAutoClose();
+        this.setupResponsiveImages();
+    }
+
+    setupTouchGestures() {
+        // Add touch feedback for interactive elements
+        const interactiveElements = document.querySelectorAll('.btn, .project-link, .filter-btn, .nav-link');
+
+        interactiveElements.forEach(element => {
+            element.addEventListener('touchstart', () => {
+                element.style.transform = 'scale(0.95)';
+            });
+
+            element.addEventListener('touchend', () => {
+                setTimeout(() => {
+                    element.style.transform = '';
+                }, 100);
+            });
+        });
+    }
+
+    setupViewportHandling() {
+        // Handle viewport changes and orientation
+        const handleViewportChange = () => {
+            // Close mobile menu on orientation change
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (hamburger && navMenu) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+
+            // Adjust terminal height on mobile
+            if (window.innerWidth <= 768) {
+                const terminal = document.querySelector('.terminal');
+                if (terminal) {
+                    terminal.style.height = `${window.innerHeight - 40}px`;
+                }
+            }
+        };
+
+        window.addEventListener('orientationchange', handleViewportChange);
+        window.addEventListener('resize', handleViewportChange);
+    }
+
+    setupMobileMenuAutoClose() {
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (navMenu && navMenu.classList.contains('active')) {
+                if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            }
+        });
+    }
+
+    setupResponsiveImages() {
+        // Handle responsive project images (if they exist)
+        const projectImages = document.querySelectorAll('.project-image');
+        projectImages.forEach(img => {
+            img.style.backgroundSize = 'cover';
+            img.style.backgroundPosition = 'center';
+        });
     }
 
     setupNavigation() {
