@@ -156,10 +156,16 @@
     animation:
         fadeInConnection 2.5s ease-in forwards,
         dashmove 2.5s linear infinite;
-@keyframes fadeInConnection {
-    from { opacity: 0; }
-    to { opacity: 0.5; }
-}
+
+    @keyframes fadeInConnection {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 0.5;
+        }
+    }
 }
 
 @keyframes dashmove {
@@ -190,7 +196,7 @@
 }
 
 .scroll-arrow {
-    width: 2px;
+    width: 0px;
     height: 30px;
     background: var(--accent-primary);
     position: relative;
@@ -204,7 +210,7 @@
     left: -4px;
     width: 0;
     height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 8px solid var(--accent-primary);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 15px solid var(--accent-primary);
 }
