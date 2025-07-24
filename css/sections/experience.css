@@ -3,7 +3,7 @@
    ========================================== */
 .timeline {
     position: relative;
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -20,9 +20,9 @@
 
 .timeline-item {
     position: relative;
-    margin-bottom: var(--space-3xl);
+    margin-bottom: var(--space-2xl);
     width: 50%;
-    padding: 0 var(--space-xl);
+    padding: 0 var(--space-2xl);
 }
 
 .timeline-item:nth-child(odd) {
@@ -57,7 +57,7 @@
 
 .timeline-content {
     background: var(--bg-card);
-    padding: var(--space-xl);
+    padding: var(--space-lg);
     border-radius: 12px;
     border: 1px solid var(--border-color);
     transition: all var(--transition-normal);
@@ -90,41 +90,42 @@
 }
 
 .experience-title {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-lg);
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: var(--space-sm);
+    margin-bottom: var(--space-xs);
 }
 
 .experience-company {
     color: var(--accent-primary);
     font-weight: 500;
-    margin-bottom: var(--space-sm);
+    margin-bottom: var(--space-xs);
 }
 
 .experience-period {
     color: var(--text-muted);
     font-size: var(--font-size-sm);
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-sm);
     font-family: var(--font-mono);
 }
 
 .experience-description {
     color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: var(--space-md);
+    line-height: 1.5;
+    margin-bottom: var(--space-sm);
+    font-size: var(--font-size-sm);
 }
 
 .experience-technologies {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-sm);
+    gap: var(--space-xs);
 }
 
 .tech-tag {
     background: var(--bg-hover);
     color: var(--accent-primary);
-    padding: 4px 8px;
+    padding: 3px 6px;
     border-radius: 12px;
     font-size: var(--font-size-xs);
     border: 1px solid var(--accent-primary);

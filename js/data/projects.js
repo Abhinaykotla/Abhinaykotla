@@ -34,6 +34,17 @@ const projectsData = [
         details: "Achieved high ROUGE scores on news summarization benchmarks."
     },
     {
+        title: "Efficient Image Classification via Knowledge Distillation",
+        description: "Designed a modular CNN-based framework for image classification using knowledge distillation. Reduced model size by up to 99% using residual block compression and quantized training (FP32, FP16, FP8).",
+        technologies: ["Python", "CNNs", "Quantization", "PyTorch"],
+        category: "ai-ml",
+        featured: true,
+        github: "https://github.com/Abhinaykotla/knowledge-distillation-image-classification",
+        demo: null,
+        image: "projects/knowledge-distillation.jpg",
+        details: "Achieved 87% accuracy on the Intel Image Classification dataset with a compact 8-block model."
+    },
+    {
         title: "Road Surface Analysis and Classification",
         description: "Designed a machine learning model with a GUI to classify road quality based on surface features and maintenance factors. Trained on 3,500 samples for effective maintenance planning.",
         technologies: ["Python", "scikit-learn", "Qt Designer", "Machine Learning"],
