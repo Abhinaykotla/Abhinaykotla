@@ -78,8 +78,8 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 340px;
-    height: 300px;
+    width: 640px;
+    height: 520px;
     position: relative;
 }
 
@@ -95,9 +95,9 @@
 }
 
 .node {
-    width: 22px;
-    height: 22px;
-    margin: 18px 0;
+    width: 28px;
+    height: 28px;
+    margin: 14px 0;
     background: var(--accent-primary);
     border-radius: 50%;
     box-shadow: 0 0 16px var(--accent-primary), 0 0 2px #fff;
@@ -165,14 +165,14 @@
 /* Responsive for smaller screens */
 @media (max-width: 600px) {
     .neural-network {
-        width: 220px;
-        height: 180px;
+        width: 320px;
+        height: 240px;
     }
 
     .node {
-        width: 14px;
-        height: 14px;
-        margin: 8px 0;
+        width: 18px;
+        height: 18px;
+        margin: 6px 0;
     }
 }
 
