@@ -99,22 +99,28 @@ Type 'projects' to see my technical projects.`
     },
     projects: {
         description: "Show all projects",
-        response: `Featured Projects:
+        response: `Projects:
 
-🖼️  Edge- and Color-Aware Adversarial Image Inpainting
+Edge- and Color-Aware Adversarial Image Inpainting
     Technologies: Python, GANs, Deep Learning, Computer Vision
-    
-🤖 Emotionally Intelligent Chatbot
-    Technologies: Python, NLP, Hugging Face Transformers, PyTorch
-    
-📰 News Summarization Using T5 Transformer  
-    Technologies: Python, NLP, T5 Transformer
-    
-🛣️  Road Surface Analysis and Classification
+
+Efficient Computer Vision Models with Knowledge Distillation
+    Technologies: Python, CNNs, Quantization, PyTorch
+
+Emotionally Intelligent Chatbot
+    Technologies: Python, NLP, Hugging Face Transformers, TensorFlow, PyTorch
+
+News Summarization using T5 Transformer
+    Technologies: Python, T5, NLP, Transformers
+
+Voice-Based Gender Recognition System
+    Technologies: Python, scikit-learn, ML
+
+Road Surface Analysis and Classification
     Technologies: Python, scikit-learn, Qt Designer
-    
-🎙️  Gender Recognition based on Voice
-    Technologies: Python, scikit-learn, Audio Processing
+
+Saintechinc Website
+    Technologies: React, Next.js, Node.js, CSS3, JavaScript
 
 Type 'project <name>' for detailed information about any project.
 Example: 'project emotion chatbot' or 'project image inpainting'`

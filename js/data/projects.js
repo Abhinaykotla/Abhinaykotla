@@ -2,69 +2,69 @@
 const projectsData = [
     {
         title: "Edge- and Color-Aware Adversarial Image Inpainting",
-        description: "Developed an inpainting framework that integrates edge and color guidance for realistic image reconstruction. Utilized a dual-GAN architecture to generate missing edges and enhance color continuity.",
-        technologies: ["Python", "GANs", "Deep Learning", "Computer Vision", "PyTorch"],
+        description: "Developed a dual-GAN image inpainting model that integrates edge and color guidance for semantically coherent and photorealistic reconstructions. Achieved a 7% reduction in perceptual loss on CelebA and Places2 benchmarks.",
+        technologies: ["Python", "GANs", "Deep Learning", "Computer Vision"],
         category: "ai-ml",
         featured: true,
-        github: "https://github.com/abhinaykotla/image-inpainting-gan",
-        demo: "https://abhinaykotla.github.io/image-inpainting-demo",
+        github: "https://github.com/Abhinaykotla/EdgeConnect_Plus_Inpainting_with_Edge_and_Color_Guidance",
+        demo: null,
         image: "projects/image-inpainting.jpg",
-        details: "Evaluated the model on CelebA and Places2 datasets for facial and scene inpainting with state-of-the-art results."
+        details: "7% reduction in perceptual loss on CelebA and Places2."
     },
     {
         title: "Emotionally Intelligent Chatbot",
-        description: "Built a chatbot capable of recognizing and responding to user emotions using NLP and deep learning. Integrated emotion detection and multimodal interaction for improved user engagement.",
+        description: "Built a multimodal chatbot capable of interpreting user sentiment via voice and facial cues. Integrated real-time emotion recognition and transformer-based language models to improve user engagement.",
         technologies: ["Python", "NLP", "Hugging Face Transformers", "TensorFlow", "PyTorch"],
         category: "ai-ml",
         featured: true,
-        github: "https://github.com/abhinaykotla/emotion-chatbot",
-        demo: "https://abhinaykotla.github.io/emotion-chatbot-demo",
+        github: "<placeholder>",
+        demo: null,
         image: "projects/emotion-chatbot.jpg",
-        details: "Features voice and facial recognition capabilities for comprehensive emotion analysis."
+        details: "Real-time emotion recognition, multimodal input."
     },
     {
-        title: "News Summarization Using T5 Transformer",
-        description: "Developed a summarization model using T5 Transformer to generate concise summaries from lengthy news articles, improving readability and information accessibility.",
-        technologies: ["Python", "NLP", "T5 Transformer", "Hugging Face"],
+        title: "News Summarization using T5 Transformer",
+        description: "Developed a T5-based abstractive text summarization system. Achieved ROUGE-1: 0.532, ROUGE-2: 0.351, ROUGE-L: 0.427 and cosine similarity of 0.80, highlighting improved semantic retention and summary coherence.",
+        technologies: ["Python", "T5", "NLP", "Transformers"],
         category: "ai-ml",
         featured: true,
-        github: "https://github.com/abhinaykotla/news-summarization-t5",
-        demo: "https://abhinaykotla.github.io/news-summarizer",
+        github: "https://github.com/Abhinaykotla/news-summarization-T5-Transformer",
+        demo: null,
         image: "projects/news-summarization.jpg",
-        details: "Achieved high ROUGE scores on news summarization benchmarks."
+        details: "ROUGE-1: 0.532, ROUGE-2: 0.351, ROUGE-L: 0.427, cosine: 0.80."
     },
     {
-        title: "Efficient Image Classification via Knowledge Distillation",
-        description: "Designed a modular CNN-based framework for image classification using knowledge distillation. Reduced model size by up to 99% using residual block compression and quantized training (FP32, FP16, FP8).",
+        title: "Efficient Computer Vision Models with Knowledge Distillation",
+        description: "Created a modular CNN architecture for image classification using student–teacher knowledge distillation. Compressed a 669MB teacher model to a 6.5MB student (99% smaller) while maintaining 97% accuracy on the Intel Image Classification dataset via residual pruning and quantized training (FP16, FP8).",
         technologies: ["Python", "CNNs", "Quantization", "PyTorch"],
         category: "ai-ml",
         featured: true,
-        github: "https://github.com/Abhinaykotla/knowledge-distillation-image-classification",
+        github: "https://github.com/Abhinaykotla/Knowledge_Distilation_for_Smaller_Models_in_CV",
         demo: null,
         image: "projects/knowledge-distillation.jpg",
-        details: "Achieved 87% accuracy on the Intel Image Classification dataset with a compact 8-block model."
+        details: "669MB → 6.5MB, 97% accuracy, quantized training."
+    },
+    {
+        title: "Voice-Based Gender Recognition System",
+        description: "Trained classical ML models (RFC, SVM, KNN, etc.) on 32k voice samples using 14 acoustic features. Achieved 98.5% accuracy with Random Forest Classifier. Integrated into a call center workflow for pre-call user profiling.",
+        technologies: ["Python", "scikit-learn", "ML"],
+        category: "ai-ml",
+        featured: false,
+        github: "https://github.com/Abhinaykotla/Gender-recognisition-voice",
+        demo: null,
+        image: "projects/voice-recognition.jpg",
+        details: "98.5% accuracy, RFC, SVM, KNN, 32k samples."
     },
     {
         title: "Road Surface Analysis and Classification",
-        description: "Designed a machine learning model with a GUI to classify road quality based on surface features and maintenance factors. Trained on 3,500 samples for effective maintenance planning.",
-        technologies: ["Python", "scikit-learn", "Qt Designer", "Machine Learning"],
+        description: "Built a GUI-driven machine learning tool for road quality assessment. Trained on 3,500 samples to classify surface defects and life span predictions to aid in predictive maintenance planning.",
+        technologies: ["Python", "scikit-learn", "Qt Designer"],
         category: "ai-ml",
         featured: false,
-        github: "https://github.com/abhinaykotla/road-surface-analysis",
-        demo: "https://abhinaykotla.github.io/road-analyzer",
+        github: "https://github.com/Abhinaykotla/Road-Surface-Analysis-and-classification",
+        demo: null,
         image: "projects/road-analysis.jpg",
-        details: "Comprehensive solution for municipal road maintenance optimization."
-    },
-    {
-        title: "Gender Recognition based on Voice",
-        description: "Developed a machine learning model trained on 32,000 samples to predict speaker gender using 14 voice features. Integrated into call center systems for mood anticipation.",
-        technologies: ["Python", "scikit-learn", "Audio Processing", "Machine Learning"],
-        category: "ai-ml",
-        featured: false,
-        github: "https://github.com/abhinaykotla/voice-gender-recognition",
-        demo: "https://abhinaykotla.github.io/voice-analyzer",
-        image: "projects/voice-recognition.jpg",
-        details: "Achieved high accuracy in real-time voice analysis for commercial applications."
+        details: "GUI, 3,500 samples, predictive maintenance."
     },
     {
         title: "Saintechinc Website",
