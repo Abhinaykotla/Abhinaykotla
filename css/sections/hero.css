@@ -111,7 +111,7 @@
     background: var(--accent-primary);
     box-shadow: 0 0 40px 10px var(--accent-primary), 0 0 8px #fff;
     filter: brightness(1.5);
-    transition: box-shadow 0.2s, filter 0.2s;
+    transition: box-shadow 2s, filter 2s;
     animation: pulse 3s infinite;
 }
 
@@ -121,7 +121,7 @@
     box-shadow: 0 0 6px 0px var(--accent-primary), 0 0 1px #fff;
     filter: brightness(0.5) grayscale(0.5);
     opacity: 0.5;
-    transition: box-shadow 0.2s, filter 0.2s, opacity 0.2s;
+    transition: box-shadow 0.2s, filter 0.2s, opacity 2s;
 }
 
 /* Animate node pulse */
@@ -151,9 +151,15 @@
 .neural-network .connection-line {
     stroke: var(--accent-primary);
     stroke-width: 2;
-    opacity: 0.5;
+    opacity: 0.1;
     stroke-dasharray: 6 6;
-    animation: dashmove 2.5s linear infinite;
+    animation:
+        fadeInConnection 2.5s ease-in forwards,
+        dashmove 2.5s linear infinite;
+@keyframes fadeInConnection {
+    from { opacity: 0; }
+    to { opacity: 0.5; }
+}
 }
 
 @keyframes dashmove {

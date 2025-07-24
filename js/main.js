@@ -695,7 +695,7 @@ function drawNeuralConnections() {
                 numToActivate = 1;
             } else {
                 // Hidden layers: randomly activate 2-5 nodes (or up to all nodes if fewer than 5)
-                const maxToActivate = Math.min(4, nodes.length);
+                const maxToActivate = Math.min(6, nodes.length);
                 const minToActivate = Math.min(2, nodes.length);
                 numToActivate = Math.floor(Math.random() * (maxToActivate - minToActivate + 1)) + minToActivate;
             }
