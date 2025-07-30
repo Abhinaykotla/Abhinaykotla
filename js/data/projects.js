@@ -7,7 +7,7 @@ const projectsData = [
         category: "ai-ml",
         featured: true,
         github: "https://github.com/Abhinaykotla/EdgeConnect_Plus_Inpainting_with_Edge_and_Color_Guidance",
-        image: "images/projects/image-inpainting.jpg",
+        image: "js/data/images/projects/image-inpainting.png",
         details: "7% reduction in perceptual loss on CelebA and Places2."
     },
     {

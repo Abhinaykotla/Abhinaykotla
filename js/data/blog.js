@@ -6,7 +6,7 @@ const blogData = [
         "date": "2025-07-30",
         "readTime": "10 min read",
         "tags": ["Deep Learning", "Computer Vision", "GANs", "Image Inpainting"],
-        "image": "js/data/images/projects/image-inpainting.jpg",
+        "image": "js/data/images/projects/image-inpainting.png",
         "slug": "edgeconnect-plus-inpainting",
         "featured": true,
         "category": "AI & Machine Learning",
