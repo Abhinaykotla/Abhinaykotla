@@ -127,32 +127,31 @@
     /* Prevent controls from shrinking */
 }
 
-/* Medium screens - show controls but ensure no overlap */
-@media (min-width: 900px) and (max-width: 1500px) {
+/* Tablet screens (1500px and below) - show mobile navigation */
+@media (max-width: 1500px) {
     .nav-controls {
         display: flex;
     }
 
     .mobile-toggle {
         display: flex;
-        font-size: 0.8rem;
-        /* Smaller font on medium screens */
-        padding: 6px 12px;
-        /* Reduce padding */
-    }
-
-    .mobile-toggle span {
-        display: none;
-        /* Hide text, show only icon */
+        font-size: 0.9rem;
+        padding: 8px 16px;
+        min-height: 40px;
     }
 
     .hamburger {
         display: block;
     }
+
+    /* Hide desktop navigation menu */
+    .nav-menu {
+        display: none;
+    }
 }
 
-/* Desktop view - show normal nav, hide mobile controls */
-@media (min-width: 1025px) {
+/* Desktop view (above 1500px) - show normal nav, hide mobile controls */
+@media (min-width: 1501px) {
     .nav-controls {
         display: none;
     }
