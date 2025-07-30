@@ -228,7 +228,8 @@
 
     .neural-network {
         width: 280px;
-        height: 200px;
+        height: 250px;
+        /* Increased from 200px to prevent squishing */
         margin: 0 auto;
     }
 
@@ -1010,7 +1011,8 @@
 
     .neural-network {
         width: 240px;
-        height: 160px;
+        height: 180px;
+        /* Increased from 160px to prevent squishing */
     }
 
     .terminal-header {
@@ -1057,7 +1059,8 @@
 
     .neural-network {
         width: 200px;
-        height: 150px;
+        height: 180px;
+        /* Increased from 150px to prevent squishing */
     }
 }
 

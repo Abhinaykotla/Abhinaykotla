@@ -6,201 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="page-title">Blog Post - Abhinay Kotla</title>
     <link rel="stylesheet" href="css/main.css?v=12">
+    <link rel="stylesheet" href="css/pages/blog-post.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* Blog Post Specific Styles */
-        .blog-post-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            line-height: 1.7;
-        }
-
-        .blog-post-header {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .blog-post-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .blog-post-meta {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .blog-post-meta span {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .blog-post-tags {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .blog-post-tag {
-            padding: 0.25rem 0.75rem;
-            background: var(--bg-hover);
-            color: var(--accent-primary);
-            border: 1px solid var(--accent-primary);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .blog-post-image {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 3rem;
-            background: var(--bg-hover);
-            background-size: cover;
-            background-position: center;
-        }
-
-        .blog-post-content {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-        }
-
-        .blog-post-content h2 {
-            font-size: 1.8rem;
-            color: var(--text-primary);
-            margin: 2.5rem 0 1rem 0;
-            font-weight: 600;
-        }
-
-        .blog-post-content h3 {
-            font-size: 1.4rem;
-            color: var(--text-primary);
-            margin: 2rem 0 0.75rem 0;
-            font-weight: 600;
-        }
-
-        .blog-post-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .blog-post-content ul,
-        .blog-post-content ol {
-            margin-bottom: 1.5rem;
-            padding-left: 2rem;
-        }
-
-        .blog-post-content li {
-            margin-bottom: 0.5rem;
-        }
-
-        .blog-post-content blockquote {
-            background: var(--bg-card);
-            border-left: 4px solid var(--accent-primary);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0 8px 8px 0;
-            font-style: italic;
-        }
-
-        .blog-post-content code {
-            background: var(--bg-hover);
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            font-family: var(--font-mono);
-            font-size: 0.9em;
-        }
-
-        .blog-post-content pre {
-            background: var(--bg-card);
-            padding: 1.5rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 1.5rem 0;
-            border: 1px solid var(--border-color);
-        }
-
-        .blog-post-content pre code {
-            background: none;
-            padding: 0;
-        }
-
-        .blog-post-navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .nav-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            text-decoration: none;
-            color: var(--text-primary);
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover {
-            background: var(--accent-primary);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .back-to-blog {
-            margin: 2rem auto;
-            text-align: center;
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .blog-post-container {
-                padding: 1rem;
-            }
-
-            .blog-post-title {
-                font-size: 2rem;
-            }
-
-            .blog-post-meta {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .blog-post-content {
-                font-size: 1rem;
-            }
-
-            .blog-post-navigation {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -212,53 +24,102 @@
         </div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <a href="index.html" class="brand-link">Abhinay Kotla</a>
-                <span class="brand-subtitle">AI/ML Engineer & Researcher</span>
+    <!-- View Toggle -->
+    <div class="view-toggle">
+        <button id="toggle-view" class="toggle-btn" title="Switch to DEV Mode">
+            <i class="fas fa-terminal"></i>
+            <span>Dev Mode</span>
+        </button>
+    </div>
+
+    <!-- Standard Web Interface -->
+    <div id="web-interface" class="web-interface active">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <a href="index.html" class="brand-link">Abhinay Kotla</a>
+                    <span class="brand-subtitle">GRA at UTA | Machine Learning Enthusiast | Creative Problem Solver |
+                        MSCS @ UT Arlington</span>
+                </div>
+
+                <!-- Mobile/Tablet Controls -->
+                <div class="nav-controls">
+                    <button id="toggle-view-mobile" class="toggle-btn mobile-toggle" title="Switch to DEV Mode">
+                        <i class="fas fa-terminal"></i>
+                        <span>Dev Mode</span>
+                    </button>
+
+                    <!-- Hamburger Menu Button -->
+                    <button class="hamburger" id="hamburger-menu" aria-label="Toggle navigation">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+                </div>
+
+                <!-- Navigation Menu -->
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html#about" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#skills" class="nav-link">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#experience" class="nav-link">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#projects" class="nav-link">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blog.html" class="nav-link">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#contact" class="nav-link">Contact</a>
+                    </li>
+                </ul>
             </div>
-        </div>
-    </nav>
-
-    <!-- Blog Post Content -->
-    <main class="blog-post-container">
-        <header class="blog-post-header">
-            <h1 class="blog-post-title" id="blog-title">Loading...</h1>
-            <div class="blog-post-meta">
-                <span><i class="fas fa-calendar"></i> <span id="blog-date">Loading...</span></span>
-                <span><i class="fas fa-clock"></i> <span id="blog-read-time">Loading...</span></span>
-            </div>
-            <div class="blog-post-tags" id="blog-tags">
-                <!-- Tags will be loaded here -->
-            </div>
-        </header>
-
-        <div class="blog-post-image" id="blog-image"></div>
-
-        <article class="blog-post-content" id="blog-content">
-            <p>Loading blog content...</p>
-        </article>
-
-        <div class="back-to-blog">
-            <a href="blog.html" class="nav-link">
-                <i class="fas fa-arrow-left"></i>
-                Back to All Posts
-            </a>
-        </div>
-
-        <nav class="blog-post-navigation">
-            <a href="#" class="nav-link" id="prev-post" style="display: none;">
-                <i class="fas fa-chevron-left"></i>
-                Previous Post
-            </a>
-            <a href="#" class="nav-link" id="next-post" style="display: none;">
-                Next Post
-                <i class="fas fa-chevron-right"></i>
-            </a>
         </nav>
-    </main>
+
+        <!-- Blog Post Content -->
+        <main class="blog-post-container">
+            <header class="blog-post-header">
+                <h1 class="blog-post-title" id="blog-title">Loading...</h1>
+                <div class="blog-post-meta">
+                    <span><i class="fas fa-calendar"></i> <span id="blog-date">Loading...</span></span>
+                    <span><i class="fas fa-clock"></i> <span id="blog-read-time">Loading...</span></span>
+                </div>
+                <div class="blog-post-tags" id="blog-tags">
+                    <!-- Tags will be loaded here -->
+                </div>
+            </header>
+
+            <div class="blog-post-image" id="blog-image"></div>
+
+            <article class="blog-post-content" id="blog-content">
+                <p>Loading blog content...</p>
+            </article>
+
+            <div class="back-to-blog">
+                <a href="blog.html" class="nav-link">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to All Posts
+                </a>
+            </div>
+
+            <nav class="blog-post-navigation">
+                <a href="#" class="nav-link" id="prev-post" style="display: none;">
+                    <i class="fas fa-chevron-left"></i>
+                    Previous Post
+                </a>
+                <a href="#" class="nav-link" id="next-post" style="display: none;">
+                    Next Post
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </nav>
+        </main>
+    </div> <!-- End web-interface -->
 
     <!-- Footer -->
     <footer class="footer">
@@ -272,211 +133,25 @@
 
     <!-- Scripts -->
     <script src="js/data/blog.js?v=10"></script>
+    <script src="js/main.js"></script>
     <script>
-        // Blog post data with full content
-        const blogPostsContent = {
-            'deep-dive-gans': {
-                title: "Deep Dive into Generative Adversarial Networks",
-                date: "2024-12-15",
-                readTime: "8 min read",
-                tags: ["AI", "Deep Learning", "GANs"],
-                image: "images/blog/gans-deep-dive.jpg",
-                content: `
-                    <h2>Introduction</h2>
-                    <p>Generative Adversarial Networks (GANs) have revolutionized the field of artificial intelligence, particularly in computer vision and creative AI applications. Since their introduction by Ian Goodfellow in 2014, GANs have enabled unprecedented capabilities in generating realistic images, videos, and other forms of data.</p>
-                    
-                    <h2>Understanding the GAN Architecture</h2>
-                    <p>At its core, a GAN consists of two neural networks competing against each other:</p>
-                    <ul>
-                        <li><strong>Generator:</strong> Creates fake data samples from random noise</li>
-                        <li><strong>Discriminator:</strong> Distinguishes between real and fake data</li>
-                    </ul>
-                    
-                    <blockquote>
-                        "The generator network learns to create data that is so realistic that the discriminator cannot tell it apart from real data."
-                    </blockquote>
-                    
-                    <h2>Training Process</h2>
-                    <p>The training process involves a minimax game where:</p>
-                    <ol>
-                        <li>The generator tries to minimize the discriminator's ability to detect fake samples</li>
-                        <li>The discriminator tries to maximize its accuracy in distinguishing real from fake</li>
-                        <li>This adversarial process continues until Nash equilibrium is reached</li>
-                    </ol>
-                    
-                    <h2>Applications in My Research</h2>
-                    <p>In my work on edge- and color-aware adversarial image inpainting, I implemented a dual-GAN architecture that integrates edge and color guidance for semantically coherent reconstructions. This approach achieved a 7% reduction in perceptual loss on standard benchmarks.</p>
-                    
-                    <h3>Key Innovations</h3>
-                    <ul>
-                        <li>Edge-aware loss functions</li>
-                        <li>Color consistency mechanisms</li>
-                        <li>Multi-scale feature extraction</li>
-                    </ul>
-                    
-                    <h2>Challenges and Solutions</h2>
-                    <p>Working with GANs presents several challenges:</p>
-                    <ul>
-                        <li><strong>Mode Collapse:</strong> Addressed through diverse training techniques</li>
-                        <li><strong>Training Instability:</strong> Mitigated with careful learning rate scheduling</li>
-                        <li><strong>Evaluation Metrics:</strong> Used FID and LPIPS for comprehensive assessment</li>
-                    </ul>
-                    
-                    <h2>Future Directions</h2>
-                    <p>The field continues to evolve with exciting developments in:</p>
-                    <ul>
-                        <li>Diffusion models as alternatives to GANs</li>
-                        <li>Conditional generation with better control</li>
-                        <li>Real-time generation capabilities</li>
-                        <li>Integration with large language models</li>
-                    </ul>
-                    
-                    <h2>Conclusion</h2>
-                    <p>GANs remain a powerful tool in the AI researcher's toolkit. While newer approaches like diffusion models have gained popularity, the fundamental adversarial training paradigm continues to inspire innovative solutions to complex generative tasks.</p>
-                `
-            },
-            'emotion-aware-ai': {
-                title: "Building Emotion-Aware AI Systems",
-                date: "2024-11-28",
-                readTime: "6 min read",
-                tags: ["NLP", "Emotion AI", "Human-AI"],
-                image: "images/blog/emotion-ai.jpg",
-                content: `
-                    <h2>The Importance of Emotional Intelligence in AI</h2>
-                    <p>As AI systems become more integrated into our daily lives, the ability to understand and respond to human emotions becomes crucial. Emotion-aware AI systems can provide more natural, empathetic, and effective interactions.</p>
-                    
-                    <h2>My Approach: Multimodal Emotion Recognition</h2>
-                    <p>In developing an emotionally intelligent chatbot, I implemented a multimodal approach that combines:</p>
-                    <ul>
-                        <li>Voice sentiment analysis using acoustic features</li>
-                        <li>Facial expression recognition through computer vision</li>
-                        <li>Text-based emotion detection using transformer models</li>
-                    </ul>
-                    
-                    <h3>Technical Implementation</h3>
-                    <p>The system architecture includes:</p>
-                    <ul>
-                        <li><strong>Audio Processing:</strong> Extract MFCC and spectral features</li>
-                        <li><strong>Vision Module:</strong> CNN-based facial emotion recognition</li>
-                        <li><strong>NLP Pipeline:</strong> BERT-based sentiment classification</li>
-                        <li><strong>Fusion Layer:</strong> Weighted combination of modalities</li>
-                    </ul>
-                    
-                    <blockquote>
-                        "True emotional intelligence in AI requires understanding context, not just recognizing patterns."
-                    </blockquote>
-                    
-                    <h2>Real-World Applications</h2>
-                    <p>Emotion-aware AI has applications across various domains:</p>
-                    <ul>
-                        <li>Customer service automation</li>
-                        <li>Mental health support systems</li>
-                        <li>Educational technology</li>
-                        <li>Human-robot interaction</li>
-                    </ul>
-                    
-                    <h2>Challenges and Ethical Considerations</h2>
-                    <p>Building emotion-aware systems raises important questions:</p>
-                    <ul>
-                        <li>Privacy concerns with emotional data</li>
-                        <li>Cultural differences in emotional expression</li>
-                        <li>Bias in emotion recognition models</li>
-                        <li>The responsibility of emotional manipulation</li>
-                    </ul>
-                    
-                    <h2>Future Research Directions</h2>
-                    <p>The field is moving toward:</p>
-                    <ul>
-                        <li>More sophisticated context understanding</li>
-                        <li>Personalized emotion models</li>
-                        <li>Long-term emotional state tracking</li>
-                        <li>Integration with large language models</li>
-                    </ul>
-                `
-            },
-            'mlops-best-practices': {
-                title: "MLOps Best Practices for Production AI",
-                date: "2024-11-10",
-                readTime: "10 min read",
-                tags: ["MLOps", "DevOps", "Production AI"],
-                image: "images/blog/mlops-practices.jpg",
-                content: `
-                    <h2>Introduction to MLOps</h2>
-                    <p>Machine Learning Operations (MLOps) is the practice of applying DevOps principles to machine learning workflows. It bridges the gap between model development and production deployment, ensuring reliable, scalable, and maintainable AI systems.</p>
-                    
-                    <h2>Core MLOps Principles</h2>
-                    <p>Successful MLOps implementation relies on several key principles:</p>
-                    <ul>
-                        <li><strong>Version Control:</strong> Track data, code, and model versions</li>
-                        <li><strong>Automation:</strong> Automate training, testing, and deployment pipelines</li>
-                        <li><strong>Monitoring:</strong> Continuous monitoring of model performance</li>
-                        <li><strong>Reproducibility:</strong> Ensure consistent results across environments</li>
-                    </ul>
-                    
-                    <h2>Building Robust ML Pipelines</h2>
-                    <p>A well-designed ML pipeline includes:</p>
-                    <ol>
-                        <li><strong>Data Ingestion:</strong> Automated data collection and validation</li>
-                        <li><strong>Feature Engineering:</strong> Scalable feature transformation</li>
-                        <li><strong>Model Training:</strong> Distributed training with hyperparameter optimization</li>
-                        <li><strong>Model Validation:</strong> Comprehensive testing and evaluation</li>
-                        <li><strong>Deployment:</strong> Blue-green or canary deployment strategies</li>
-                    </ol>
-                    
-                    <h3>Tools and Technologies</h3>
-                    <p>Popular MLOps tools include:</p>
-                    <ul>
-                        <li><strong>Orchestration:</strong> Apache Airflow, Kubeflow, MLflow</li>
-                        <li><strong>Containerization:</strong> Docker, Kubernetes</li>
-                        <li><strong>Model Serving:</strong> TensorFlow Serving, Seldon Core</li>
-                        <li><strong>Monitoring:</strong> Prometheus, Grafana, Evidently AI</li>
-                    </ul>
-                    
-                    <h2>Model Monitoring and Maintenance</h2>
-                    <p>Production models require continuous monitoring for:</p>
-                    <ul>
-                        <li><strong>Data Drift:</strong> Changes in input data distribution</li>
-                        <li><strong>Concept Drift:</strong> Evolution of the target concept</li>
-                        <li><strong>Performance Degradation:</strong> Declining model accuracy</li>
-                        <li><strong>System Health:</strong> Infrastructure and service metrics</li>
-                    </ul>
-                    
-                    <blockquote>
-                        "The best model is worthless if it can't be deployed and maintained in production."
-                    </blockquote>
-                    
-                    <h2>My Experience with MLOps</h2>
-                    <p>In my work at UT Arlington's Office of Information Technology, I've implemented MLOps practices for:</p>
-                    <ul>
-                        <li>Automated model retraining pipelines</li>
-                        <li>A/B testing frameworks for model comparison</li>
-                        <li>Real-time monitoring dashboards</li>
-                        <li>Scalable feature stores</li>
-                    </ul>
-                    
-                    <h2>Common Pitfalls and How to Avoid Them</h2>
-                    <p>Learn from common mistakes:</p>
-                    <ul>
-                        <li><strong>Neglecting Data Quality:</strong> Implement robust data validation</li>
-                        <li><strong>Over-Engineering:</strong> Start simple and iterate</li>
-                        <li><strong>Ignoring Security:</strong> Implement proper access controls</li>
-                        <li><strong>Poor Documentation:</strong> Maintain comprehensive docs</li>
-                    </ul>
-                    
-                    <h2>Future of MLOps</h2>
-                    <p>The field is evolving toward:</p>
-                    <ul>
-                        <li>AutoML integration for automated model development</li>
-                        <li>Edge deployment for real-time inference</li>
-                        <li>Multi-cloud and hybrid cloud strategies</li>
-                        <li>Integration with large language models</li>
-                    </ul>
-                    
-                    <h2>Conclusion</h2>
-                    <p>MLOps is essential for successful AI initiatives. By following best practices and leveraging the right tools, organizations can build reliable, scalable AI systems that deliver business value consistently.</p>
-                `
+        // Handle dev mode toggle for blog post page
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleBtn = document.getElementById('toggle-view');
+            const toggleBtnMobile = document.getElementById('toggle-view-mobile');
+
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', function () {
+                    window.location.href = 'index.html#blog';
+                });
             }
-        };
+
+            if (toggleBtnMobile) {
+                toggleBtnMobile.addEventListener('click', function () {
+                    window.location.href = 'index.html#blog';
+                });
+            }
+        });
 
         // Get URL parameters
         function getUrlParameter(name) {
@@ -489,7 +164,7 @@
         // Load blog post content
         function loadBlogPost() {
             const slug = getUrlParameter('slug');
-            const post = blogPostsContent[slug];
+            const post = blogHelpers.getPostBySlug(slug);
 
             if (!post) {
                 document.getElementById('blog-title').textContent = 'Post Not Found';
@@ -497,27 +172,30 @@
                 return;
             }
 
-            // Update page title
-            document.getElementById('page-title').textContent = post.title + ' - Abhinay Kotla';
+            if (post.status === 'coming-soon') {
+                document.getElementById('blog-title').textContent = post.title;
+                document.getElementById('blog-content').innerHTML = '<p>This blog post is coming soon. Stay tuned for updates!</p>';
+                document.getElementById('blog-date').textContent = 'Coming Soon';
+                document.getElementById('blog-read-time').textContent = post.readTime;
+            } else {
+                // Update page title
+                document.getElementById('page-title').textContent = post.title + ' - Abhinay Kotla';
 
-            // Update post content
-            document.getElementById('blog-title').textContent = post.title;
-            document.getElementById('blog-date').textContent = new Date(post.date).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-            document.getElementById('blog-read-time').textContent = post.readTime;
+                // Update post content
+                document.getElementById('blog-title').textContent = post.title;
+                document.getElementById('blog-date').textContent = blogHelpers.formatDate(post.date);
+                document.getElementById('blog-read-time').textContent = post.readTime;
 
-            // Update tags
-            const tagsContainer = document.getElementById('blog-tags');
-            tagsContainer.innerHTML = post.tags.map(tag => `<span class="blog-post-tag">${tag}</span>`).join('');
+                // Update tags
+                const tagsContainer = document.getElementById('blog-tags');
+                tagsContainer.innerHTML = post.tags.map(tag => `<span class="blog-post-tag">${tag}</span>`).join('');
 
-            // Update image
-            document.getElementById('blog-image').style.backgroundImage = `url('${post.image}')`;
+                // Update image
+                document.getElementById('blog-image').style.backgroundImage = `url('${post.image}')`;
 
-            // Update content
-            document.getElementById('blog-content').innerHTML = post.content;
+                // Update content
+                document.getElementById('blog-content').innerHTML = post.content;
+            }
         }
 
         // Hide loading screen and load content

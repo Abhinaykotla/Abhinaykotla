@@ -83,3 +83,21 @@
 .blog-cta {
     text-align: center;
 }
+
+/* Blog section mobile responsiveness */
+@media (max-width: 768px) {
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+
+    .blog-content {
+        padding: var(--space-md);
+    }
+
+    .blog-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-sm);
+    }
+}
