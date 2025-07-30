@@ -365,8 +365,580 @@ const blogHelpers = {
     // Get posts by tag
     getPostsByTag: (tag) => blogData.filter(post =>
         post.tags.some(t => t.toLowerCase() === tag.toLowerCase())
-    )
+    ),
+
+    // Search posts by query (title, category, tags, excerpt, content)
+    searchPosts: (query) => {
+        if (!query || query.trim() === '') {
+            return blogHelpers.getPublishedPosts();
+        }
+
+        const searchTerm = query.toLowerCase().trim();
+        const searchWords = searchTerm.split(/\s+/);
+
+        return blogData.filter(post => {
+            if (post.status !== 'published') return false;
+
+            // Create searchable text from post
+            const searchableText = [
+                post.title,
+                post.excerpt,
+                post.category,
+                post.tags.join(' '),
+                post.content.replace(/<[^>]*>/g, '') // Remove HTML tags
+            ].join(' ').toLowerCase();
+
+            // Check if any search word matches
+            return searchWords.some(word => searchableText.includes(word));
+        });
+    },
+
+    // Advanced search with filters
+    advancedSearch: (query, filters = {}) => {
+        let results = blogHelpers.searchPosts(query);
+
+        // Filter by category if specified
+        if (filters.category) {
+            results = results.filter(post =>
+                post.category.toLowerCase() === filters.category.toLowerCase()
+            );
+        }
+
+        // Filter by tags if specified
+        if (filters.tags && filters.tags.length > 0) {
+            results = results.filter(post =>
+                filters.tags.some(tag =>
+                    post.tags.some(postTag =>
+                        postTag.toLowerCase() === tag.toLowerCase()
+                    )
+                )
+            );
+        }
+
+        // Filter by date range if specified
+        if (filters.dateFrom || filters.dateTo) {
+            results = results.filter(post => {
+                const postDate = new Date(post.date);
+                const fromDate = filters.dateFrom ? new Date(filters.dateFrom) : null;
+                const toDate = filters.dateTo ? new Date(filters.dateTo) : null;
+
+                return (!fromDate || postDate >= fromDate) &&
+                    (!toDate || postDate <= toDate);
+            });
+        }
+
+        return results;
+    }
 };
+
+// Blog Page JavaScript - Handles dynamic loading of blog content
+class BlogPage {
+    constructor() {
+        this.currentSearchQuery = '';
+        this.currentFilters = {};
+        this.init();
+    }
+
+    init() {
+        this.loadBlogPosts();
+        this.loadSidebar();
+        this.setupEventListeners();
+        this.setupNavigation();
+        this.setupSearch();
+        this.handleURLSearch();
+    }
+
+    handleURLSearch() {
+        // Check for search parameter in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get('search');
+
+        if (searchQuery) {
+            // Set the search input value
+            const searchInput = document.getElementById('blog-search-input');
+            if (searchInput) {
+                searchInput.value = searchQuery;
+            }
+
+            // Perform the search
+            this.performSearch(searchQuery);
+        }
+    }
+
+    loadBlogPosts(posts = null) {
+        const blogPostsContainer = document.querySelector('.blog-posts');
+        if (!blogPostsContainer) return;
+
+        // Use provided posts or get default posts
+        let publishedPosts, comingSoonPosts;
+
+        if (posts) {
+            publishedPosts = posts.filter(post => post.status === 'published');
+            comingSoonPosts = posts.filter(post => post.status === 'coming-soon');
+        } else {
+            publishedPosts = blogHelpers.getPublishedPosts();
+            comingSoonPosts = blogHelpers.getComingSoonPosts();
+        }
+
+        let blogHTML = '';
+
+        // Show search results info if searching
+        if (this.currentSearchQuery) {
+            const totalResults = publishedPosts.length + comingSoonPosts.length;
+            blogHTML += `
+                <div class="search-results-info">
+                    <p><strong>${totalResults}</strong> result${totalResults !== 1 ? 's' : ''} found for "<em>${this.currentSearchQuery}</em>"</p>
+                    <button class="clear-search" onclick="blogPageInstance.clearSearch()">Clear Search</button>
+                </div>
+            `;
+        }
+
+        // Add published posts
+        publishedPosts.forEach((post, index) => {
+            const isFirstPost = index === 0 && post.featured && !this.currentSearchQuery;
+            blogHTML += this.createPostHTML(post, isFirstPost);
+        });
+
+        // Add coming soon posts
+        comingSoonPosts.forEach(post => {
+            blogHTML += this.createComingSoonPostHTML(post);
+        });
+
+        // Show no results message if searching and no results
+        if (this.currentSearchQuery && publishedPosts.length === 0 && comingSoonPosts.length === 0) {
+            blogHTML += `
+                <div class="no-results">
+                    <h3>No posts found</h3>
+                    <p>Try adjusting your search terms or <button class="clear-search-link" onclick="blogPageInstance.clearSearch()">clear your search</button> to see all posts.</p>
+                </div>
+            `;
+        }
+
+        blogPostsContainer.innerHTML = blogHTML;
+    }
+
+    createPostHTML(post, isFeatured = false) {
+        const featuredClass = isFeatured ? 'featured' : '';
+        const featuredBadge = isFeatured ? '<div class="post-badge">Featured</div>' : '';
+
+        return `
+            <article class="blog-post ${featuredClass}">
+                <div class="post-image" style="background-image: url('${post.image}')">
+                    ${featuredBadge}
+                </div>
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="post-date">${blogHelpers.formatDate(post.date)}</span>
+                        <span class="post-read-time">${post.readTime}</span>
+                    </div>
+                    <h2 class="post-title">
+                        <a href="blog-post.html?slug=${post.slug}" class="post-link">${post.title}</a>
+                    </h2>
+                    <p class="post-excerpt">${post.excerpt}</p>
+                    <div class="post-tags">
+                        ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    <a href="blog-post.html?slug=${post.slug}" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+        `;
+    }
+
+    createComingSoonPostHTML(post) {
+        return `
+            <article class="blog-post coming-soon">
+                <div class="post-image" style="background-image: url('${post.image}')"></div>
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="post-date">Coming Soon</span>
+                        <span class="post-read-time">~${post.readTime}</span>
+                    </div>
+                    <h2 class="post-title">
+                        <span class="post-link">${post.title}</span>
+                    </h2>
+                    <p class="post-excerpt">${post.excerpt}</p>
+                    <div class="post-tags">
+                        ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    <span class="coming-soon-badge">Coming Soon</span>
+                </div>
+            </article>
+        `;
+    }
+
+    loadSidebar() {
+        this.loadCategories();
+        this.loadRecentPosts();
+        this.loadTagsCloud();
+    }
+
+    loadCategories() {
+        const categoriesList = document.querySelector('.category-list');
+        if (!categoriesList) return;
+
+        const categoriesHTML = blogCategories.map(category =>
+            `<li><a href="#" class="category-link" data-category="${category.slug}">${category.name} <span class="count">(${category.count})</span></a></li>`
+        ).join('');
+
+        categoriesList.innerHTML = categoriesHTML;
+    }
+
+    loadRecentPosts() {
+        const recentPostsContainer = document.querySelector('.recent-posts');
+        if (!recentPostsContainer) return;
+
+        const recentPosts = blogHelpers.getRecentPosts(3);
+        const recentPostsHTML = recentPosts.map(post => `
+            <article class="recent-post">
+                <h4><a href="blog-post.html?slug=${post.slug}" class="recent-post-link">${post.title}</a></h4>
+                <span class="recent-post-date">${blogHelpers.formatDate(post.date)}</span>
+            </article>
+        `).join('');
+
+        recentPostsContainer.innerHTML = recentPostsHTML;
+    }
+
+    loadTagsCloud() {
+        const tagsCloudContainer = document.querySelector('.tags-cloud');
+        if (!tagsCloudContainer) return;
+
+        const tagsHTML = blogTags.map(tag =>
+            `<a href="#" class="tag-cloud-item" data-tag="${tag.name}">${tag.name}</a>`
+        ).join('');
+
+        tagsCloudContainer.innerHTML = tagsHTML;
+    }
+
+    setupEventListeners() {
+        // Category filtering
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('category-link')) {
+                e.preventDefault();
+                const category = e.target.dataset.category;
+                this.filterByCategory(category);
+            }
+        });
+
+        // Tag filtering
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('tag-cloud-item')) {
+                e.preventDefault();
+                const tag = e.target.dataset.tag;
+                this.filterByTag(tag);
+            }
+        });
+
+        // Newsletter form
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.handleNewsletterSignup(e);
+            });
+        }
+    }
+
+    setupNavigation() {
+        // Setup navigation functionality if needed
+        // This can include hamburger menu, mobile navigation, etc.
+    }
+
+    setupSearch() {
+        // Create search interface if it doesn't exist
+        this.createSearchInterface();
+    }
+
+    createSearchInterface() {
+        // Check if search interface already exists
+        if (document.getElementById('blog-search-container')) return;
+
+        // Create search interface and insert it before the blog posts
+        const blogLayout = document.querySelector('.blog-layout');
+        if (!blogLayout) return;
+
+        // Ensure we have blog data before creating search interface
+        if (!window.blogCategories || !window.blogTags) {
+            console.log('Blog categories/tags not ready, retrying search interface creation...');
+            setTimeout(() => this.createSearchInterface(), 100);
+            return;
+        }
+
+        const searchHTML = `
+            <div id="blog-search-container" class="blog-search-container">
+                <div class="search-box">
+                    <input type="text" id="blog-search-input" placeholder="Search blog posts..." class="search-input">
+                    <button id="blog-search-button" class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <button id="advanced-search-toggle" class="advanced-search-toggle">
+                    Advanced Search <i class="fas fa-chevron-down"></i>
+                </button>
+                <div id="advanced-search-panel" class="advanced-search-panel">
+                    <div class="advanced-search-filters">
+                        <div class="filter-group">
+                            <label for="category-filter">Category:</label>
+                            <select id="category-filter" class="filter-select">
+                                <option value="">All Categories</option>
+                                ${blogCategories.map(cat => `<option value="${cat.slug}">${cat.name}</option>`).join('')}
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="tag-filter">Tags:</label>
+                            <div class="tag-checkboxes">
+                                ${blogTags.map(tag => `
+                                    <label class="tag-checkbox">
+                                        <input type="checkbox" value="${tag.name}" class="tag-filter-checkbox">
+                                        ${tag.name} (${tag.count})
+                                    </label>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="advanced-search-actions">
+                        <button id="apply-filters" class="apply-filters-btn">Apply Filters</button>
+                        <button id="reset-filters" class="reset-filters-btn">Reset</button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        blogLayout.insertAdjacentHTML('beforebegin', searchHTML);
+
+        // Setup search event listeners immediately after creation
+        this.setupSearchEventListeners();
+        // Setup advanced search event listeners
+        this.setupAdvancedSearchListeners();
+    }
+
+    setupSearchEventListeners() {
+        console.log('Setting up search event listeners...');
+
+        const searchInput = document.getElementById('blog-search-input');
+        const searchButton = document.getElementById('blog-search-button');
+        const advancedSearchToggle = document.getElementById('advanced-search-toggle');
+
+        if (searchInput) {
+            console.log('Search input found, adding listeners...');
+
+            // Real-time search as user types (debounced)
+            let searchTimeout;
+            searchInput.addEventListener('input', (e) => {
+                console.log('Search input changed:', e.target.value);
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    this.performSearch(e.target.value);
+                }, 300);
+            });
+
+            // Search on Enter key
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    console.log('Enter key pressed, searching:', e.target.value);
+                    this.performSearch(e.target.value);
+                }
+            });
+        } else {
+            console.log('Search input not found!');
+        }
+
+        if (searchButton) {
+            console.log('Search button found, adding click listener...');
+            searchButton.addEventListener('click', () => {
+                const query = searchInput ? searchInput.value : '';
+                console.log('Search button clicked, query:', query);
+                this.performSearch(query);
+            });
+        } else {
+            console.log('Search button not found!');
+        }
+
+        if (advancedSearchToggle) {
+            advancedSearchToggle.addEventListener('click', () => {
+                this.toggleAdvancedSearch();
+            });
+        }
+    }
+
+    setupAdvancedSearchListeners() {
+        const applyFiltersBtn = document.getElementById('apply-filters');
+        const resetFiltersBtn = document.getElementById('reset-filters');
+
+        if (applyFiltersBtn) {
+            applyFiltersBtn.addEventListener('click', () => {
+                this.applyAdvancedFilters();
+            });
+        }
+
+        if (resetFiltersBtn) {
+            resetFiltersBtn.addEventListener('click', () => {
+                this.resetFilters();
+            });
+        }
+    }
+
+    toggleAdvancedSearch() {
+        const panel = document.getElementById('advanced-search-panel');
+        const toggle = document.getElementById('advanced-search-toggle');
+
+        if (panel && toggle) {
+            const isVisible = panel.classList.contains('expanded');
+
+            if (isVisible) {
+                panel.classList.remove('expanded');
+            } else {
+                panel.classList.add('expanded');
+            }
+
+            const icon = toggle.querySelector('i');
+            if (icon) {
+                icon.className = isVisible ? 'fas fa-chevron-down' : 'fas fa-chevron-up';
+            }
+        }
+    }
+
+    performSearch(query) {
+        console.log('Performing search with query:', query);
+
+        this.currentSearchQuery = query;
+
+        // Use blogHelpers.searchPosts function
+        let results;
+        if (!query || query.trim() === '') {
+            results = blogHelpers.getPublishedPosts();
+        } else {
+            if (blogHelpers && blogHelpers.searchPosts) {
+                results = blogHelpers.searchPosts(query);
+            } else {
+                console.error('blogHelpers.searchPosts function not available');
+                results = [];
+            }
+        }
+
+        console.log('Search results:', results);
+        this.loadBlogPosts(results);
+
+        // Update URL with search parameter (optional)
+        if (query) {
+            const url = new URL(window.location);
+            url.searchParams.set('search', query);
+            window.history.replaceState({}, '', url);
+        } else {
+            this.clearSearchFromURL();
+        }
+    }
+
+    applyAdvancedFilters() {
+        const searchInput = document.getElementById('blog-search-input');
+        const categoryFilter = document.getElementById('category-filter');
+        const tagCheckboxes = document.querySelectorAll('.tag-filter-checkbox:checked');
+
+        const query = searchInput ? searchInput.value : '';
+        const filters = {};
+
+        if (categoryFilter && categoryFilter.value) {
+            filters.category = blogCategories.find(cat => cat.slug === categoryFilter.value)?.name;
+        }
+
+        if (tagCheckboxes.length > 0) {
+            filters.tags = Array.from(tagCheckboxes).map(cb => cb.value);
+        }
+
+        this.currentSearchQuery = query;
+        this.currentFilters = filters;
+
+        const results = blogHelpers.advancedSearch(query, filters);
+        this.loadBlogPosts(results);
+    }
+
+    resetFilters() {
+        // Clear search input
+        const searchInput = document.getElementById('blog-search-input');
+        if (searchInput) searchInput.value = '';
+
+        // Reset category filter
+        const categoryFilter = document.getElementById('category-filter');
+        if (categoryFilter) categoryFilter.value = '';
+
+        // Uncheck all tag checkboxes
+        const tagCheckboxes = document.querySelectorAll('.tag-filter-checkbox');
+        tagCheckboxes.forEach(cb => cb.checked = false);
+
+        // Clear search state
+        this.currentSearchQuery = '';
+        this.currentFilters = {};
+
+        // Reload all posts
+        this.loadBlogPosts();
+        this.clearSearchFromURL();
+    }
+
+    clearSearch() {
+        this.resetFilters();
+    }
+
+    clearSearchFromURL() {
+        const url = new URL(window.location);
+        url.searchParams.delete('search');
+        window.history.replaceState({}, '', url);
+    }
+
+    filterByCategory(categorySlug) {
+        console.log('Filtering by category:', categorySlug);
+        const posts = blogHelpers.getPostsByCategory(categorySlug);
+        this.currentSearchQuery = '';
+        this.currentFilters = { category: categorySlug };
+        this.loadBlogPosts(posts);
+    }
+
+    filterByTag(tag) {
+        console.log('Filtering by tag:', tag);
+        const posts = blogHelpers.getPostsByTag(tag);
+        this.currentSearchQuery = '';
+        this.currentFilters = { tag: tag };
+        this.loadBlogPosts(posts);
+    }
+
+    handleNewsletterSignup(event) {
+        const formData = new FormData(event.target);
+        const email = formData.get('email');
+
+        if (this.validateEmail(email)) {
+            // Here you would typically send the email to your backend
+            console.log('Newsletter signup:', email);
+            alert('Thank you for subscribing to our newsletter!');
+            event.target.reset();
+        } else {
+            alert('Please enter a valid email address.');
+        }
+    }
+
+    validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+}
+
+// Initialize blog page when portfolio data is loaded
+window.addEventListener('portfolioDataLoaded', function(event) {
+    console.log('Portfolio data loaded, initializing blog page');
+    setTimeout(() => {
+        if (!window.blogPageInstance) {
+            window.blogPageInstance = new BlogPage();
+        }
+    }, 100);
+});
+
+// Fallback initialization for direct access
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        if (!window.blogPageInstance && (typeof blogData !== 'undefined' || typeof blogCategories !== 'undefined')) {
+            console.log('Fallback initialization for blog page');
+            window.blogPageInstance = new BlogPage();
+        }
+    }, 200);
+});
 
 // Export for both browser and Node.js
 if (typeof window !== 'undefined') {
@@ -374,6 +946,8 @@ if (typeof window !== 'undefined') {
     window.blogCategories = blogCategories;
     window.blogTags = blogTags;
     window.blogHelpers = blogHelpers;
+    // Add global search function for convenience
+    window.searchPosts = blogHelpers.searchPosts;
 }
 
 if (typeof module !== 'undefined' && module.exports) {
