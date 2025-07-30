@@ -25,7 +25,9 @@ const blogData = [
       <li><strong>Inpainting Generator (G2):</strong> Synthesizes final output conditioned on both edge and color guidance.</li>
     </ol>
     <p>This fused approach helps the model generate sharper details and natural transitions in challenging inpainting tasks.</p>
-    <img src="js/data/images/blog/edgeconnect-plus-inpainting/architecture-diagram.png" alt="EdgeConnect+ Architecture (Figure 5 in paper)">
+    <div class="image-wrapper">
+        <img src="js/data/images/blog/edgeconnect-plus-inpainting/architecture-diagram.png" alt="EdgeConnect+ Architecture (Figure 5 in paper)" class="full-width-image">
+    </div>
 
     <h2>Dataset and Preprocessing</h2>
     <p>The model was trained and evaluated on the CelebA dataset, which contains over 200,000 facial images. All images were center-cropped and resized to 256×256. Irregular binary masks covering ≥20% of the image were applied to simulate missing regions.</p>
@@ -41,7 +43,7 @@ const blogData = [
       <li>Adversarial Loss (PatchGAN)</li>
       <li>Feature Matching Loss</li>
     </ul>
-    <img src="js/data/images/blog/edgeconnect-plus-inpainting/Fig7.png" alt="Edge generation results (Figure 7 in paper)">
+    <img src="js/data/images/blog/edgeconnect-plus-inpainting/Fig7.png" alt="Edge generation results (Figure 7 in paper)" class="diagram-image">
 
     <h3>Color Guidance</h3>
     <p>To enhance chromatic consistency, we use the TELEA algorithm to create a blurred approximation of color in the missing regions. This low-frequency color map is overlaid with the edge map to form the fused guidance image.</p>

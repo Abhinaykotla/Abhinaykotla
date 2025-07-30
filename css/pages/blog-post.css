@@ -227,10 +227,70 @@
 
 .blog-post-content img {
     max-width: 100%;
+    max-height: 500px;
+    width: auto;
     height: auto;
+    object-fit: contain;
+    object-position: center;
     border-radius: 8px;
-    margin: 1.5rem 0;
+    margin: 1.5rem auto;
     box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+}
+
+.blog-post-content img:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Special handling for different image types */
+.blog-post-content .small-image {
+    max-height: 300px !important;
+    max-width: 600px !important;
+}
+
+.blog-post-content .diagram-image {
+    max-height: 400px !important;
+    background: white;
+    padding: 1rem;
+    border-radius: 12px;
+}
+
+/* Full-width images for architecture diagrams */
+.blog-post-content .full-width-image {
+    max-height: 600px !important;
+    max-width: 100% !important;
+    margin: 2rem auto;
+}
+
+/* Container approach for images that need centering */
+.blog-post-content .image-wrapper {
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+.blog-post-content .image-wrapper img {
+    margin: 0;
+}
+
+/* Ensure very wide images don't overflow */
+.blog-post-content img[src*="architecture"],
+.blog-post-content img[src*="diagram"] {
+    max-width: 100%;
+    height: auto;
+    max-height: 600px;
+}
+
+/* For images that are naturally very tall */
+.blog-post-content img[src*="Fig"] {
+    max-height: 450px;
+}
+
+/* Ensure minimum size for small images */
+.blog-post-content img {
+    min-height: 50px;
+    min-width: 50px;
 }
 
 .blog-post-content table {
@@ -455,6 +515,25 @@
     font-size: 1.1rem;
 }
 
+/* Tablet Responsiveness */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .blog-post-content img {
+        max-height: 450px;
+    }
+
+    .blog-post-content .small-image {
+        max-height: 350px !important;
+    }
+
+    .blog-post-content .diagram-image {
+        max-height: 400px !important;
+    }
+
+    .blog-post-content .full-width-image {
+        max-height: 550px !important;
+    }
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     .blog-post-container {
@@ -491,6 +570,23 @@
         height: 250px;
     }
 
+    /* Responsive blog post content images */
+    .blog-post-content img {
+        max-height: 350px;
+    }
+
+    .blog-post-content .small-image {
+        max-height: 300px !important;
+    }
+
+    .blog-post-content .diagram-image {
+        max-height: 320px !important;
+    }
+
+    .blog-post-content .full-width-image {
+        max-height: 400px !important;
+    }
+
     .blog-post-navigation {
         flex-direction: column;
         gap: 1rem;
@@ -513,6 +609,25 @@
 
     .related-posts-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 480px) {
+    .blog-post-content img {
+        max-height: 250px;
+    }
+
+    .blog-post-content .small-image {
+        max-height: 200px !important;
+    }
+
+    .blog-post-content .diagram-image {
+        max-height: 280px !important;
+    }
+
+    .blog-post-content .full-width-image {
+        max-height: 300px !important;
     }
 }
 
