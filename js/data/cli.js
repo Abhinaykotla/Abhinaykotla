@@ -145,7 +145,7 @@ Visit the blog section for full articles and more posts!`
     },
     contact: {
         description: "Show contact information",
-        response: `Contact Information:
+        response: `Contact Me:
 
 📧 Email: abhinaykotla@gmail.com
 📱 Phone: +1 469 674 1021

@@ -123,6 +123,23 @@
         text-align: center;
     }
 
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: var(--space-2xl);
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+
+    .hero-text {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .hero-visual {
+        order: -1;
+    }
+
     .hero-content h1 {
         font-size: 2.5rem;
         line-height: 1.2;
@@ -141,18 +158,25 @@
     }
 
     .hero-buttons {
-        flex-direction: column;
+        display: flex !important;
+        flex-direction: column !important;
         gap: 12px;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
     .hero-buttons .btn {
-        min-height: 36px;
-        padding: 8px 12px;
+        min-height: 44px;
+        padding: 12px 16px;
         font-size: 1rem;
         border-radius: 8px;
-        width: 100%;
+        width: 100% !important;
+        max-width: none !important;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         margin: 0;
+        flex: none;
+        display: block;
+        box-sizing: border-box;
     }
 
     .hero-buttons .btn-primary {
@@ -352,9 +376,12 @@
     }
 
     .hero-buttons .btn {
-        width: 100%;
+        width: 100% !important;
         padding: 10px 16px;
         font-size: var(--font-size-sm);
+        max-width: none !important;
+        display: block;
+        box-sizing: border-box;
     }
 
     .neural-network {

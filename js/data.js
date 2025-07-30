@@ -15,7 +15,7 @@ const portfolioData = {
         {
             degree: "Masters in Computer Science",
             institution: "The University of Texas at Arlington",
-            period: "Aug 2025",
+            period: "Dec 2025",
             gpa: "4.0/4.0",
             location: "Arlington, TX",
             status: "Current"
@@ -389,7 +389,7 @@ Visit the blog section for full articles and more posts!`
         },
         contact: {
             description: "Show contact information",
-            response: `Contact Information:
+            response: `Contact Me:
 
 📧 Email: abhinaykotla@gmail.com
 📱 Phone: +1 469 674 1021

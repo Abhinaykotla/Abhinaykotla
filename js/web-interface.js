@@ -364,7 +364,7 @@ class WebInterface {
 
         const projectsHTML = portfolioData.projects.map(project => `
             <div class="project-card" data-category="${project.category}">
-                <div class="project-image" style="background-image: url('${project.image || 'images/projects/placeholder.svg'}')"></div>
+                <div class="project-image" style="background-image: url('${project.image || 'images/projects/placeholder.svg'}')" role="img" aria-label="${project.title} project preview"></div>
                 <div class="project-content">
                     <h3 class="project-title">${project.title}</h3>
                     <p class="project-description">${project.description}</p>
@@ -374,8 +374,8 @@ class WebInterface {
                         `).join('')}
                     </div>
                     <div class="project-links">
-                        <a href="${project.github}" class="project-link" target="_blank">
-                            <i class="fab fa-github"></i>
+                        <a href="${project.github}" class="project-link" target="_blank" aria-label="View ${project.title} on GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i>
                             GitHub
                         </a>
                     </div>
@@ -391,8 +391,8 @@ class WebInterface {
         if (!blogGrid) return;
 
         const blogHTML = portfolioData.blogPosts.map(post => `
-            <article class="blog-card" onclick="window.location.href='blog-post.html?slug=${post.slug}'" style="cursor: pointer;">
-                <div class="blog-image" style="background-image: url('${post.image || 'images/blog/placeholder.svg'}')"></div>
+            <article class="blog-card" onclick="window.location.href='blog-post.html?slug=${post.slug}'" style="cursor: pointer;" tabindex="0" role="button" aria-label="Read article: ${post.title}">
+                <div class="blog-image" style="background-image: url('${post.image || 'images/blog/placeholder.svg'}')" role="img" aria-label="${post.title} article preview"></div>
                 <div class="blog-content">
                     <h3 class="blog-title">${post.title}</h3>
                     <p class="blog-excerpt">${post.excerpt}</p>
