@@ -1,7 +1,7 @@
 // Blog Posts and Articles with Full Content
 const blogData = [
     {
-        title: "Deep Dive into Generative Adversarial Networks",
+        title: "Deep Dive into Generative Adversarial Networks (GANs)",
         excerpt: "Exploring the architecture and applications of GANs in modern AI, with practical examples and implementation tips. From basic concepts to advanced techniques, this comprehensive guide covers everything you need to know about GANs.",
         date: "2024-12-15",
         readTime: "8 min read",
