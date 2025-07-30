@@ -164,20 +164,34 @@
         // Load blog post content
         function loadBlogPost() {
             const slug = getUrlParameter('slug');
+            console.log('Loading blog post with slug:', slug);
+
+            // Check if blog data is available
+            if (!window.blogHelpers || !window.blogData) {
+                console.log('Blog data not yet available, retrying...');
+                setTimeout(loadBlogPost, 100);
+                return;
+            }
+
+            console.log('Blog data available, searching for post...');
             const post = blogHelpers.getPostBySlug(slug);
+            console.log('Found post:', post);
 
             if (!post) {
+                console.log('Post not found for slug:', slug);
                 document.getElementById('blog-title').textContent = 'Post Not Found';
                 document.getElementById('blog-content').innerHTML = '<p>Sorry, the requested blog post could not be found.</p>';
                 return;
             }
 
             if (post.status === 'coming-soon') {
+                console.log('Loading coming soon post:', post.title);
                 document.getElementById('blog-title').textContent = post.title;
                 document.getElementById('blog-content').innerHTML = '<p>This blog post is coming soon. Stay tuned for updates!</p>';
                 document.getElementById('blog-date').textContent = 'Coming Soon';
                 document.getElementById('blog-read-time').textContent = post.readTime;
             } else {
+                console.log('Loading published post:', post.title);
                 // Update page title
                 document.getElementById('page-title').textContent = post.title + ' - Abhinay Kotla';
 
@@ -191,7 +205,10 @@
                 tagsContainer.innerHTML = post.tags.map(tag => `<span class="blog-post-tag">${tag}</span>`).join('');
 
                 // Update image
-                document.getElementById('blog-image').style.backgroundImage = `url('${post.image}')`;
+                const blogImage = document.getElementById('blog-image');
+                if (blogImage && post.image) {
+                    blogImage.style.backgroundImage = `url('${post.image}')`;
+                }
 
                 // Update content
                 document.getElementById('blog-content').innerHTML = post.content;
@@ -199,17 +216,25 @@
         }
 
         // Hide loading screen and load content
-        window.addEventListener('load', function () {
-            setTimeout(() => {
-                document.getElementById('loading-screen').style.display = 'none';
-                loadBlogPost();
-            }, 500);
-        });
-
-        // Load content immediately if page is already loaded
-        if (document.readyState === 'complete') {
+        function initializePage() {
+            document.getElementById('loading-screen').style.display = 'none';
             loadBlogPost();
         }
+
+        // Wait for page load and blog data
+        window.addEventListener('load', function () {
+            setTimeout(initializePage, 500);
+        });
+
+        // Also try to load immediately if everything is ready
+        document.addEventListener('DOMContentLoaded', function () {
+            // Wait a bit for scripts to load
+            setTimeout(() => {
+                if (window.blogHelpers && window.blogData) {
+                    initializePage();
+                }
+            }, 200);
+        });
     </script>
 </body>
 

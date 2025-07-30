@@ -1,6 +1,8 @@
 // Blog Page JavaScript - Handles dynamic loading of blog content
 class BlogPage {
     constructor() {
+        this.currentSearchQuery = '';
+        this.currentFilters = {};
         this.init();
     }
 
@@ -9,21 +11,58 @@ class BlogPage {
         this.loadSidebar();
         this.setupEventListeners();
         this.setupNavigation();
+        this.setupSearch();
+        this.handleURLSearch();
     }
 
-    loadBlogPosts() {
+    handleURLSearch() {
+        // Check for search parameter in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get('search');
+
+        if (searchQuery) {
+            // Set the search input value
+            const searchInput = document.getElementById('blog-search-input');
+            if (searchInput) {
+                searchInput.value = searchQuery;
+            }
+
+            // Perform the search
+            this.performSearch(searchQuery);
+        }
+    }
+
+    loadBlogPosts(posts = null) {
         const blogPostsContainer = document.querySelector('.blog-posts');
         if (!blogPostsContainer) return;
 
-        // Get published and coming soon posts
-        const publishedPosts = blogHelpers.getPublishedPosts();
-        const comingSoonPosts = blogHelpers.getComingSoonPosts();
+        // Use provided posts or get default posts
+        let publishedPosts, comingSoonPosts;
+
+        if (posts) {
+            publishedPosts = posts.filter(post => post.status === 'published');
+            comingSoonPosts = posts.filter(post => post.status === 'coming-soon');
+        } else {
+            publishedPosts = blogHelpers.getPublishedPosts();
+            comingSoonPosts = blogHelpers.getComingSoonPosts();
+        }
 
         let blogHTML = '';
 
+        // Show search results info if searching
+        if (this.currentSearchQuery) {
+            const totalResults = publishedPosts.length + comingSoonPosts.length;
+            blogHTML += `
+                <div class="search-results-info">
+                    <p><strong>${totalResults}</strong> result${totalResults !== 1 ? 's' : ''} found for "<em>${this.currentSearchQuery}</em>"</p>
+                    <button class="clear-search" onclick="blogPageInstance.clearSearch()">Clear Search</button>
+                </div>
+            `;
+        }
+
         // Add published posts
         publishedPosts.forEach((post, index) => {
-            const isFirstPost = index === 0 && post.featured;
+            const isFirstPost = index === 0 && post.featured && !this.currentSearchQuery;
             blogHTML += this.createPostHTML(post, isFirstPost);
         });
 
@@ -31,6 +70,16 @@ class BlogPage {
         comingSoonPosts.forEach(post => {
             blogHTML += this.createComingSoonPostHTML(post);
         });
+
+        // Show no results message if searching and no results
+        if (this.currentSearchQuery && publishedPosts.length === 0 && comingSoonPosts.length === 0) {
+            blogHTML += `
+                <div class="no-results">
+                    <h3>No posts found</h3>
+                    <p>Try adjusting your search terms or <button class="clear-search-link" onclick="blogPageInstance.clearSearch()">clear your search</button> to see all posts.</p>
+                </div>
+            `;
+        }
 
         blogPostsContainer.innerHTML = blogHTML;
     }
@@ -176,14 +225,217 @@ class BlogPage {
         }
     }
 
+    setupSearch() {
+        // Create search interface if it doesn't exist
+        this.createSearchInterface();
+
+        // Setup search functionality
+        const searchInput = document.getElementById('blog-search-input');
+        const searchButton = document.getElementById('blog-search-button');
+        const advancedSearchToggle = document.getElementById('advanced-search-toggle');
+
+        if (searchInput) {
+            // Real-time search as user types (debounced)
+            let searchTimeout;
+            searchInput.addEventListener('input', (e) => {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    this.performSearch(e.target.value);
+                }, 300);
+            });
+
+            // Search on Enter key
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    this.performSearch(e.target.value);
+                }
+            });
+        }
+
+        if (searchButton) {
+            searchButton.addEventListener('click', () => {
+                const query = searchInput ? searchInput.value : '';
+                this.performSearch(query);
+            });
+        }
+
+        if (advancedSearchToggle) {
+            advancedSearchToggle.addEventListener('click', () => {
+                this.toggleAdvancedSearch();
+            });
+        }
+    }
+
+    createSearchInterface() {
+        // Check if search interface already exists
+        if (document.getElementById('blog-search-container')) return;
+
+        // Create search interface and insert it before the blog posts
+        const blogLayout = document.querySelector('.blog-layout');
+        if (!blogLayout) return;
+
+        const searchHTML = `
+            <div id="blog-search-container" class="blog-search-container">
+                <div class="search-box">
+                    <input type="text" id="blog-search-input" placeholder="Search blog posts..." class="search-input">
+                    <button id="blog-search-button" class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <button id="advanced-search-toggle" class="advanced-search-toggle">
+                    Advanced Search <i class="fas fa-chevron-down"></i>
+                </button>
+                <div id="advanced-search-panel" class="advanced-search-panel">
+                    <div class="advanced-search-filters">
+                        <div class="filter-group">
+                            <label for="category-filter">Category:</label>
+                            <select id="category-filter" class="filter-select">
+                                <option value="">All Categories</option>
+                                ${blogCategories.map(cat => `<option value="${cat.slug}">${cat.name}</option>`).join('')}
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="tag-filter">Tags:</label>
+                            <div class="tag-checkboxes">
+                                ${blogTags.map(tag => `
+                                    <label class="tag-checkbox">
+                                        <input type="checkbox" value="${tag.name}" class="tag-filter-checkbox">
+                                        ${tag.name} (${tag.count})
+                                    </label>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="advanced-search-actions">
+                        <button id="apply-filters" class="apply-filters-btn">Apply Filters</button>
+                        <button id="reset-filters" class="reset-filters-btn">Reset</button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        blogLayout.insertAdjacentHTML('beforebegin', searchHTML);
+
+        // Setup advanced search event listeners
+        this.setupAdvancedSearchListeners();
+    }
+
+    setupAdvancedSearchListeners() {
+        const applyFiltersBtn = document.getElementById('apply-filters');
+        const resetFiltersBtn = document.getElementById('reset-filters');
+
+        if (applyFiltersBtn) {
+            applyFiltersBtn.addEventListener('click', () => {
+                this.applyAdvancedFilters();
+            });
+        }
+
+        if (resetFiltersBtn) {
+            resetFiltersBtn.addEventListener('click', () => {
+                this.resetFilters();
+            });
+        }
+    }
+
+    toggleAdvancedSearch() {
+        const panel = document.getElementById('advanced-search-panel');
+        const toggle = document.getElementById('advanced-search-toggle');
+
+        if (panel && toggle) {
+            const isVisible = panel.style.display === 'block';
+            panel.style.display = isVisible ? 'none' : 'block';
+
+            const icon = toggle.querySelector('i');
+            if (icon) {
+                icon.className = isVisible ? 'fas fa-chevron-down' : 'fas fa-chevron-up';
+            }
+        }
+    }
+
+    performSearch(query) {
+        this.currentSearchQuery = query;
+        const results = blogHelpers.searchPosts(query);
+        this.loadBlogPosts(results);
+
+        // Update URL with search parameter (optional)
+        if (query) {
+            const url = new URL(window.location);
+            url.searchParams.set('search', query);
+            window.history.replaceState({}, '', url);
+        } else {
+            this.clearSearchFromURL();
+        }
+    }
+
+    applyAdvancedFilters() {
+        const searchInput = document.getElementById('blog-search-input');
+        const categoryFilter = document.getElementById('category-filter');
+        const tagCheckboxes = document.querySelectorAll('.tag-filter-checkbox:checked');
+
+        const query = searchInput ? searchInput.value : '';
+        const filters = {};
+
+        if (categoryFilter && categoryFilter.value) {
+            filters.category = blogCategories.find(cat => cat.slug === categoryFilter.value)?.name;
+        }
+
+        if (tagCheckboxes.length > 0) {
+            filters.tags = Array.from(tagCheckboxes).map(cb => cb.value);
+        }
+
+        this.currentSearchQuery = query;
+        this.currentFilters = filters;
+
+        const results = blogHelpers.advancedSearch(query, filters);
+        this.loadBlogPosts(results);
+    }
+
+    resetFilters() {
+        // Clear search input
+        const searchInput = document.getElementById('blog-search-input');
+        if (searchInput) searchInput.value = '';
+
+        // Reset category filter
+        const categoryFilter = document.getElementById('category-filter');
+        if (categoryFilter) categoryFilter.value = '';
+
+        // Uncheck all tag checkboxes
+        const tagCheckboxes = document.querySelectorAll('.tag-filter-checkbox');
+        tagCheckboxes.forEach(cb => cb.checked = false);
+
+        // Clear search state
+        this.currentSearchQuery = '';
+        this.currentFilters = {};
+
+        // Reload all posts
+        this.loadBlogPosts();
+        this.clearSearchFromURL();
+    }
+
+    clearSearch() {
+        this.resetFilters();
+    }
+
+    clearSearchFromURL() {
+        const url = new URL(window.location);
+        url.searchParams.delete('search');
+        window.history.replaceState({}, '', url);
+    }
+
     filterByCategory(categorySlug) {
-        console.log('Filtering by category:', categorySlug);
-        // Implementation for category filtering can be added here
+        const category = blogCategories.find(cat => cat.slug === categorySlug);
+        if (category) {
+            this.currentFilters = { category: category.name };
+            const results = blogHelpers.getPostsByCategory(categorySlug);
+            this.loadBlogPosts(results);
+        }
     }
 
     filterByTag(tag) {
-        console.log('Filtering by tag:', tag);
-        // Implementation for tag filtering can be added here
+        this.currentFilters = { tags: [tag] };
+        const results = blogHelpers.getPostsByTag(tag);
+        this.loadBlogPosts(results);
     }
 
     handleNewsletterSubmission(e) {
@@ -206,12 +458,12 @@ class BlogPage {
 document.addEventListener('DOMContentLoaded', () => {
     // Wait for blog data to be loaded
     if (typeof blogData !== 'undefined') {
-        new BlogPage();
+        window.blogPageInstance = new BlogPage();
     } else {
         // Wait a bit for the data to load
         setTimeout(() => {
             if (typeof blogData !== 'undefined') {
-                new BlogPage();
+                window.blogPageInstance = new BlogPage();
             }
         }, 100);
     }
