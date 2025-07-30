@@ -1,70 +1,94 @@
 // Blog Posts and Articles with Full Content
 const blogData = [
     {
-        title: "Deep Dive into Generative Adversarial Networks (GANs)",
-        excerpt: "Exploring the architecture and applications of GANs in modern AI, with practical examples and implementation tips. From basic concepts to advanced techniques, this comprehensive guide covers everything you need to know about GANs.",
-        date: "2024-12-15",
-        readTime: "8 min read",
-        tags: ["AI", "Deep Learning", "GANs", "Computer Vision"],
-        image: "images/blog/gans-deep-dive.jpg",
-        slug: "deep-dive-gans",
-        featured: true,
-        category: "AI & Machine Learning",
-        author: "Abhinay Kotla",
-        status: "published",
-        content: `
-            <h2>Introduction</h2>
-            <p>Generative Adversarial Networks (GANs) have revolutionized the field of artificial intelligence, particularly in computer vision and creative AI applications. Since their introduction by Ian Goodfellow in 2014, GANs have enabled unprecedented capabilities in generating realistic images, videos, and other forms of data.</p>
-            
-            <h2>Understanding the GAN Architecture</h2>
-            <p>At its core, a GAN consists of two neural networks competing against each other:</p>
-            <ul>
-                <li><strong>Generator:</strong> Creates fake data samples from random noise</li>
-                <li><strong>Discriminator:</strong> Distinguishes between real and fake data</li>
-            </ul>
-            
-            <blockquote>
-                "The generator network learns to create data that is so realistic that the discriminator cannot tell it apart from real data."
-            </blockquote>
-            
-            <h2>Training Process</h2>
-            <p>The training process involves a minimax game where:</p>
-            <ol>
-                <li>The generator tries to minimize the discriminator's ability to detect fake samples</li>
-                <li>The discriminator tries to maximize its accuracy in distinguishing real from fake</li>
-                <li>This adversarial process continues until Nash equilibrium is reached</li>
-            </ol>
-            
-            <h2>Applications in My Research</h2>
-            <p>In my work on edge- and color-aware adversarial image inpainting, I implemented a dual-GAN architecture that integrates edge and color guidance for semantically coherent reconstructions. This approach achieved a 7% reduction in perceptual loss on standard benchmarks.</p>
-            
-            <h3>Key Innovations</h3>
-            <ul>
-                <li>Edge-aware loss functions</li>
-                <li>Color consistency mechanisms</li>
-                <li>Multi-scale feature extraction</li>
-            </ul>
-            
-            <h2>Challenges and Solutions</h2>
-            <p>Working with GANs presents several challenges:</p>
-            <ul>
-                <li><strong>Mode Collapse:</strong> Addressed through diverse training techniques</li>
-                <li><strong>Training Instability:</strong> Mitigated with careful learning rate scheduling</li>
-                <li><strong>Evaluation Metrics:</strong> Used FID and LPIPS for comprehensive assessment</li>
-            </ul>
-            
-            <h2>Future Directions</h2>
-            <p>The field continues to evolve with exciting developments in:</p>
-            <ul>
-                <li>Diffusion models as alternatives to GANs</li>
-                <li>Conditional generation with better control</li>
-                <li>Real-time generation capabilities</li>
-                <li>Integration with large language models</li>
-            </ul>
-            
-            <h2>Conclusion</h2>
-            <p>GANs remain a powerful tool in the AI researcher's toolkit. While newer approaches like diffusion models have gained popularity, the fundamental adversarial training paradigm continues to inspire innovative solutions to complex generative tasks.</p>
-        `
+        "title": "EdgeConnect+: Adversarial Inpainting with Edge and Color Guidance",
+        "excerpt": "A three-stage deep learning pipeline that enhances image inpainting by integrating structural edges and color priors. EdgeConnect+ improves visual realism and semantic coherence in challenging masked regions.",
+        "date": "2025-07-30",
+        "readTime": "10 min read",
+        "tags": ["Deep Learning", "Computer Vision", "GANs", "Image Inpainting"],
+        "image": "images/blog/edgeconnectplus-main.jpg",
+        "slug": "edgeconnect-plus-inpainting",
+        "featured": true,
+        "category": "AI & Machine Learning",
+        "author": "Abhinay Kotla",
+        "status": "published",
+        "content": `
+    <h2>Introduction</h2>
+    <p>Image inpainting involves reconstructing missing or corrupted regions of an image to achieve seamless and realistic restoration. Traditional methods such as diffusion- or patch-based techniques often fall short in recovering complex structures or textures. EdgeConnect+ is a deep generative model that advances this task by combining structural and chromatic cues within a modular three-stage architecture.</p>
+    <p>This project builds upon the original EdgeConnect model by introducing an additional color guidance module and enhanced fusion strategy, leading to improved semantic and perceptual fidelity.</p>
+
+    <h2>Architecture Overview</h2>
+    <p>EdgeConnect+ follows a sequential pipeline:</p>
+    <ol>
+      <li><strong>Edge Generator (G1):</strong> Predicts structural contours from grayscale masked inputs and binary masks.</li>
+      <li><strong>Color Guidance:</strong> Applies TELEA inpainting to produce low-frequency chromatic priors that maintain spatial coherence.</li>
+      <li><strong>Inpainting Generator (G2):</strong> Synthesizes final output conditioned on both edge and color guidance.</li>
+    </ol>
+    <p>This fused approach helps the model generate sharper details and natural transitions in challenging inpainting tasks.</p>
+    <img src="images/blog/architecture-diagram.jpg" alt="EdgeConnect+ Architecture (Figure 5 in paper)">
+
+    <h2>Dataset and Preprocessing</h2>
+    <p>The model was trained and evaluated on the CelebA dataset, which contains over 200,000 facial images. All images were center-cropped and resized to 256×256. Irregular binary masks covering ≥20% of the image were applied to simulate missing regions.</p>
+    <p>We used Canny edge detection for both masked inputs and ground truth edge supervision. TELEA inpainting was applied to masked RGB inputs to generate color priors. These priors were fused with predicted edges to form the 7-channel guidance image used in G2.</p>
+    <img src="images/blog/dataset-samples.jpg" alt="Sample inputs, edge maps, and guidance (Figures 1–4 in paper)">
+
+    <h2>Model Details</h2>
+
+    <h3>Edge Generator (G1)</h3>
+    <p>G1 is a dilated residual network that receives a concatenation of grayscale input, masked edge map, and binary mask. The discriminator D1 enforces realism in predicted edges via adversarial training. G1 is trained using:</p>
+    <ul>
+      <li>L1 Loss</li>
+      <li>Adversarial Loss (PatchGAN)</li>
+      <li>Feature Matching Loss</li>
+    </ul>
+    <img src="images/blog/edge-predictions.jpg" alt="Edge generation results (Figure 7 in paper)">
+
+    <h3>Color Guidance</h3>
+    <p>To enhance chromatic consistency, we use the TELEA algorithm to create a blurred approximation of color in the missing regions. This low-frequency color map is overlaid with the edge map to form the fused guidance image.</p>
+    <img src="images/blog/guidance-fusion.jpg" alt="Color and edge guidance fusion (Figure 9 in paper)">
+
+    <h3>Final Inpainting Generator (G2)</h3>
+    <p>G2 accepts the 7-channel input (masked RGB image + fused guidance + mask) and reconstructs the full image. It uses residual blocks and transposed convolutions, eliminating skip connections for better memory and modularity. It is trained with:</p>
+    <ul>
+      <li>L1 Loss</li>
+      <li>Adversarial Loss</li>
+      <li>Perceptual Loss (VGG16)</li>
+      <li>Style Loss (Gram matrices)</li>
+      <li>Feature Matching Loss</li>
+    </ul>
+    <img src="images/blog/g2-loss-trends.jpg" alt="G2 loss plots (Figure 13 in paper)">
+
+    <h2>Results</h2>
+    <p>EdgeConnect+ demonstrates promising improvements over the baseline EdgeConnect and Fusion Label methods. Below is a summary of the results on the CelebA test set:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Metric</th><th>Fusion Label</th><th>EdgeConnect</th><th>EdgeConnect+</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>PSNR</td><td>29.16</td><td>25.28</td><td>25.23</td></tr>
+        <tr><td>SSIM</td><td>0.9235</td><td>0.846</td><td>0.864</td></tr>
+        <tr><td>L1 Loss (%)</td><td>—</td><td>3.03</td><td>4.83</td></tr>
+        <tr><td>FID</td><td>—</td><td>2.82</td><td>2.94</td></tr>
+        <tr><td>LPIPS</td><td>—</td><td>—</td><td>0.193</td></tr>
+      </tbody>
+    </table>
+    <p>Qualitative results reveal that EdgeConnect+ produces more coherent structure and color transitions in comparison to baselines.</p>
+    <img src="images/blog/comparison-outputs.jpg" alt="Visual comparisons with baselines (Figures 10–14 in paper)">
+
+    <h2>Challenges and Takeaways</h2>
+    <p>Training stability, color bleeding, and guidance image artifacts were initial challenges. These were addressed by replacing Gaussian blur with TELEA inpainting, incorporating gradient penalty for discriminators, and using perceptual/style losses to stabilize G2 outputs.</p>
+    <p>Another key insight was that combining color and edge priors early in the pipeline helps the model synthesize content that aligns better both spatially and semantically.</p>
+
+    <h2>Conclusion and Future Work</h2>
+    <p>EdgeConnect+ advances generative image inpainting by fusing structure and color into a guided framework. While preliminary results are promising, further training and architectural enhancements such as attention-based fusion and learnable color modules may further improve results.</p>
+    <p>The project also opens doors to extending this method to general-purpose datasets like Places2 or integrating multimodal guidance like depth or semantic maps.</p>
+
+    <h2>GitHub and Citation</h2>
+    <p>Check out the full codebase and training scripts on GitHub: <a href="https://github.com/Abhinaykotla/EdgeConnect_Plus_Inpainting_with_Edge_and_Color_Guidance">EdgeConnect+</a></p>
+    <p><i>If citing this work, please use the report titled: "EdgeConnect+: Adversarial Inpainting with Edge and Color Guidance" by Abhinay Kotla and Sanjana Ravi Prakash, University of Texas at Arlington, 2025.</i></p>
+    `
     },
     {
         title: "Building Emotion-Aware AI Systems",
@@ -219,6 +243,20 @@ const blogData = [
             <p>MLOps is essential for successful AI initiatives. By following best practices and leveraging the right tools, organizations can build reliable, scalable AI systems that deliver business value consistently.</p>
         `
     },
+    {
+        title: "Computer Vision in Edge Computing",
+        excerpt: "Optimizing computer vision models for edge devices. Performance considerations, model compression techniques, and real-world deployment strategies.",
+        date: "2025-02-15",
+        readTime: "8 min read",
+        tags: ["Computer Vision", "Edge Computing", "Optimization"],
+        image: "images/blog/placeholder.svg",
+        slug: "cv-edge-computing",
+        featured: false,
+        category: "Computer Vision",
+        author: "Abhinay Kotla",
+        status: "coming-soon",
+        content: ""
+    },
     // Coming Soon Posts
     {
         title: "Transformer Architecture: Beyond BERT and GPT",
@@ -233,47 +271,61 @@ const blogData = [
         author: "Abhinay Kotla",
         status: "coming-soon",
         content: ""
-    },
-    {
-        title: "Computer Vision in Edge Computing",
-        excerpt: "Optimizing computer vision models for edge devices. Performance considerations, model compression techniques, and real-world deployment strategies.",
-        date: "2025-02-15",
-        readTime: "8 min read",
-        tags: ["Computer Vision", "Edge Computing", "Optimization"],
-        image: "images/blog/placeholder.svg",
-        slug: "cv-edge-computing",
-        featured: false,
-        category: "Computer Vision",
-        author: "Abhinay Kotla",
-        status: "coming-soon",
-        content: ""
     }
 ];
 
-// Blog categories with counts
-const blogCategories = [
-    { name: "AI & Machine Learning", count: 3, slug: "ai-ml" },
-    { name: "Deep Learning", count: 2, slug: "deep-learning" },
-    { name: "NLP", count: 2, slug: "nlp" },
-    { name: "Computer Vision", count: 1, slug: "computer-vision" },
-    { name: "MLOps", count: 1, slug: "mlops" },
-    { name: "Research", count: 2, slug: "research" }
-];
+// Function to dynamically generate blog categories with counts
+function generateBlogCategories() {
+    const categoryMap = new Map();
 
-// Popular tags with counts
-const blogTags = [
-    { name: "AI", count: 8 },
-    { name: "Machine Learning", count: 6 },
-    { name: "Deep Learning", count: 4 },
-    { name: "NLP", count: 3 },
-    { name: "Computer Vision", count: 3 },
-    { name: "GANs", count: 2 },
-    { name: "Transformers", count: 2 },
-    { name: "PyTorch", count: 4 },
-    { name: "TensorFlow", count: 3 },
-    { name: "MLOps", count: 2 },
-    { name: "Research", count: 5 }
-];
+    // Count categories from published posts only
+    blogData
+        .filter(post => post.status === 'published')
+        .forEach(post => {
+            const category = post.category;
+            if (categoryMap.has(category)) {
+                categoryMap.set(category, categoryMap.get(category) + 1);
+            } else {
+                categoryMap.set(category, 1);
+            }
+        });
+
+    // Convert to array and sort by count (descending)
+    return Array.from(categoryMap.entries())
+        .map(([name, count]) => ({
+            name,
+            count,
+            slug: name.toLowerCase().replace(/[^a-z0-9]/g, '-')
+        }))
+        .sort((a, b) => b.count - a.count);
+}
+
+// Function to dynamically generate blog tags with counts
+function generateBlogTags() {
+    const tagMap = new Map();
+
+    // Count tags from published posts only
+    blogData
+        .filter(post => post.status === 'published')
+        .forEach(post => {
+            post.tags.forEach(tag => {
+                if (tagMap.has(tag)) {
+                    tagMap.set(tag, tagMap.get(tag) + 1);
+                } else {
+                    tagMap.set(tag, 1);
+                }
+            });
+        });
+
+    // Convert to array and sort by count (descending)
+    return Array.from(tagMap.entries())
+        .map(([name, count]) => ({ name, count }))
+        .sort((a, b) => b.count - a.count);
+}
+
+// Generate dynamic categories and tags
+const blogCategories = generateBlogCategories();
+const blogTags = generateBlogTags();
 
 // Helper functions
 const blogHelpers = {
