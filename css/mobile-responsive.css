@@ -815,14 +815,6 @@
         background: #ff5f57;
     }
 
-    .btn-minimize {
-        background: #ffbd2e;
-    }
-
-    .btn-maximize {
-        background: #28ca42;
-    }
-
     .terminal-title {
         font-size: 0.9rem;
         color: var(--text-secondary);

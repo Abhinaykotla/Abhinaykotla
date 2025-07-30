@@ -176,30 +176,25 @@ class CLIInterface {
         const closeBtn = document.querySelector('.btn-close');
         if (closeBtn) {
             closeBtn.addEventListener('click', () => {
-                if (window.app && typeof window.app.toggleView === 'function') {
+                // Use the portfolio app's view toggle functionality
+                if (window.portfolioApp && typeof window.portfolioApp.toggleView === 'function') {
+                    window.portfolioApp.toggleView();
+                } else if (window.app && typeof window.app.toggleView === 'function') {
                     window.app.toggleView();
-                }
-            });
-        }
+                } else {
+                    // Fallback: manually toggle views
+                    const webInterface = document.getElementById('web-interface');
+                    const cliInterface = document.getElementById('cli-interface');
 
-        // Minimize button - minimize the terminal (just visual effect)
-        const minimizeBtn = document.querySelector('.btn-minimize');
-        if (minimizeBtn) {
-            minimizeBtn.addEventListener('click', () => {
-                const terminal = document.querySelector('.terminal');
-                if (terminal) {
-                    terminal.classList.toggle('minimized');
-                }
-            });
-        }
+                    if (webInterface && cliInterface) {
+                        webInterface.classList.add('active');
+                        cliInterface.classList.remove('active');
 
-        // Maximize button - toggle fullscreen
-        const maximizeBtn = document.querySelector('.btn-maximize');
-        if (maximizeBtn) {
-            maximizeBtn.addEventListener('click', () => {
-                const cliInterface = document.getElementById('cli-interface');
-                if (cliInterface) {
-                    cliInterface.classList.toggle('fullscreen');
+                        // Update current view state
+                        if (window.portfolioApp) {
+                            window.portfolioApp.currentView = 'web';
+                        }
+                    }
                 }
             });
         }

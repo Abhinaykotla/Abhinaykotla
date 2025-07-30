@@ -80,7 +80,9 @@
         <section class="blog-header">
             <div class="container">
                 <h1 class="page-title">My Blog</h1>
-                <p class="page-subtitle">Thoughts on AI, Technology, and Innovation</p>
+                <h1 class="page-subtitle">This page is still under construction.</h1p>
+                    <p class="page-subtitle">Thoughts on AI, Technology, and
+                        Innovation</p>
             </div>
         </section>
 
@@ -310,6 +312,35 @@
         </section>
     </div> <!-- End web-interface -->
 
+    <!-- CLI Interface -->
+    <div id="cli-interface" class="cli-interface">
+        <div class="terminal">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="btn-close"></span>
+                </div>
+                <div class="terminal-title">abhinay@portfolio:~</div>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-content" id="terminal-content">
+                    <div class="terminal-line">
+                        <span class="prompt">abhinay@portfolio:~$</span>
+                        <span class="terminal-text">Welcome to Abhinay Kotla's interactive portfolio!</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="prompt">abhinay@portfolio:~$</span>
+                        <span class="terminal-text">Type 'help' to see available commands.</span>
+                    </div>
+                </div>
+                <div class="terminal-input-line">
+                    <span class="prompt">abhinay@portfolio:~$</span>
+                    <input type="text" id="terminal-input" class="terminal-input" autofocus>
+                    <span class="cursor">|</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -330,26 +361,33 @@
     <script src="js/data/blog.js"></script>
     <script src="js/data/cli.js"></script>
     <script src="js/data-loader.js"></script>
+    <script src="js/web-interface.js?v=11"></script>
+    <script src="js/cli-interface.js?v=9"></script>
     <script src="js/main.js"></script>
     <script src="js/blog.js"></script>
 
     <script>
-        // Handle dev mode toggle for blog page
-        document.addEventListener('DOMContentLoaded', function () {
-            const toggleBtn = document.getElementById('toggle-view');
-            const toggleBtnMobile = document.getElementById('toggle-view-mobile');
-
-            if (toggleBtn) {
-                toggleBtn.addEventListener('click', function () {
-                    window.location.href = 'index.html#blog';
-                });
+        // Initialize the portfolio app for blog page
+        window.addEventListener('DOMContentLoaded', function () {
+            // Wait for portfolio data to be loaded before initializing
+            function initializeBlogApp() {
+                if (window.portfolioData && window.PortfolioApp) {
+                    console.log('Initializing blog app with portfolio data');
+                    window.portfolioApp = new PortfolioApp();
+                } else {
+                    console.log('Waiting for portfolio data and PortfolioApp...');
+                    setTimeout(initializeBlogApp, 100);
+                }
             }
 
-            if (toggleBtnMobile) {
-                toggleBtnMobile.addEventListener('click', function () {
-                    window.location.href = 'index.html#blog';
-                });
-            }
+            // Listen for data loaded event
+            window.addEventListener('portfolioDataLoaded', function (event) {
+                console.log('Portfolio data loaded for blog page:', event.detail);
+                initializeBlogApp();
+            });
+
+            // Start initialization
+            initializeBlogApp();
         });
     </script>
 </body>

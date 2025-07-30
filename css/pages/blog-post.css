@@ -24,13 +24,9 @@
 .blog-post-title {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: white;
     margin-bottom: 1rem;
     line-height: 1.2;
-    background: var(--gradient-text);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 .blog-post-meta {

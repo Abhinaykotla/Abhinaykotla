@@ -56,14 +56,6 @@
     background: #ff5f56;
 }
 
-.btn-minimize {
-    background: #ffbd2e;
-}
-
-.btn-maximize {
-    background: #27ca3f;
-}
-
 .terminal-title {
     color: var(--text-secondary);
     font-size: var(--font-size-sm);
@@ -183,12 +175,4 @@
 
 .btn-close:hover {
     box-shadow: 0 0 8px rgba(255, 95, 86, 0.6);
-}
-
-.btn-minimize:hover {
-    box-shadow: 0 0 8px rgba(255, 189, 46, 0.6);
-}
-
-.btn-maximize:hover {
-    box-shadow: 0 0 8px rgba(39, 202, 63, 0.6);
 }
