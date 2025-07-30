@@ -569,25 +569,6 @@
     }
 }
 
-@media (max-width: 480px) {
-    .blog-header .page-title {
-        font-size: 2rem;
-    }
-
-    .post-content {
-        padding: 1rem;
-    }
-
-    .post-tags {
-        gap: 0.25rem;
-    }
-
-    .tag {
-        font-size: 0.8rem;
-        padding: 0.2rem 0.6rem;
-    }
-}
-
 /* Loading Animation */
 .blog-loading {
     display: flex;

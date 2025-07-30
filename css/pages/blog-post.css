@@ -520,51 +520,6 @@
     }
 }
 
-@media (max-width: 480px) {
-    .blog-post-container {
-        padding: 0.75rem;
-        margin-top: 90px;
-    }
-
-    .blog-post-title {
-        font-size: 1.75rem;
-    }
-
-    .blog-post-content {
-        font-size: 0.95rem;
-    }
-
-    .blog-post-content h2::before {
-        display: none;
-    }
-
-    .blog-post-content h2 {
-        padding-left: 0;
-    }
-
-    .blog-post-image {
-        height: 200px;
-        margin-bottom: 2rem;
-    }
-
-    .blog-post-tags {
-        gap: 0.25rem;
-    }
-
-    .blog-post-tag {
-        font-size: 0.8rem;
-        padding: 0.2rem 0.6rem;
-    }
-
-    .share-section {
-        padding: 1rem;
-    }
-
-    .related-posts {
-        margin-top: 3rem;
-    }
-}
-
 /* Print Styles */
 @media print {
     .blog-post-container {
