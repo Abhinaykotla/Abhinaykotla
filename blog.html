@@ -369,25 +369,32 @@
     <script>
         // Initialize the portfolio app for blog page
         window.addEventListener('DOMContentLoaded', function () {
-            // Wait for portfolio data to be loaded before initializing
+            let isInitialized = false;
+
+            // Function to initialize the app once everything is ready
             function initializeBlogApp() {
+                if (isInitialized) return;
+
                 if (window.portfolioData && window.PortfolioApp) {
                     console.log('Initializing blog app with portfolio data');
+                    isInitialized = true;
                     window.portfolioApp = new PortfolioApp();
                 } else {
                     console.log('Waiting for portfolio data and PortfolioApp...');
-                    setTimeout(initializeBlogApp, 100);
+                    // Use exponential backoff to reduce console spam
+                    setTimeout(initializeBlogApp, 200);
                 }
             }
 
-            // Listen for data loaded event
+            // Listen for data loaded event (primary method)
             window.addEventListener('portfolioDataLoaded', function (event) {
                 console.log('Portfolio data loaded for blog page:', event.detail);
-                initializeBlogApp();
+                // Small delay to ensure PortfolioApp class is available
+                setTimeout(initializeBlogApp, 50);
             });
 
-            // Start initialization
-            initializeBlogApp();
+            // Fallback: Start initialization attempt
+            setTimeout(initializeBlogApp, 100);
         });
     </script>
 </body>
