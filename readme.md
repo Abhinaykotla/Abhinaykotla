@@ -9,6 +9,7 @@ Welcome to my GitHub profile! I'm a passionate graduate student pursuing a Maste
 - 🌱 Exploring advanced applications in **AI** and **NLP**
 - 🤝 Open to collaborating on impactful projects and open-source contributions
 - 📫 Reach me at: **abhinaykotla@gmail.com**
+- 🌐 Portfolio: [abhinaykotla.com](https://abhinaykotla.com)
 
 
 ## 🌐 Socials:
