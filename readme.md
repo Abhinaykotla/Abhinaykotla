@@ -5,14 +5,28 @@ Welcome to my GitHub profile! I'm a passionate graduate student pursuing a Maste
 ---
 
 ## 🚀 About Me
+- 🎓 Computer Science Graduate Student @ UT Arlington (GPA: 4.0/4.0)
+- 🧠 Passionate about **Deep Learning**, **Generative AI**, and **Vision Transformers**
+- 🛠️ Experienced with **PyTorch**, **TensorFlow**, **Hugging Face**, and **OpenCV**
+- 🔍 Built scalable AI solutions in image inpainting, text summarization, and model compression
+- 🛠️ Cloud & MLOps: Docker, Kubernetes, AWS, GCP, CI/CD pipelines
+- 🤖 Exploring **real-time AI**, **autonomous systems**, and **multimodal perception**
 - 🔭 Currently working as a **Graduate Research Assistant** at UTA
-- 🌱 Exploring advanced applications in **AI** and **NLP**
-- 🤝 Open to collaborating on impactful projects and open-source contributions
+- 🧑‍🏫 Mentoring students in ML as part of UTA’s SCAI Club
 - 📫 Reach me at: **abhinaykotla@gmail.com**
 - 🌐 Portfolio: [abhinaykotla.com](https://abhinaykotla.com)
 
+## 🚧 Highlight Projects
+Here are a few cool things I've built:
 
-## 🌐 Socials:
+- 🎨 **[EdgeConnect+ Image Inpainting](https://github.com/Abhinaykotla/EdgeConnect_Plus_Inpainting_with_Edge_and_Color_Guidance)** — GAN-based model guided by edge and color hints. Reduced perceptual loss by 7% on CelebA and Places2.
+- 🧠 **[Knowledge Distillation for Efficient CV](https://github.com/Abhinaykotla/Knowledge_Distilation_for_Smaller_Models_in_CV)** — Shrunk a 669MB CNN to 6.5MB while keeping 97% accuracy using quantization and pruning.
+- 🗞️ **[News Summarizer using T5](https://github.com/Abhinaykotla/news-summarization-T5-Transformer)** — Achieved ROUGE-1: 0.532 and cosine similarity of 0.80 using Hugging Face’s T5 transformer.
+- 🗣️ **[Voice-based Gender Recognition](https://github.com/Abhinaykotla/Gender-recognisition-voice)** — Reached 98.5% accuracy using classical ML models on 32k samples for call center profiling.
+
+---
+
+## 🌐 Socials
 [![Discord](https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white)](https://discord.gg/https://discord.gg/T5vjpAWxG7) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/abhinay_kotla) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/abhinaykotla) [![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?logo=YouTube&logoColor=white)](https://youtube.com/@NukeYT) [![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:abhinaykotla@gmail.com) 
 
 # 💻 Tech Stack:
@@ -28,10 +42,6 @@ Welcome to my GitHub profile! I'm a passionate graduate student pursuing a Maste
 ### ✍️ Random Dev Quote
 ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical)
 
-
-
 [![](https://visitcount.itsvg.in/api?id=Abhinaykotla&icon=0&color=0)](https://visitcount.itsvg.in)
 
-<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
-
-Thank you for stopping by! Feel free to explore my repositories or reach out for collaboration. 😊
+Thanks for stopping by! Feel free to explore my repositories or reach out for a collaboration 😊
