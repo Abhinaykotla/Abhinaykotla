@@ -24,14 +24,6 @@
         </div>
     </div>
 
-    <!-- View Toggle
-    <div class="view-toggle">
-        <button id="toggle-view" class="toggle-btn" title="Switch to DEV Mode">
-            <i class="fas fa-terminal"></i>
-            <span>Dev Mode</span>
-        </button>
-    </div> -->
-
     <!-- Standard Web Interface -->
     <div id="web-interface" class="web-interface active">
         <!-- Navigation -->
@@ -45,11 +37,6 @@
 
                 <!-- Mobile/Tablet Controls -->
                 <div class="nav-controls">
-                    <button id="toggle-view-mobile" class="toggle-btn mobile-toggle" title="Switch to DEV Mode">
-                        <i class="fas fa-terminal"></i>
-                        <span>Dev Mode</span>
-                    </button>
-
                     <!-- Hamburger Menu Button -->
                     <button class="hamburger" id="hamburger-menu" aria-label="Toggle navigation">
                         <span class="hamburger-line"></span>
@@ -135,24 +122,6 @@
     <script src="js/data/blog.js?v=10"></script>
     <script src="js/main.js"></script>
     <script>
-        // Handle dev mode toggle for blog post page
-        document.addEventListener('DOMContentLoaded', function () {
-            const toggleBtn = document.getElementById('toggle-view');
-            const toggleBtnMobile = document.getElementById('toggle-view-mobile');
-
-            if (toggleBtn) {
-                toggleBtn.addEventListener('click', function () {
-                    window.location.href = 'index.html#blog';
-                });
-            }
-
-            if (toggleBtnMobile) {
-                toggleBtnMobile.addEventListener('click', function () {
-                    window.location.href = 'index.html#blog';
-                });
-            }
-        });
-
         // Get URL parameters
         function getUrlParameter(name) {
             name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
