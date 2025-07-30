@@ -6,7 +6,7 @@ const blogData = [
         "date": "2025-07-30",
         "readTime": "10 min read",
         "tags": ["Deep Learning", "Computer Vision", "GANs", "Image Inpainting"],
-        "image": "images/blog/edgeconnectplus-main.jpg",
+        "image": "js/data/images/blog/placeholder.svg",
         "slug": "edgeconnect-plus-inpainting",
         "featured": true,
         "category": "AI & Machine Learning",
@@ -25,12 +25,12 @@ const blogData = [
       <li><strong>Inpainting Generator (G2):</strong> Synthesizes final output conditioned on both edge and color guidance.</li>
     </ol>
     <p>This fused approach helps the model generate sharper details and natural transitions in challenging inpainting tasks.</p>
-    <img src="images/blog/architecture-diagram.jpg" alt="EdgeConnect+ Architecture (Figure 5 in paper)">
+    <img src="js/data/images/blog/edgeconnect-plus-inpainting/architecture-diagram.png" alt="EdgeConnect+ Architecture (Figure 5 in paper)">
 
     <h2>Dataset and Preprocessing</h2>
     <p>The model was trained and evaluated on the CelebA dataset, which contains over 200,000 facial images. All images were center-cropped and resized to 256×256. Irregular binary masks covering ≥20% of the image were applied to simulate missing regions.</p>
     <p>We used Canny edge detection for both masked inputs and ground truth edge supervision. TELEA inpainting was applied to masked RGB inputs to generate color priors. These priors were fused with predicted edges to form the 7-channel guidance image used in G2.</p>
-    <img src="images/blog/dataset-samples.jpg" alt="Sample inputs, edge maps, and guidance (Figures 1–4 in paper)">
+    <img src="js/data/images/blog/placeholder.svg" alt="Sample inputs, edge maps, and guidance (Figures 1–4 in paper)">
 
     <h2>Model Details</h2>
 
@@ -41,11 +41,11 @@ const blogData = [
       <li>Adversarial Loss (PatchGAN)</li>
       <li>Feature Matching Loss</li>
     </ul>
-    <img src="images/blog/edge-predictions.jpg" alt="Edge generation results (Figure 7 in paper)">
+    <img src="js/data/images/blog/placeholder.svg" alt="Edge generation results (Figure 7 in paper)">
 
     <h3>Color Guidance</h3>
     <p>To enhance chromatic consistency, we use the TELEA algorithm to create a blurred approximation of color in the missing regions. This low-frequency color map is overlaid with the edge map to form the fused guidance image.</p>
-    <img src="images/blog/guidance-fusion.jpg" alt="Color and edge guidance fusion (Figure 9 in paper)">
+    <img src="js/data/images/blog/placeholder.svg" alt="Color and edge guidance fusion (Figure 9 in paper)">
 
     <h3>Final Inpainting Generator (G2)</h3>
     <p>G2 accepts the 7-channel input (masked RGB image + fused guidance + mask) and reconstructs the full image. It uses residual blocks and transposed convolutions, eliminating skip connections for better memory and modularity. It is trained with:</p>
@@ -56,7 +56,7 @@ const blogData = [
       <li>Style Loss (Gram matrices)</li>
       <li>Feature Matching Loss</li>
     </ul>
-    <img src="images/blog/g2-loss-trends.jpg" alt="G2 loss plots (Figure 13 in paper)">
+    <img src="js/data/images/blog/edgeconnect-plus-inpainting/loss_trends_g2.png" alt="G2 loss plots (Figure 13 in paper)">
 
     <h2>Results</h2>
     <p>EdgeConnect+ demonstrates promising improvements over the baseline EdgeConnect and Fusion Label methods. Below is a summary of the results on the CelebA test set:</p>
@@ -75,7 +75,7 @@ const blogData = [
       </tbody>
     </table>
     <p>Qualitative results reveal that EdgeConnect+ produces more coherent structure and color transitions in comparison to baselines.</p>
-    <img src="images/blog/comparison-outputs.jpg" alt="Visual comparisons with baselines (Figures 10–14 in paper)">
+    <img src="js/data/images/blog/placeholder.svg" alt="Visual comparisons with baselines (Figures 10–14 in paper)">
 
     <h2>Challenges and Takeaways</h2>
     <p>Training stability, color bleeding, and guidance image artifacts were initial challenges. These were addressed by replacing Gaussian blur with TELEA inpainting, incorporating gradient penalty for discriminators, and using perceptual/style losses to stabilize G2 outputs.</p>
@@ -96,7 +96,7 @@ const blogData = [
         date: "2024-11-28",
         readTime: "6 min read",
         tags: ["NLP", "Emotion AI", "Human-AI"],
-        image: "images/blog/emotion-ai.jpg",
+        image: "js/data/images/blog/emotion-ai.jpg",
         slug: "emotion-aware-ai",
         featured: false,
         category: "AI & Machine Learning",
@@ -161,7 +161,7 @@ const blogData = [
         date: "2024-11-10",
         readTime: "10 min read",
         tags: ["MLOps", "DevOps", "Production AI"],
-        image: "images/blog/mlops-practices.jpg",
+        image: "js/data/images/blog/mlops-practices.jpg",
         slug: "mlops-best-practices",
         featured: false,
         category: "MLOps",
@@ -249,7 +249,7 @@ const blogData = [
         date: "2025-02-15",
         readTime: "8 min read",
         tags: ["Computer Vision", "Edge Computing", "Optimization"],
-        image: "images/blog/placeholder.svg",
+        image: "js/data/images/blog/placeholder.svg",
         slug: "cv-edge-computing",
         featured: false,
         category: "Computer Vision",
@@ -264,7 +264,7 @@ const blogData = [
         date: "2025-02-01",
         readTime: "12 min read",
         tags: ["Transformers", "NLP", "Attention"],
-        image: "images/blog/placeholder.svg",
+        image: "js/data/images/blog/placeholder.svg",
         slug: "transformer-architecture",
         featured: false,
         category: "Deep Learning",
@@ -921,7 +921,7 @@ class BlogPage {
 }
 
 // Initialize blog page when portfolio data is loaded
-window.addEventListener('portfolioDataLoaded', function(event) {
+window.addEventListener('portfolioDataLoaded', function (event) {
     console.log('Portfolio data loaded, initializing blog page');
     setTimeout(() => {
         if (!window.blogPageInstance) {
