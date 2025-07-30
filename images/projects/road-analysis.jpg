@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a8edea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fed6e3;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#grad6)"/>
+  <text x="50%" y="35%" dominant-baseline="middle" text-anchor="middle" fill="#333" font-family="Arial, sans-serif" font-size="20" font-weight="bold">ROAD ANALYSIS</text>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#333" font-family="Arial, sans-serif" font-size="16">Surface Classification</text>
+  <text x="50%" y="65%" dominant-baseline="middle" text-anchor="middle" fill="#333" font-family="Arial, sans-serif" font-size="12">ML & GUI Tool</text>
+</svg>

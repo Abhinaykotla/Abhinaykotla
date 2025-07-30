@@ -341,7 +341,6 @@ ${project.details ? '\nDetails: ' + project.details : ''}
 
 Links:
 • GitHub: ${project.github}
-• Demo: ${project.demo}
 
 Type 'projects' to see all projects.`;
 

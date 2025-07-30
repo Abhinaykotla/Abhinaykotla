@@ -364,7 +364,7 @@ class WebInterface {
 
         const projectsHTML = portfolioData.projects.map(project => `
             <div class="project-card" data-category="${project.category}">
-                <div class="project-image"></div>
+                <div class="project-image" style="background-image: url('${project.image || 'images/projects/placeholder.svg'}')"></div>
                 <div class="project-content">
                     <h3 class="project-title">${project.title}</h3>
                     <p class="project-description">${project.description}</p>
@@ -377,10 +377,6 @@ class WebInterface {
                         <a href="${project.github}" class="project-link" target="_blank">
                             <i class="fab fa-github"></i>
                             GitHub
-                        </a>
-                        <a href="${project.demo}" class="project-link" target="_blank">
-                            <i class="fas fa-external-link-alt"></i>
-                            Live Demo
                         </a>
                     </div>
                 </div>
@@ -395,8 +391,8 @@ class WebInterface {
         if (!blogGrid) return;
 
         const blogHTML = portfolioData.blogPosts.map(post => `
-            <article class="blog-card">
-                <div class="blog-image"></div>
+            <article class="blog-card" onclick="window.location.href='blog-post.html?slug=${post.slug}'" style="cursor: pointer;">
+                <div class="blog-image" style="background-image: url('${post.image || 'images/blog/placeholder.svg'}')"></div>
                 <div class="blog-content">
                     <h3 class="blog-title">${post.title}</h3>
                     <p class="blog-excerpt">${post.excerpt}</p>

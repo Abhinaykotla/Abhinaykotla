@@ -6,7 +6,7 @@ const blogData = [
         date: "2024-12-15",
         readTime: "8 min read",
         tags: ["AI", "Deep Learning", "GANs"],
-        image: "blog/gans-deep-dive.jpg",
+        image: "images/blog/gans-deep-dive.jpg",
         slug: "deep-dive-gans"
     },
     {
@@ -15,7 +15,7 @@ const blogData = [
         date: "2024-11-28",
         readTime: "6 min read",
         tags: ["NLP", "Emotion AI", "Human-AI"],
-        image: "blog/emotion-ai.jpg",
+        image: "images/blog/emotion-ai.jpg",
         slug: "emotion-aware-ai"
     },
     {
@@ -24,7 +24,7 @@ const blogData = [
         date: "2024-11-10",
         readTime: "10 min read",
         tags: ["MLOps", "DevOps", "Production AI"],
-        image: "blog/mlops-practices.jpg",
+        image: "images/blog/mlops-practices.jpg",
         slug: "mlops-best-practices"
     }
 ];

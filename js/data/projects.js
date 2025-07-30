@@ -7,8 +7,7 @@ const projectsData = [
         category: "ai-ml",
         featured: true,
         github: "https://github.com/Abhinaykotla/EdgeConnect_Plus_Inpainting_with_Edge_and_Color_Guidance",
-        demo: null,
-        image: "projects/image-inpainting.jpg",
+        image: "images/projects/image-inpainting.jpg",
         details: "7% reduction in perceptual loss on CelebA and Places2."
     },
     {
@@ -18,8 +17,7 @@ const projectsData = [
         category: "ai-ml",
         featured: true,
         github: "<placeholder>",
-        demo: null,
-        image: "projects/emotion-chatbot.jpg",
+        image: "images/projects/emotion-chatbot.jpg",
         details: "Real-time emotion recognition, multimodal input."
     },
     {
@@ -29,8 +27,7 @@ const projectsData = [
         category: "ai-ml",
         featured: true,
         github: "https://github.com/Abhinaykotla/news-summarization-T5-Transformer",
-        demo: null,
-        image: "projects/news-summarization.jpg",
+        image: "images/projects/news-summarization.jpg",
         details: "ROUGE-1: 0.532, ROUGE-2: 0.351, ROUGE-L: 0.427, cosine: 0.80."
     },
     {
@@ -40,8 +37,7 @@ const projectsData = [
         category: "ai-ml",
         featured: true,
         github: "https://github.com/Abhinaykotla/Knowledge_Distilation_for_Smaller_Models_in_CV",
-        demo: null,
-        image: "projects/knowledge-distillation.jpg",
+        image: "images/projects/knowledge-distillation.jpg",
         details: "669MB → 6.5MB, 97% accuracy, quantized training."
     },
     {
@@ -51,8 +47,7 @@ const projectsData = [
         category: "ai-ml",
         featured: false,
         github: "https://github.com/Abhinaykotla/Gender-recognisition-voice",
-        demo: null,
-        image: "projects/voice-recognition.jpg",
+        image: "images/projects/voice-recognition.jpg",
         details: "98.5% accuracy, RFC, SVM, KNN, 32k samples."
     },
     {
@@ -62,8 +57,7 @@ const projectsData = [
         category: "ai-ml",
         featured: false,
         github: "https://github.com/Abhinaykotla/Road-Surface-Analysis-and-classification",
-        demo: null,
-        image: "projects/road-analysis.jpg",
+        image: "images/projects/road-analysis.jpg",
         details: "GUI, 3,500 samples, predictive maintenance."
     },
     {
@@ -73,8 +67,7 @@ const projectsData = [
         category: "web",
         featured: false,
         github: "https://github.com/abhinaykotla/saintechinc-website",
-        demo: "https://saintechinc.com",
-        image: "projects/saintechinc.jpg",
+        image: "images/projects/saintechinc.jpg",
         details: "Complete end-to-end web development project with ongoing maintenance."
     }
 ];
