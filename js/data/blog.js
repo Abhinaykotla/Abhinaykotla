@@ -6,7 +6,7 @@ const blogData = [
         "date": "2025-07-30",
         "readTime": "10 min read",
         "tags": ["Deep Learning", "Computer Vision", "GANs", "Image Inpainting"],
-        "image": "js/data/images/blog/placeholder.svg",
+        "image": "js/data/images/projects/image-inpainting.jpg",
         "slug": "edgeconnect-plus-inpainting",
         "featured": true,
         "category": "AI & Machine Learning",
@@ -30,7 +30,7 @@ const blogData = [
     <h2>Dataset and Preprocessing</h2>
     <p>The model was trained and evaluated on the CelebA dataset, which contains over 200,000 facial images. All images were center-cropped and resized to 256×256. Irregular binary masks covering ≥20% of the image were applied to simulate missing regions.</p>
     <p>We used Canny edge detection for both masked inputs and ground truth edge supervision. TELEA inpainting was applied to masked RGB inputs to generate color priors. These priors were fused with predicted edges to form the 7-channel guidance image used in G2.</p>
-    <img src="js/data/images/blog/placeholder.svg" alt="Sample inputs, edge maps, and guidance (Figures 1–4 in paper)">
+    <img src="js/data/images/blog/edgeconnect-plus-inpainting/Fig1.jpg" alt="Sample inputs, edge maps, and guidance (Figures 1–4 in paper)">
 
     <h2>Model Details</h2>
 
@@ -41,11 +41,11 @@ const blogData = [
       <li>Adversarial Loss (PatchGAN)</li>
       <li>Feature Matching Loss</li>
     </ul>
-    <img src="js/data/images/blog/placeholder.svg" alt="Edge generation results (Figure 7 in paper)">
+    <img src="js/data/images/blog/edgeconnect-plus-inpainting/Fig7.png" alt="Edge generation results (Figure 7 in paper)">
 
     <h3>Color Guidance</h3>
     <p>To enhance chromatic consistency, we use the TELEA algorithm to create a blurred approximation of color in the missing regions. This low-frequency color map is overlaid with the edge map to form the fused guidance image.</p>
-    <img src="js/data/images/blog/placeholder.svg" alt="Color and edge guidance fusion (Figure 9 in paper)">
+    <img src="js/data/images/blog/edgeconnect-plus-inpainting/Fig9.png" alt="Color and edge guidance fusion (Figure 9 in paper)">
 
     <h3>Final Inpainting Generator (G2)</h3>
     <p>G2 accepts the 7-channel input (masked RGB image + fused guidance + mask) and reconstructs the full image. It uses residual blocks and transposed convolutions, eliminating skip connections for better memory and modularity. It is trained with:</p>
@@ -75,7 +75,7 @@ const blogData = [
       </tbody>
     </table>
     <p>Qualitative results reveal that EdgeConnect+ produces more coherent structure and color transitions in comparison to baselines.</p>
-    <img src="js/data/images/blog/placeholder.svg" alt="Visual comparisons with baselines (Figures 10–14 in paper)">
+    <img src="js/data/images/blog/edgeconnect-plus-inpainting/Fig10.png" alt="Visual comparisons with baselines (Figures 10–14 in paper)">
 
     <h2>Challenges and Takeaways</h2>
     <p>Training stability, color bleeding, and guidance image artifacts were initial challenges. These were addressed by replacing Gaussian blur with TELEA inpainting, incorporating gradient penalty for discriminators, and using perceptual/style losses to stabilize G2 outputs.</p>
