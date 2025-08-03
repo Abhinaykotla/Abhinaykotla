@@ -51,16 +51,6 @@ const experienceData = [
         category: "internship"
     },
     {
-        title: "Content Manager",
-        company: "SaharaYT",
-        period: "May 2021 - Dec 2023",
-        location: "Remote",
-        type: "Part-time",
-        description: "Managed content strategy and production for a 325k-subscriber YouTube channel; improved video retention by 20%.",
-        technologies: ["Content Strategy", "Video Production", "Analytics"],
-        category: "creative"
-    },
-    {
         title: "YouTube Creator",
         company: "NukeYT (Own Channel)",
         period: "May 2021 - Dec 2023",
