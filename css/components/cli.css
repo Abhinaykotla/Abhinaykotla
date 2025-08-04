@@ -101,6 +101,13 @@
     display: flex;
     align-items: center;
     background: var(--bg-secondary);
+    position: relative;
+    transition: all var(--transition-normal);
+}
+
+.terminal-input-line:focus-within {
+    background: rgba(64, 224, 208, 0.05);
+    border-top-color: var(--accent-primary);
 }
 
 .terminal-input {
@@ -112,12 +119,20 @@
     font-size: var(--font-size-sm);
     outline: none;
     margin-left: var(--space-sm);
+    caret-color: var(--accent-primary);
+    caret-shape: block;
+}
+
+.terminal-input:focus {
+    caret-color: var(--accent-primary);
 }
 
 .cursor {
     color: var(--accent-primary);
     animation: blink 1s infinite;
     margin-left: 4px;
+    display: none;
+    /* Hide the custom cursor since browser provides its own */
 }
 
 /* CLI specific styles */

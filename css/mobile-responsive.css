@@ -869,6 +869,8 @@
     .cursor {
         color: var(--accent-primary);
         animation: blink 1s infinite;
+        display: none;
+        /* Hide the custom cursor since browser provides its own */
     }
 
     @keyframes blink {
