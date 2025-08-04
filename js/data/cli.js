@@ -12,7 +12,7 @@ const cliData = {
 • blog           - List recent blog posts
 • contact        - Show contact information
 • interests      - Display research interests and future plans
-• certifications - List professional certifications
+• certifications - List professional certifications with verification links
 • clear          - Clear the terminal
 • help           - Show this help message
 
@@ -20,13 +20,13 @@ Tip: Use tab completion for project names!`
     },
     about: {
         description: "Display personal information",
-        response: `Abhinay Kotla - AI/ML Engineer & Researcher
+        response: `Abhinay Kotla - AI/ML Engineer & Full-Stack Developer
 
-Passionate Computer Science graduate specializing in AI and machine learning, with notable experience in developing solutions like emotion-aware chatbots and image recognition systems. Proficient in TensorFlow, PyTorch, and NLP frameworks, with skills in model development and scalable AI implementation. Proven track record in enhancing AI applications, optimizing machine learning models, and engaging in research-driven innovation.
+Passionate Computer Science graduate specializing in AI/ML engineering and full-stack web development. Notable experience in developing AI solutions like emotion-aware chatbots, image recognition systems, and community platforms using React and Firebase. Proficient in TensorFlow, PyTorch, NLP frameworks, and modern web technologies. Proven track record in end-to-end development, from machine learning model optimization to scalable web applications.
 
 Current Status: Graduate Student at UT Arlington (GPA: 4.0/4.0)
 Location: Arlington, TX
-Specialization: AI, Machine Learning, Deep Learning, NLP, Computer Vision
+Specialization: AI, Machine Learning, Deep Learning, NLP, Computer Vision, Full-Stack Development
 
 Type 'education' for academic background or 'experience' for work history.`
     },
@@ -49,25 +49,29 @@ Type 'certifications' to see professional certifications.`
         response: `Technical Skills:
 
 Programming Languages:
-• Python (Advanced), C++, Java, Scala, R, SQL, Bash
+• Python (Advanced), JavaScript, C++, Java, Scala, R, SQL, Bash
 
 Machine Learning & AI:
 • Deep Learning, Generative AI, NLP, Transformer Models
 • GANs, Transfer Learning, Computer Vision, Statistical Analysis
+
+Web Development:
+• React, Next.js, Node.js, Firebase, Firestore
+• React Router, Context API, HTML5, CSS3, Responsive Design
 
 Frameworks & Libraries:
 • PyTorch, TensorFlow, Keras, scikit-learn, OpenCV
 • Pandas, Spark, Matplotlib, Hugging Face Transformers
 
 Big Data & Cloud:
-• Apache Spark, Hadoop, Kubernetes, AWS, Google Cloud, Azure
+• Apache Spark, Hadoop, Kubernetes, AWS, Google Cloud, Azure, Firebase
 
 DevOps & Deployment:
 • MLOps, Model Deployment, Docker, GitHub Actions
 
 Soft Skills:
 • Research & Innovation, Team Leadership, Technical Documentation
-• Project Management, Mentoring
+• Project Management, Mentoring, Full-Stack Development
 
 Type 'experience' to see how I've applied these skills.`
     },
@@ -75,7 +79,13 @@ Type 'experience' to see how I've applied these skills.`
         description: "Display work experience",
         response: `Work Experience:
 
-🔬 Graduate Research Assistant - IT Campus Operations
+� Full-Stack Developer
+   TuneParams.ai | 2024 - Present | Remote
+   • Community forum platform development with React & Firebase
+   • User authentication, real-time discussions, admin dashboard
+   • Firestore database with security rules & scalable architecture
+
+�🔬 Graduate Research Assistant - IT Campus Operations
    UT Arlington Office of Information Technology | Sep 2024 - Present
    • AI-driven technical support chatbot research
    • Scalable solutions for campus-wide IT operations
@@ -83,17 +93,26 @@ Type 'experience' to see how I've applied these skills.`
 💻 Graduate Assistant - OIT Tech Support  
    UT Arlington Office of Information Technology | Aug 2024 - Sep 2024
    • IT support documentation & system administration
-   • Served 5,000+ campus users
+   • Served 5,000+ campus users, reduced resolution times
 
 🌐 Freelance Web Developer
    Saintechinc | Feb 2023 - Nov 2023
    • Full-stack development with React, Next.js, Node.js
-   • Security implementation and hosting management
+   • SEO optimization, security implementation, cloud hosting
+
+🤖 AI/ML Content Creator
+   SmartKnowers | Jun 2022 - Jul 2022
+   • AI/ML course content creation and research
 
 🤖 ML Engineer Intern
    1StopAI | Nov 2021 - Jan 2022
    • Voice-based ML for gender and mood detection
    • Real-time analysis for call center optimization
+
+🎥 YouTube Creator
+   NukeYT | May 2021 - Dec 2023
+   • 1.7k subscribers, e-Sports & tech content
+   • 50% increase in view duration
 
 Type 'projects' to see my technical projects.`
     },
@@ -101,45 +120,59 @@ Type 'projects' to see my technical projects.`
         description: "Show all projects",
         response: `Projects:
 
-Edge- and Color-Aware Adversarial Image Inpainting
+🎨 Edge- and Color-Aware Adversarial Image Inpainting [FEATURED]
     Technologies: Python, GANs, Deep Learning, Computer Vision
+    Achievement: 7% reduction in perceptual loss on CelebA and Places2
 
-Efficient Computer Vision Models with Knowledge Distillation
-    Technologies: Python, CNNs, Quantization, PyTorch
-
-Emotionally Intelligent Chatbot
+🤖 Emotionally Intelligent Chatbot [FEATURED]
     Technologies: Python, NLP, Hugging Face Transformers, TensorFlow, PyTorch
+    Features: Real-time emotion recognition, multimodal input
 
-News Summarization using T5 Transformer
+📰 News Summarization using T5 Transformer [FEATURED]
     Technologies: Python, T5, NLP, Transformers
+    Performance: ROUGE-1: 0.532, ROUGE-2: 0.351, ROUGE-L: 0.427
 
-Voice-Based Gender Recognition System
+📊 Efficient Computer Vision Models with Knowledge Distillation [FEATURED]
+    Technologies: Python, CNNs, Quantization, PyTorch
+    Achievement: 669MB → 6.5MB (99% smaller), 97% accuracy maintained
+
+🌐 TuneParams.ai Community Platform [FEATURED]
+    Technologies: React, Firebase, Firestore, CSS3, JavaScript, React Router
+    Features: User auth, real-time discussions, admin dashboard
+
+🎤 Voice-Based Gender Recognition System
     Technologies: Python, scikit-learn, ML
+    Performance: 98.5% accuracy with Random Forest, 32k samples
 
-Road Surface Analysis and Classification
+🛣️ Road Surface Analysis and Classification
     Technologies: Python, scikit-learn, Qt Designer
+    Features: GUI-driven tool, 3,500 samples, predictive maintenance
 
-Saintechinc Website
+🌐 Saintechinc Website
     Technologies: React, Next.js, Node.js, CSS3, JavaScript
+    Features: Responsive design, SEO optimization, secure hosting
 
 Type 'project <name>' for detailed information about any project.
-Example: 'project emotion chatbot' or 'project image inpainting'`
+Example: 'project image inpainting' or 'project tuneparams'`
     },
     blog: {
         description: "List recent blog posts",
         response: `Recent Blog Posts:
 
-📝 Deep Dive into Generative Adversarial Networks
-   December 15, 2024 | 8 min read
-   Exploring GAN architecture and applications in modern AI
+📝 EdgeConnect+: Adversarial Inpainting with Edge and Color Guidance
+   July 29, 2025 | 10 min read | FEATURED
+   A three-stage deep learning pipeline that enhances image inpainting
+   Tags: Deep Learning, Computer Vision, GANs, Image Inpainting
 
-🧠 Building Emotion-Aware AI Systems  
-   November 28, 2024 | 6 min read
-   Integrating emotional intelligence into AI applications
+🌐 Building a Community Forum Platform with React and Firebase
+   January 20, 2025 | 14 min read | COMING SOON
+   Comprehensive guide to developing TuneParams.ai's community platform
+   Tags: React, Firebase, Web Development, Full-Stack
 
-⚙️  MLOps Best Practices for Production AI
-   November 10, 2024 | 10 min read
-   Essential practices for deploying ML models in production
+🧠 Transformer Architecture: Beyond BERT and GPT
+   February 1, 2025 | 12 min read | COMING SOON
+   In-depth exploration of transformer models and attention mechanisms
+   Tags: Transformers, NLP, Attention
 
 Visit the blog section for full articles and more posts!`
     },
@@ -185,12 +218,107 @@ or just to discuss AI and technology!`
         response: `Professional Certifications:
 
 🏆 Neural Networks and Deep Learning by DeepLearning.AI
-🏆 Robotic Process Automation (RPA)  
+   Platform: Coursera | Status: Verified
+   
+🏆 Robotic Process Automation (RPA)
+   Platform: Coursera | Status: Verified
+   
 🏆 IBM Big Data with Spark and Hadoop
+   Platform: Coursera | Status: Verified
+   
 🏆 Wordcloud Using NLP and TF-IDF
+   Platform: Coursera | Status: Verified
+   
 🏆 Google Technical Support Fundamentals
+   Platform: Coursera | Status: Verified
 
-View complete profile on LinkedIn for verification and additional certifications.`
+Note: All certifications include verification links in the web interface.
+Visit the About section for clickable verification links.`
+    },
+
+    // Individual project commands
+    "project image": {
+        description: "EdgeConnect+ Image Inpainting project details",
+        response: `🎨 Edge- and Color-Aware Adversarial Image Inpainting
+
+Description:
+Developed a dual-GAN image inpainting model that integrates edge and color 
+guidance for semantically coherent and photorealistic reconstructions.
+
+Key Achievements:
+• 7% reduction in perceptual loss on CelebA and Places2 benchmarks
+• Three-stage pipeline: Edge Generator → Color Guidance → Inpainting Generator
+• Enhanced fusion strategy for improved semantic and perceptual fidelity
+
+Technologies: Python, GANs, Deep Learning, Computer Vision
+GitHub: github.com/Abhinaykotla/EdgeConnect_Plus_Inpainting_with_Edge_and_Color_Guidance
+Status: Featured Project | Published Research`
+    },
+
+    "project tuneparams": {
+        description: "TuneParams.ai Community Platform details",
+        response: `🌐 TuneParams.ai Community Platform
+
+Description:
+Built a comprehensive web-based community forum platform for AI/ML discussions.
+Full-stack application with modern React architecture and Firebase backend.
+
+Key Features:
+• User authentication and session management
+• Thread/reply system with real-time interactions
+• Admin dashboard for content moderation
+• Public read access for unauthenticated users
+• Responsive design for all devices
+• Scalable Firestore database architecture
+
+Technologies: React, Firebase, Firestore, CSS3, JavaScript, React Router, Context API
+GitHub: github.com/TuneParams-ai/platform-frontend
+Status: Featured Project | Production Ready`
+    },
+
+    "project chatbot": {
+        description: "Emotionally Intelligent Chatbot details",
+        response: `🤖 Emotionally Intelligent Chatbot
+
+Description:
+Built a multimodal chatbot capable of interpreting user sentiment via voice 
+and facial cues. Integrated real-time emotion recognition with transformer-based 
+language models to improve user engagement.
+
+Key Features:
+• Real-time emotion recognition from voice and facial expressions
+• Multimodal input processing
+• Transformer-based language understanding
+• Adaptive response generation based on emotional context
+• Enhanced user engagement metrics
+
+Technologies: Python, NLP, Hugging Face Transformers, TensorFlow, PyTorch
+Status: Featured Project | Research & Development`
+    },
+
+    "project summarization": {
+        description: "T5 News Summarization project details",
+        response: `📰 News Summarization using T5 Transformer
+
+Description:
+Developed a T5-based abstractive text summarization system with impressive 
+performance metrics highlighting improved semantic retention and summary coherence.
+
+Performance Metrics:
+• ROUGE-1: 0.532
+• ROUGE-2: 0.351  
+• ROUGE-L: 0.427
+• Cosine Similarity: 0.80
+
+Key Features:
+• Abstractive summarization (not extractive)
+• T5 transformer architecture
+• Semantic coherence optimization
+• Multi-document summarization support
+
+Technologies: Python, T5, NLP, Transformers
+GitHub: github.com/Abhinaykotla/news-summarization-T5-Transformer
+Status: Featured Project | Research Complete`
     }
 };
 
