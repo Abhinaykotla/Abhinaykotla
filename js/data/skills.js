@@ -8,20 +8,16 @@ const skillsData = {
         items: ["Deep Learning", "Generative AI", "NLP", "Transformer Models", "GANs", "Transfer Learning", "Computer Vision", "Statistical Analysis"],
         category: "technical"
     },
-    "Web Development": {
-        items: ["React", "Next.js", "Node.js", "Firebase", "Firestore", "React Router", "Context API", "HTML5", "CSS3", "Responsive Design"],
-        category: "technical"
-    },
     "Frameworks & Libraries": {
         items: ["PyTorch", "TensorFlow", "Keras", "scikit-learn", "OpenCV", "Pandas", "Spark", "Matplotlib", "Hugging Face Transformers"],
         category: "technical"
     },
-    "Big Data & Cloud": {
-        items: ["Apache Spark", "Hadoop", "Kubernetes", "AWS", "Google Cloud", "Azure", "Firebase"],
+    "Web Development": {
+        items: ["React", "Next.js", "Node.js", "Firebase", "Firestore", "React Router", "Context API", "HTML5", "CSS3", "Responsive Design"],
         category: "technical"
     },
-    "DevOps & Deployment": {
-        items: ["MLOps", "Model Deployment", "Docker", "GitHub Actions"],
+    "Cloud & DevOps": {
+        items: ["Apache Spark", "Hadoop", "Kubernetes", "AWS", "Google Cloud", "Azure", "Firebase", "MLOps", "Model Deployment", "Docker", "GitHub Actions"],
         category: "technical"
     },
     "Soft Skills": {
