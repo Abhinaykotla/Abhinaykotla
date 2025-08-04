@@ -61,6 +61,16 @@ const projectsData = [
         details: "GUI, 3,500 samples, predictive maintenance."
     },
     {
+        title: "TuneParams.ai Community Platform",
+        description: "Built a comprehensive web-based community forum platform for AI/ML discussions. Features user authentication, thread/reply system, real-time interactions, admin dashboard, and public read access. Implemented responsive design with Firebase backend for scalable user management.",
+        technologies: ["React", "Firebase", "Firestore", "CSS3", "JavaScript", "React Router", "Context API"],
+        category: "web",
+        featured: true,
+        github: "https://github.com/TuneParams-ai/platform-frontend",
+        image: "js/data/images/projects/placeholder.svg",
+        details: "Full-stack forum platform, Firebase Auth, admin dashboard, responsive design."
+    },
+    {
         title: "Saintechinc Website",
         description: "Fully responsive business website built with modern web technologies. Features include responsive design, SEO optimization, and secure hosting.",
         technologies: ["React", "Next.js", "Node.js", "CSS3", "JavaScript"],

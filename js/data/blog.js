@@ -94,6 +94,20 @@ const blogData = [
     },
     // Coming Soon Posts
     {
+        title: "Building a Community Forum Platform with React and Firebase",
+        excerpt: "A comprehensive guide to developing TuneParams.ai's community platform. Learn about implementing user authentication, real-time discussions, admin dashboards, and scalable architecture using React and Firebase.",
+        date: "2025-01-20",
+        readTime: "14 min read",
+        tags: ["React", "Firebase", "Web Development", "Full-Stack", "Community Platform"],
+        image: "js/data/images/blog/placeholder.svg",
+        slug: "tuneparams-community-platform",
+        featured: false,
+        category: "Web Development",
+        author: "Abhinay Kotla",
+        status: "coming-soon",
+        content: ""
+    },
+    {
         title: "Transformer Architecture: Beyond BERT and GPT",
         excerpt: "An in-depth exploration of transformer models, attention mechanisms, and their evolution in modern NLP. Understanding the mathematical foundations and practical implementations.",
         date: "2025-02-01",

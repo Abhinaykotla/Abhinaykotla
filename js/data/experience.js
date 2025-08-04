@@ -1,6 +1,16 @@
 // Work Experience and Professional History
 const experienceData = [
     {
+        title: "Full-Stack Developer",
+        company: "TuneParams.ai",
+        period: "2024 - Present",
+        location: "Remote",
+        type: "Freelance",
+        description: "Developed a comprehensive community forum platform using React and Firebase. Built user authentication system, real-time discussion threads, admin dashboard, and responsive UI. Implemented Firestore database with security rules and scalable architecture for AI/ML community discussions.",
+        technologies: ["React", "Firebase", "Firestore", "JavaScript", "CSS3", "React Router", "Context API"],
+        category: "work"
+    },
+    {
         title: "Graduate Research Assistant – IT for Campus Operations",
         company: "UT Arlington Office of Information Technology",
         period: "Sep 2024 – Present",
@@ -26,8 +36,8 @@ const experienceData = [
         period: "Feb 2023 - Nov 2023",
         location: "Remote",
         type: "Freelance",
-        description: "Designed, developed, and deployed a fully responsive website using React, Next.js, and Node.js. Hosted and managed the website, implementing security best practices and ensuring high availability.",
-        technologies: ["React", "Next.js", "Node.js", "Web Development", "DevOps"],
+        description: "Designed, developed, and deployed a fully responsive business website using React, Next.js, and Node.js. Implemented SEO optimization, security best practices, and cloud hosting. Delivered complete end-to-end web development solution with ongoing maintenance.",
+        technologies: ["React", "Next.js", "Node.js", "CSS3", "JavaScript", "Web Development", "DevOps", "SEO"],
         category: "work"
     },
     {

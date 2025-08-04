@@ -1,13 +1,13 @@
 // Personal Information and Contact Details
 const personalData = {
     name: "Abhinay Kotla",
-    title: "AI/ML Engineer & Researcher",
+    title: "AI/ML Engineer & Full-Stack Developer",
     email: "abhinaykotla@gmail.com",
     phone: "+1 469 674 1021",
     location: "Arlington, TX",
     linkedin: "https://linkedin.com/in/abhinaykotla",
     github: "https://github.com/abhinaykotla",
-    summary: "Passionate Computer Science graduate specializing in AI and machine learning, with notable experience in developing solutions like emotion-aware chatbots and image recognition systems. Proficient in TensorFlow, PyTorch, and NLP frameworks, with skills in model development and scalable AI implementation. Proven track record in enhancing AI applications, optimizing machine learning models, and engaging in research-driven innovation."
+    summary: "Passionate Computer Science graduate specializing in AI/ML engineering and full-stack web development. Notable experience in developing AI solutions like emotion-aware chatbots, image recognition systems, and community platforms using React and Firebase. Proficient in TensorFlow, PyTorch, NLP frameworks, and modern web technologies. Proven track record in end-to-end development, from machine learning model optimization to scalable web applications."
 };
 
 // Export for both browser and Node.js

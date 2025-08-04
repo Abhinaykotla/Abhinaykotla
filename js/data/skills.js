@@ -1,11 +1,15 @@
 // Skills and Technical Competencies
 const skillsData = {
     "Programming Languages": {
-        items: ["Python (Advanced)", "C++", "Java", "Scala", "R", "SQL", "Bash"],
+        items: ["Python (Advanced)", "JavaScript", "C++", "Java", "Scala", "R", "SQL", "Bash"],
         category: "technical"
     },
     "Machine Learning & AI": {
         items: ["Deep Learning", "Generative AI", "NLP", "Transformer Models", "GANs", "Transfer Learning", "Computer Vision", "Statistical Analysis"],
+        category: "technical"
+    },
+    "Web Development": {
+        items: ["React", "Next.js", "Node.js", "Firebase", "Firestore", "React Router", "Context API", "HTML5", "CSS3", "Responsive Design"],
         category: "technical"
     },
     "Frameworks & Libraries": {
@@ -13,7 +17,7 @@ const skillsData = {
         category: "technical"
     },
     "Big Data & Cloud": {
-        items: ["Apache Spark", "Hadoop", "Kubernetes", "AWS", "Google Cloud", "Azure"],
+        items: ["Apache Spark", "Hadoop", "Kubernetes", "AWS", "Google Cloud", "Azure", "Firebase"],
         category: "technical"
     },
     "DevOps & Deployment": {
@@ -21,7 +25,7 @@ const skillsData = {
         category: "technical"
     },
     "Soft Skills": {
-        items: ["Research & Innovation", "Team Leadership", "Technical Documentation", "Project Management", "Mentoring"],
+        items: ["Research & Innovation", "Team Leadership", "Technical Documentation", "Project Management", "Mentoring", "Full-Stack Development"],
         category: "soft"
     }
 };
