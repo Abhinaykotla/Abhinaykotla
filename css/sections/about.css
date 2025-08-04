@@ -76,6 +76,20 @@
     transition: all var(--transition-normal);
 }
 
+.certification-list li:has(.certification-link) {
+    cursor: pointer;
+}
+
+.certification-list li:has(.certification-link):hover {
+    border: 1px solid var(--accent-primary);
+    box-shadow: 0 2px 8px rgba(64, 224, 208, 0.2);
+}
+
+/* Fallback for browsers that don't support :has() */
+.certification-list li:hover .certification-link {
+    color: var(--accent-primary);
+}
+
 .certification-list li::before {
     content: '🏆';
     position: absolute;
@@ -87,6 +101,30 @@
 .certification-list li:hover {
     background: var(--bg-hover);
     transform: translateX(8px);
+}
+
+.certification-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all var(--transition-normal);
+    position: relative;
+}
+
+.certification-link:hover {
+    color: var(--accent-primary);
+    text-decoration: underline;
+}
+
+.certification-link::after {
+    content: ' 🔗';
+    font-size: 0.8em;
+    opacity: 0.7;
+    margin-left: 4px;
+}
+
+.certification-link:hover::after {
+    opacity: 1;
 }
 
 .about-stats {

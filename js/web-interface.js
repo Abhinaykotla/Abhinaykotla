@@ -291,9 +291,16 @@ class WebInterface {
         if (certificationsList && data?.certifications) {
             certificationsList.innerHTML = `
                 <ul class="certification-list">
-                    ${data.certifications.map(cert => `
-                        <li>${cert}</li>
-                    `).join('')}
+                    ${data.certifications.map(cert => {
+                // Handle both old string format and new object format
+                if (typeof cert === 'string') {
+                    return `<li>${cert}</li>`;
+                } else if (cert.name && cert.link) {
+                    return `<li><a href="${cert.link}" target="_blank" rel="noopener noreferrer" class="certification-link">${cert.name}</a></li>`;
+                } else {
+                    return `<li>${cert.name || cert}</li>`;
+                }
+            }).join('')}
                 </ul>
             `;
         }
