@@ -64,6 +64,20 @@
     box-shadow: var(--shadow-md);
 }
 
+.resume-download {
+    margin-top: var(--space-lg);
+}
+
+.resume-download .btn {
+    width: 100%;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.resume-download .btn i {
+    font-size: var(--font-size-lg);
+}
+
 .contact-form {
     display: flex;
     flex-direction: column;

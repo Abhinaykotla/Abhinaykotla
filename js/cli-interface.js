@@ -134,7 +134,7 @@ class CLIInterface {
         const commandBar = document.createElement('div');
         commandBar.className = 'mobile-command-bar';
 
-        const commands = ['help', 'about', 'skills', 'projects', 'contact', 'clear'];
+        const commands = ['help', 'about', 'skills', 'projects', 'resume', 'contact', 'clear'];
 
         commands.forEach(cmd => {
             const btn = document.createElement('button');
@@ -298,6 +298,11 @@ class CLIInterface {
             return;
         }
 
+        if (command === 'resume') {
+            this.handleResumeDownload();
+            return;
+        }
+
         if (command === 'project' && params.length > 0) {
             this.handleProjectCommand(params.join(' '));
             return;
@@ -349,6 +354,27 @@ Type 'projects' to see all projects.`;
                 this.addResponse(`\nDid you mean: ${suggestions.join(', ')}?`);
             }
         }
+    }
+
+    handleResumeDownload() {
+        // Show the CLI response first
+        const commands = this.getCommands();
+        if (commands.resume) {
+            this.addResponse(commands.resume.response);
+        }
+
+        // Trigger the actual download
+        setTimeout(() => {
+            const link = document.createElement('a');
+            link.href = 'Abhinay_s_CV.pdf';
+            link.download = 'Abhinay_Kotla_Resume.pdf';
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            this.addSuccess('✅ Resume download initiated successfully!');
+        }, 1000);
     }
 
     findSimilarProjects(input) {

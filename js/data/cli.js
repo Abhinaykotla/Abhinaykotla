@@ -11,6 +11,7 @@ const cliData = {
 • project <name> - Get detailed info about a specific project
 • blog           - List recent blog posts
 • contact        - Show contact information
+• resume         - Download my resume/CV
 • interests      - Display research interests and future plans
 • certifications - List professional certifications with verification links
 • clear          - Clear the terminal
@@ -189,6 +190,25 @@ Visit the blog section for full articles and more posts!`
 
 Feel free to reach out for collaborations, research opportunities, 
 or just to discuss AI and technology!`
+    },
+    resume: {
+        description: "Download resume/CV",
+        response: `📄 Resume/CV Download
+
+Downloading Abhinay Kotla's Resume...
+
+The resume includes:
+• Complete professional experience
+• Educational background and achievements
+• Technical skills and certifications  
+• Featured projects and research
+• Contact information
+
+File: Abhinay_Kotla_Resume.pdf
+Status: Download initiated...
+
+Note: If download doesn't start automatically, you can also find the 
+download button in the web interface (switch back using 'web' command).`
     },
     interests: {
         description: "Display research interests",
