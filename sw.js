@@ -9,7 +9,8 @@ const urlsToCache = [
     '/css/main.css',
     '/js/main.js',
     '/js/data-loader.js',
-    '/js/web-interface.js'
+    '/js/web-interface.js',
+    '/js/data/Abhinay_s_CV.pdf'
 ];
 
 // Install event - cache resources

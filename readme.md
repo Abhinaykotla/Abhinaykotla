@@ -45,3 +45,35 @@ Here are a few cool things I've built:
 [![](https://visitcount.itsvg.in/api?id=Abhinaykotla&icon=0&color=0)](https://visitcount.itsvg.in)
 
 Thanks for stopping by! Feel free to explore my repositories or reach out for a collaboration 😊
+
+---
+
+## 🛠️ Portfolio Setup & Resume Download
+
+### Local Development
+To run the portfolio locally:
+
+1. **Using Python (Recommended):**
+   ```bash
+   python serve.py
+   # Or double-click start-server.bat on Windows
+   ```
+   Then open: http://localhost:8000
+
+2. **Direct File Access:**
+   Simply open `index.html` in your browser
+
+### Resume Download Issues?
+If you're experiencing "File wasn't available on site" errors:
+
+1. **Try the dedicated resume page:** [resume.html](./resume.html)
+2. **Direct PDF access:** [Abhinay_s_CV.pdf](./js/data/Abhinay_s_CV.pdf)
+3. **Right-click and "Save as"** on any resume link
+4. **Contact me directly** at abhinaykotla@gmail.com
+
+### 🚧 Tech Features
+- 🔄 **Dual Interface:** Web mode and Terminal/CLI mode
+- 📱 **Responsive Design:** Mobile-first approach
+- ⚡ **Fast Loading:** Service worker caching
+- 🎨 **Smooth Animations:** CSS and JS powered
+- 📄 **Resume Download:** Multiple fallback methods
