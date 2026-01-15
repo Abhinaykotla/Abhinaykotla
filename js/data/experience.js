@@ -20,6 +20,18 @@ const experienceData = [
         technologies: ["Linux", "macOS", "Windows", "Technical Documentation", "IT Support", "System Administration"],
         category: "work"
     },
+
+    {
+        title: "Machine Learning Engineer",
+        company: "1StopAI",
+        period: "Nov 2021 - Jan 2022",
+        location: "Remote",
+        type: "Internship",
+        description: "Developed real-time mood and gender classification models for customer support calls. Improved routing accuracy by 15% through emotion detection and ML inference optimization. Deployed trained models in production using lightweight inference APIs.",
+        technologies: ["Python", "scikit-learn", "Audio Processing", "Machine Learning", "ML Deployment"],
+        category: "internship"
+    },
+
     {
         title: "Full Stack Developer",
         company: "Saintechinc",
@@ -38,16 +50,6 @@ const experienceData = [
         type: "Internship",
         description: "Designed ML learning modules on model evaluation, data pipelines, and cloud deployment. Delivered interactive Jupyter notebooks and exercises that increased course engagement by 30%.",
         technologies: ["Machine Learning", "Jupyter", "Content Creation", "Cloud Deployment", "Data Pipelines"],
-        category: "internship"
-    },
-    {
-        title: "Machine Learning Engineer",
-        company: "1StopAI",
-        period: "Nov 2021 - Jan 2022",
-        location: "Remote",
-        type: "Internship",
-        description: "Developed real-time mood and gender classification models for customer support calls. Improved routing accuracy by 15% through emotion detection and ML inference optimization. Deployed trained models in production using lightweight inference APIs.",
-        technologies: ["Python", "scikit-learn", "Audio Processing", "Machine Learning", "ML Deployment"],
         category: "internship"
     }
 ];
