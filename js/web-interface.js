@@ -520,7 +520,7 @@ class WebInterface {
     setupResumeDownload() {
         // Enhanced resume download with fallback options
         const resumeLinks = document.querySelectorAll('.nav-download, .btn[href*="CV.pdf"]');
-        
+
         resumeLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -533,11 +533,11 @@ class WebInterface {
         const resumePath = './js/data/Abhinay_s_CV.pdf';
         const resumePagePath = './resume.html';
         const filename = 'Abhinay_Kotla_Resume.pdf';
-        
+
         try {
             // Method 1: Try direct download with fetch
             const response = await fetch(resumePath);
-            
+
             if (response.ok) {
                 const blob = await response.blob();
                 const url = window.URL.createObjectURL(blob);
@@ -549,21 +549,21 @@ class WebInterface {
                 a.click();
                 document.body.removeChild(a);
                 window.URL.revokeObjectURL(url);
-                
+
                 this.showNotification('Resume downloaded successfully!', 'success');
             } else {
                 throw new Error('File not found');
             }
         } catch (error) {
             console.error('Download failed:', error);
-            
+
             // Method 2: Fallback to dedicated resume page
             try {
                 window.open(resumePagePath, '_blank');
                 this.showNotification('Opened dedicated resume page with download options.', 'info');
             } catch (fallbackError) {
                 console.error('Fallback failed:', fallbackError);
-                
+
                 // Method 3: Final fallback - direct navigation
                 this.showNotification('Redirecting to resume page...', 'info');
                 window.location.href = resumePagePath;

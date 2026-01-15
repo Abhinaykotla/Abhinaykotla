@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +17,7 @@
             align-items: center;
             justify-content: center;
         }
+
         .container {
             text-align: center;
             max-width: 500px;
@@ -25,13 +27,16 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         h1 {
             color: #00ff88;
             margin-bottom: 20px;
         }
+
         .download-options {
             margin: 30px 0;
         }
+
         .btn {
             display: inline-block;
             padding: 15px 30px;
@@ -45,14 +50,17 @@
             border: none;
             cursor: pointer;
         }
+
         .btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
         }
+
         .btn-secondary {
             background: rgba(255, 255, 255, 0.1);
             color: #ffffff;
         }
+
         .instructions {
             margin-top: 30px;
             padding: 20px;
@@ -63,11 +71,12 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>📄 Resume Download</h1>
         <p>Download Abhinay Kotla's Resume</p>
-        
+
         <div class="download-options">
             <a href="./js/data/Abhinay_s_CV.pdf" download="Abhinay_Kotla_Resume.pdf" class="btn">
                 📥 Direct Download
@@ -76,28 +85,28 @@
                 👀 View in Browser
             </a>
         </div>
-        
+
         <div class="instructions">
             <strong>Having trouble downloading?</strong><br>
             1. Right-click on "Direct Download" and select "Save link as..."<br>
             2. Or click "View in Browser" and then save from the browser<br>
             3. If you're still having issues, please contact me directly
         </div>
-        
+
         <p style="margin-top: 30px;">
             <a href="./index.html" class="btn btn-secondary">← Back to Portfolio</a>
         </p>
     </div>
-    
+
     <script>
         // Enhanced download handling
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const downloadBtn = document.querySelector('.btn[download]');
-            
-            downloadBtn.addEventListener('click', function(e) {
+
+            downloadBtn.addEventListener('click', function (e) {
                 // Try to track download attempts
                 console.log('Download attempted');
-                
+
                 // For better compatibility, we'll let the browser handle it naturally
                 // but we can add some user feedback
                 setTimeout(() => {
@@ -107,4 +116,5 @@
         });
     </script>
 </body>
+
 </html>
