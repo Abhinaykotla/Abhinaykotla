@@ -4,18 +4,12 @@ const educationData = {
         {
             degree: "Masters in Computer Science",
             institution: "The University of Texas at Arlington",
-            period: "Aug 2025",
-            gpa: "4.0/4.0",
-            location: "Arlington, TX",
-            status: "Current"
+            location: "Arlington, TX"
         },
         {
             degree: "BE in Computer Science",
             institution: "Gandhi Institute of Technology and Management",
-            period: "April 2023",
-            gpa: "8.47 CGPA",
-            location: "Hyderabad, India",
-            status: "Completed"
+            location: "Hyderabad, India"
         }
     ],
 

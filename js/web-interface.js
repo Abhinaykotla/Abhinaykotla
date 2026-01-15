@@ -10,7 +10,6 @@ class WebInterface {
         this.setupAnimations();
         this.loadContent();
         this.setupContactForm();
-        this.setupCounters();
         this.setupMobileOptimizations();
         this.setupResumeDownload();
     }
@@ -204,42 +203,6 @@ class WebInterface {
         setTimeout(typeWriter, 1000);
     }
 
-    setupCounters() {
-        const counters = document.querySelectorAll('.stat-number');
-        const observerOptions = {
-            threshold: 0.5
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    this.animateCounter(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        counters.forEach(counter => observer.observe(counter));
-    }
-
-    animateCounter(element) {
-        const target = parseInt(element.getAttribute('data-target'));
-        const duration = 2000;
-        const increment = target / (duration / 16);
-        let current = 0;
-
-        const updateCounter = () => {
-            current += increment;
-            if (current < target) {
-                element.textContent = Math.floor(current);
-                requestAnimationFrame(updateCounter);
-            } else {
-                element.textContent = target;
-            }
-        };
-
-        updateCounter();
-    }
-
     loadContent() {
         // Try multiple ways to access the data
         let data = portfolioData;
@@ -284,7 +247,6 @@ class WebInterface {
                 <div class="education-item">
                     <div class="degree">${edu.degree}</div>
                     <div class="institution">${edu.institution}</div>
-                    <div class="period">${edu.period} | GPA: ${edu.gpa}</div>
                 </div>
             `).join('');
         }
