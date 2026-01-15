@@ -15,7 +15,7 @@ const educationData = {
 
     certifications: [
         {
-            name: "Neural Networks and Deep Learning by DeepLearning.AI",
+            name: "Neural Networks and Deep Learning DeepLearning.AI",
             link: "https://www.coursera.org/account/accomplishments/verify/88Z29RVRMEZP"
         },
         {
@@ -34,10 +34,10 @@ const educationData = {
             name: "Google Technical Support Fundamentals",
             link: "https://www.coursera.org/account/accomplishments/records/P89PW75CCMT8"
         },
-        {
-            name: "View all certifications on LinkedIn",
-            link: "https://www.linkedin.com/in/abhinaykotla/details/certifications/"
-        }
+        // {
+        //     name: "View all certifications on LinkedIn",
+        //     link: "https://www.linkedin.com/in/abhinaykotla/details/certifications/"
+        // }
     ]
 };
 
