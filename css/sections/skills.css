@@ -4,12 +4,12 @@
 .skills-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--space-xl);
+    gap: var(--space-lg);
 }
 
 .skill-category {
     background: var(--bg-card);
-    padding: var(--space-xl);
+    padding: var(--space-lg);
     border-radius: 16px;
     border: 1px solid var(--border-color);
     transition: all var(--transition-normal);
@@ -34,8 +34,8 @@
 }
 
 .skill-category h3 {
-    font-size: var(--font-size-xl);
-    margin-bottom: var(--space-lg);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-md);
     color: var(--accent-primary);
     display: flex;
     align-items: center;
@@ -51,9 +51,9 @@
 .skill-tag {
     background: var(--bg-hover);
     color: var(--text-secondary);
-    padding: 6px 12px;
+    padding: 4px 10px;
     border-radius: 20px;
-    font-size: var(--font-size-sm);
+    font-size: 0.8rem;
     border: 1px solid var(--border-accent);
     transition: all var(--transition-fast);
 }
