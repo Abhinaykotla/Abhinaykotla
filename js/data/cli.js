@@ -21,13 +21,13 @@ Tip: Use tab completion for project names!`
     },
     about: {
         description: "Display personal information",
-        response: `Abhinay Kotla - AI/ML Engineer & Full-Stack Developer
+        response: `Abhinay Kotla - IT Operations @ UTA | AI/ML Engineer | Full Stack Developer
 
-Passionate Computer Science graduate specializing in AI/ML engineering and full-stack web development. Notable experience in developing AI solutions like emotion-aware chatbots, image recognition systems, and community platforms using React and Firebase. Proficient in TensorFlow, PyTorch, NLP frameworks, and modern web technologies. Proven track record in end-to-end development, from machine learning model optimization to scalable web applications.
+Experienced professional specializing in AI/ML engineering, automation, and full-stack development. Currently working in IT Operations at UT Arlington, developing AI-powered solutions including NLP chatbots and automation systems. Notable experience in developing AI solutions like emotion-aware chatbots, image recognition systems, and community platforms using React and Firebase. Proficient in TensorFlow, PyTorch, NLP frameworks, and modern web technologies.
 
-Current Status: Graduate Student at UT Arlington (GPA: 4.0/4.0)
+Current Status: MSCS @ UT Arlington (GPA: 4.0/4.0) | IT Operations Professional
 Location: Arlington, TX
-Specialization: AI, Machine Learning, Deep Learning, NLP, Computer Vision, Full-Stack Development
+Specialization: AI, Machine Learning, Deep Learning, NLP, Computer Vision, Full-Stack Development, Automation
 
 Type 'education' for academic background or 'experience' for work history.`
     },
@@ -80,40 +80,44 @@ Type 'experience' to see how I've applied these skills.`
         description: "Display work experience",
         response: `Work Experience:
 
-� Full-Stack Developer
-   TuneParams.ai | 2024 - Present | Remote
-   • Community forum platform development with React & Firebase
-   • User authentication, real-time discussions, admin dashboard
-   • Firestore database with security rules & scalable architecture
-
-�🔬 Graduate Research Assistant - IT Campus Operations
+💻 IT Operations
    UT Arlington Office of Information Technology | Sep 2024 - Present
-   • AI-driven technical support chatbot research
-   • Scalable solutions for campus-wide IT operations
+   • Designed AI-powered chatbot using Python and NLP for campus IT
+   • Automated support queries through model-based intent detection
+   • Improved ticket resolution time by 18%
+   • Deployed retraining pipelines with ServiceNow integration
+   • Developed automation scripts and optimized infrastructure workflows
+   Technologies: Python, NLP, Machine Learning, AI, ServiceNow, Automation
 
-💻 Graduate Assistant - OIT Tech Support  
+🛠️ OIT Tech Support
    UT Arlington Office of Information Technology | Aug 2024 - Sep 2024
-   • IT support documentation & system administration
-   • Served 5,000+ campus users, reduced resolution times
+   • Supported ~5,000+ users, resolving hardware, software, and network issues
+   • Documented IT workflows and created knowledge-base SOPs
+   • Reduced ticket escalations by 20%
+   • Assisted in device imaging, switch configurations, network maintenance
+   Technologies: Linux, macOS, Windows, Technical Documentation, IT Support
 
-🌐 Freelance Web Developer
-   Saintechinc | Feb 2023 - Nov 2023
-   • Full-stack development with React, Next.js, Node.js
-   • SEO optimization, security implementation, cloud hosting
+🌐 Full Stack Developer
+   Saintechinc | Feb 2023 - Nov 2023 | Remote
+   • Built and deployed responsive full-stack application
+   • Achieved 99.9% uptime and improved SEO metrics by 40%
+   • Implemented secure user roles and real-time analytics
+   • Applied component-based architecture for scalability
+   Technologies: Python, React, Node.js, REST APIs, Authentication, Deployment
 
-🤖 AI/ML Content Creator
-   SmartKnowers | Jun 2022 - Jul 2022
-   • AI/ML course content creation and research
+📚 ML Content Developer
+   SmartKnowers | Jun 2022 - Jul 2022 | Remote
+   • Designed ML learning modules on model evaluation and data pipelines
+   • Delivered interactive Jupyter notebooks and exercises
+   • Increased course engagement by 30%
+   Technologies: Machine Learning, Jupyter, Content Creation, Cloud Deployment
 
-🤖 ML Engineer Intern
-   1StopAI | Nov 2021 - Jan 2022
-   • Voice-based ML for gender and mood detection
-   • Real-time analysis for call center optimization
-
-🎥 YouTube Creator
-   NukeYT | May 2021 - Dec 2023
-   • 1.7k subscribers, e-Sports & tech content
-   • 50% increase in view duration
+🤖 Machine Learning Engineer
+   1StopAI | Nov 2021 - Jan 2022 | Remote
+   • Developed real-time mood and gender classification models
+   • Improved routing accuracy by 15% through emotion detection
+   • Deployed trained models in production using lightweight inference APIs
+   Technologies: Python, scikit-learn, Audio Processing, ML Deployment
 
 Type 'projects' to see my technical projects.`
     },
