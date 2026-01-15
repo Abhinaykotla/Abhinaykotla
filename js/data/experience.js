@@ -1,74 +1,54 @@
 // Work Experience and Professional History
 const experienceData = [
     {
-        title: "Graduate Research Assistant – IT for Campus Operations",
+        title: "IT Operations",
         company: "UT Arlington Office of Information Technology",
         period: "Sep 2024 – Present",
         location: "Arlington, TX",
         type: "Full-time",
-        description: "Pioneered research initiatives in AI-driven technical support chatbot, developing scalable solutions for campus-wide IT operations and workflow enhancement.",
-        technologies: ["AI", "Machine Learning", "Python", "NLP"],
+        description: "Designed and developed an AI-powered chatbot using Python and NLP for campus IT, automating support queries through model-based intent detection. Improved ticket resolution time by 18% and deployed retraining pipelines with ServiceNow integration. Supported IT operations by developing automation scripts and optimizing infrastructure workflows.",
+        technologies: ["Python", "NLP", "Machine Learning", "AI", "ServiceNow", "Automation"],
         category: "work"
     },
     {
-        title: "Graduate Assistant - OIT Tech Support",
+        title: "OIT Tech Support",
         company: "UT Arlington Office of Information Technology",
         period: "Aug 2024 - Sep 2024",
         location: "Arlington, TX",
         type: "Full-time",
-        description: "Developed and maintained comprehensive IT support documentation, reducing average resolution time for common issues across campus facilities. Supported IT systems for University center and campus housing departments impacting 5,000+ users.",
-        technologies: ["Technical Documentation", "IT Support", "System Administration"],
+        description: "Supported ~5,000+ users, resolving hardware, software, and network issues in Linux, macOS, and Windows systems. Documented IT workflows and created knowledge-base SOPs, reducing ticket escalations by 20%. Assisted in device imaging, switch configurations, and network maintenance across campus labs.",
+        technologies: ["Linux", "macOS", "Windows", "Technical Documentation", "IT Support", "System Administration"],
         category: "work"
     },
     {
-        title: "Full-Stack Developer",
-        company: "TuneParams.ai",
-        period: "2024 - Present",
-        location: "Remote",
-        type: "Freelance",
-        description: "Developed a comprehensive community forum platform using React and Firebase. Built user authentication system, real-time discussion threads, admin dashboard, and responsive UI. Implemented Firestore database with security rules and scalable architecture for AI/ML community discussions.",
-        technologies: ["React", "Firebase", "Firestore", "JavaScript", "CSS3", "React Router", "Context API"],
-        category: "work"
-    },
-    {
-        title: "Freelance Web Developer",
+        title: "Full Stack Developer",
         company: "Saintechinc",
         period: "Feb 2023 - Nov 2023",
         location: "Remote",
-        type: "Freelance",
-        description: "Designed, developed, and deployed a fully responsive business website using React, Next.js, and Node.js. Implemented SEO optimization, security best practices, and cloud hosting. Delivered complete end-to-end web development solution with ongoing maintenance.",
-        technologies: ["React", "Next.js", "Node.js", "CSS3", "JavaScript", "Web Development", "DevOps", "SEO"],
+        type: "Full-time",
+        description: "Built and deployed a responsive full-stack application with secure user roles and real-time analytics. Achieved 99.9% uptime and improved SEO metrics by 40% through structured data and optimized routing. Applied component-based architecture for modular scalability and maintainability.",
+        technologies: ["Python", "React", "Node.js", "REST APIs", "Authentication", "Deployment"],
         category: "work"
     },
     {
-        title: "AI/ML Content Creator",
+        title: "ML Content Developer",
         company: "SmartKnowers",
         period: "Jun 2022 - Jul 2022",
         location: "Remote",
         type: "Internship",
-        description: "Created AI/ML course content and enhanced student engagement through research on latest trends.",
-        technologies: ["AI", "Machine Learning", "Content Creation", "Research"],
+        description: "Designed ML learning modules on model evaluation, data pipelines, and cloud deployment. Delivered interactive Jupyter notebooks and exercises that increased course engagement by 30%.",
+        technologies: ["Machine Learning", "Jupyter", "Content Creation", "Cloud Deployment", "Data Pipelines"],
         category: "internship"
     },
     {
-        title: "ML Engineer",
+        title: "Machine Learning Engineer",
         company: "1StopAI",
         period: "Nov 2021 - Jan 2022",
         location: "Remote",
         type: "Internship",
-        description: "Led voice-based ML project for gender and mood detection, implementing real-time analysis features that enhanced call center response accuracy.",
-        technologies: ["Machine Learning", "Voice Processing", "Real-time Analysis", "Python"],
+        description: "Developed real-time mood and gender classification models for customer support calls. Improved routing accuracy by 15% through emotion detection and ML inference optimization. Deployed trained models in production using lightweight inference APIs.",
+        technologies: ["Python", "scikit-learn", "Audio Processing", "Machine Learning", "ML Deployment"],
         category: "internship"
-    },
-    {
-        title: "YouTube Creator",
-        company: "NukeYT (Own Channel)",
-        period: "May 2021 - Dec 2023",
-        location: "Remote",
-        type: "Self-employed",
-        description: "Grew a YouTube channel to 1.7k subscribers, focusing on e-Sports, tech reviews, and tutorials; increased view duration by 50%; collaborated on sponsorships.",
-        technologies: ["Content Creation", "Video Editing", "Marketing"],
-        category: "creative"
     }
 ];
 

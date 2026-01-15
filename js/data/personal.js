@@ -7,7 +7,7 @@ const personalData = {
     location: "Arlington, TX",
     linkedin: "https://linkedin.com/in/abhinaykotla",
     github: "https://github.com/abhinaykotla",
-    summary: "Passionate Computer Science graduate specializing in AI/ML engineering and full-stack web development. Notable experience in developing AI solutions like emotion-aware chatbots, image recognition systems, and community platforms using React and Firebase. Proficient in TensorFlow, PyTorch, NLP frameworks, and modern web technologies. Proven track record in end-to-end development, from machine learning model optimization to scalable web applications."
+    summary: "Software Engineer with over 3 years of experience building and deploying AI systems. Skilled in Machine Learning, Data Structures, and Algorithms. Developed AI-powered chatbots, optimized computer vision pipelines, and fine-tuned NLP models for production use. Experienced in full-stack software development, integrating ML with scalable systems, and delivering real-world business impact through data-driven automation."
 };
 
 // Export for both browser and Node.js
