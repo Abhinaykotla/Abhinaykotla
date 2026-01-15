@@ -20,19 +20,21 @@
 
 .timeline-item {
     position: relative;
-    margin-bottom: var(--space-2xl);
+    margin-bottom: var(--space-sm);
     width: 50%;
-    padding: 0 var(--space-2xl);
+    padding: 0 var(--space-lg);
 }
 
 .timeline-item:nth-child(odd) {
     left: 0;
     text-align: right;
+    clear: both;
 }
 
 .timeline-item:nth-child(even) {
     left: 50%;
     text-align: left;
+    margin-top: calc(-1 * var(--space-4xl));
 }
 
 .timeline-item::before {
