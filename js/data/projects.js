@@ -17,7 +17,7 @@ const projectsData = [
         category: "ai-ml",
         featured: true,
         github: "<placeholder>",
-        image: "images/projects/emotion-chatbot.jpg",
+        image: "js/data/images/projects/emotion-chatbot.jpg",
         details: "Real-time emotion recognition, multimodal input."
     },
     {
@@ -27,7 +27,7 @@ const projectsData = [
         category: "ai-ml",
         featured: true,
         github: "https://github.com/Abhinaykotla/news-summarization-T5-Transformer",
-        image: "images/projects/news-summarization.jpg",
+        image: "js/data/images/projects/news-summarization.jpg",
         details: "ROUGE-1: 0.532, ROUGE-2: 0.351, ROUGE-L: 0.427, cosine: 0.80."
     },
     {
@@ -37,7 +37,7 @@ const projectsData = [
         category: "ai-ml",
         featured: true,
         github: "https://github.com/Abhinaykotla/Knowledge_Distilation_for_Smaller_Models_in_CV",
-        image: "images/projects/knowledge-distillation.jpg",
+        image: "js/data/images/projects/knowledge-distillation.jpg",
         details: "669MB → 6.5MB, 97% accuracy, quantized training."
     },
     {
@@ -47,7 +47,7 @@ const projectsData = [
         category: "ai-ml",
         featured: false,
         github: "https://github.com/Abhinaykotla/Gender-recognisition-voice",
-        image: "images/projects/voice-recognition.jpg",
+        image: "js/data/images/projects/voice-recognition.jpg",
         details: "98.5% accuracy, RFC, SVM, KNN, 32k samples."
     },
     {
@@ -57,7 +57,7 @@ const projectsData = [
         category: "ai-ml",
         featured: false,
         github: "https://github.com/Abhinaykotla/Road-Surface-Analysis-and-classification",
-        image: "images/projects/road-analysis.jpg",
+        image: "js/data/images/projects/road-analysis.jpg",
         details: "GUI, 3,500 samples, predictive maintenance."
     },
     {
@@ -67,7 +67,7 @@ const projectsData = [
         category: "web",
         featured: true,
         github: "https://github.com/TuneParams-ai/platform-frontend",
-        image: "js/data/images/projects/placeholder.svg",
+        image: "js/data/images/projects/tpai.png",
         details: "Full-stack forum platform, Firebase Auth, admin dashboard, responsive design."
     },
     {
@@ -77,7 +77,7 @@ const projectsData = [
         category: "web",
         featured: false,
         github: "https://github.com/abhinaykotla/saintechinc-website",
-        image: "images/projects/saintechinc.jpg",
+        image: "js/data/images/projects/saintechinc.jpg",
         details: "Complete end-to-end web development project with ongoing maintenance."
     }
 ];
