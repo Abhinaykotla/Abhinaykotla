@@ -53,7 +53,7 @@
 }
 
 .btn-close {
-    background: #ff5f56;
+    background: #ef4444;
 }
 
 .terminal-title {
@@ -106,7 +106,7 @@
 }
 
 .terminal-input-line:focus-within {
-    background: rgba(64, 224, 208, 0.05);
+    background: rgba(255, 140, 66, 0.08);
     border-top-color: var(--accent-primary);
 }
 
@@ -189,5 +189,5 @@
 }
 
 .btn-close:hover {
-    box-shadow: 0 0 8px rgba(255, 95, 86, 0.6);
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
 }

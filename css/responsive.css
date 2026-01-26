@@ -172,7 +172,7 @@
         border-radius: 8px;
         width: 100% !important;
         max-width: none !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         margin: 0;
         flex: none;
         display: block;
@@ -181,7 +181,7 @@
 
     .hero-buttons .btn-primary {
         font-weight: 600;
-        background: linear-gradient(90deg, #7f7fd5 0%, #86a8e7 100%);
+        background: var(--gradient-primary);
         color: #fff;
         border: none;
     }

@@ -1,13 +1,13 @@
 // Work Experience and Professional History
 const experienceData = [
     {
-        title: "IT Operations",
-        company: "UT Arlington Office of Information Technology",
+        title: "ML Engineer – AI Support Operations",
+        company: "UT Arlington OIT",
         period: "Sep 2024 – Present",
         location: "Arlington, TX",
         type: "Full-time",
-        description: "Designed and developed an AI-powered chatbot using Python and NLP for campus IT, automating support queries through model-based intent detection. Improved ticket resolution time by 18% and deployed retraining pipelines with ServiceNow integration. Supported IT operations by developing automation scripts and optimizing infrastructure workflows.",
-        technologies: ["Python", "NLP", "Machine Learning", "AI", "ServiceNow", "Automation"],
+        description: "Built an AI-powered IT support assistant using Python, NLP, and LLM-based responses for query resolution. Reduced ticket resolution time by 18% using intent detection, retrieval-grounded answers, and ServiceNow integration. Developed automation scripts and internal tools to streamline IT workflows and operational reporting.",
+        technologies: ["Python", "NLP", "LLM", "Machine Learning", "AI", "ServiceNow", "Automation"],
         category: "work"
     },
     {
@@ -22,26 +22,27 @@ const experienceData = [
     },
 
     {
-        title: "Machine Learning Engineer",
-        company: "1StopAI",
-        period: "Nov 2021 - Jan 2022",
+        title: "Full Stack Developer",
+        company: "Saintechinc",
+        period: "Aug 2022 – Nov 2023",
         location: "Remote",
-        type: "Internship",
-        description: "Developed real-time mood and gender classification models for customer support calls. Improved routing accuracy by 15% through emotion detection and ML inference optimization. Deployed trained models in production using lightweight inference APIs.",
-        technologies: ["Python", "scikit-learn", "Audio Processing", "Machine Learning", "ML Deployment"],
-        category: "internship"
+        type: "Full-time",
+        description: "Built and deployed a production-ready full-stack application using React, Node.js, and REST APIs. Implemented secure authentication, role-based access control, and scalable backend services. Delivered 99.9% uptime through modular architecture and optimized deployment pipelines.",
+        technologies: ["React", "Node.js", "REST APIs", "Authentication", "RBAC", "Backend Services", "Deployment"],
+        category: "work"
     },
 
     {
-        title: "Full Stack Developer",
-        company: "Saintechinc",
-        period: "Feb 2023 - Nov 2023",
+        title: "Machine Learning Engineer",
+        company: "1StopAI",
+        period: "Nov 2021 – Jan 2022",
         location: "Remote",
-        type: "Full-time",
-        description: "Built and deployed a responsive full-stack application with secure user roles and real-time analytics. Achieved 99.9% uptime and improved SEO metrics by 40% through structured data and optimized routing. Applied component-based architecture for modular scalability and maintainability.",
-        technologies: ["Python", "React", "Node.js", "REST APIs", "Authentication", "Deployment"],
-        category: "work"
+        type: "Internship",
+        description: "Developed and deployed ML models for emotion and gender detection in customer support audio streams. Optimized inference pipelines to improve routing accuracy and real-time response efficiency. Engineered audio feature extraction and model evaluation workflows for production deployment.",
+        technologies: ["Python", "Machine Learning", "Audio Processing", "Feature Engineering", "ML Deployment", "Model Optimization"],
+        category: "internship"
     },
+
     {
         title: "ML Content Developer",
         company: "SmartKnowers",
