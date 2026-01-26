@@ -3,6 +3,8 @@ const cliData = {
     help: {
         description: "Show available commands",
         response: `Available commands:
+
+📋 Portfolio Commands:
 • about          - Display personal information and bio
 • education      - Show educational background
 • skills         - List technical and soft skills
@@ -14,6 +16,20 @@ const cliData = {
 • resume         - Download my resume/CV
 • interests      - Display research interests and future plans
 • certifications - List professional certifications with verification links
+
+🎮 Fun & Interactive:
+• whoami         - Display current user info
+• banner         - Show ASCII art banner
+• ls / dir       - List available sections
+• tree           - Show portfolio structure
+• stats          - Portfolio statistics
+• quote          - Random tech quote
+• sudo           - Try it and see... 😏
+• matrix         - Enter the Matrix
+• ping           - Check system status
+• history        - Show command history
+
+🛠️ Utilities:
 • clear          - Clear the terminal
 • help           - Show this help message
 
@@ -374,6 +390,207 @@ Key Features:
 Technologies: Python, LLMs, OpenAI API, Streamlit, Plaid, Multi-Agent Systems, NLP
 GitHub: github.com/FinaiWorld
 Status: Featured Project | Production Ready`
+    },
+
+    whoami: {
+        description: "Display current user info",
+        response: `guest@abhinay-portfolio
+Role: Visitor
+Access Level: Public
+Session: Active
+Location: Portfolio Terminal v2.0
+
+Fun fact: You're exploring the portfolio of an AI/ML engineer who loves building intelligent systems! 🤖`
+    },
+
+    banner: {
+        description: "Show ASCII art banner",
+        response: `
+   ___  _     _     _                    
+  / _ \\| |__ (_)_ _(_)_ _  __ _ _  _    
+ | |_| | '_ \\| | '_| | ' \\/ _' | || |   
+ |__,_||_.__/|_|_| |_|_||_\\__,_|\\_, |   
+                                |__/    
+  _  __     _   _      
+ | |/ /___ | |_| |__ _ 
+ | ' </ _ \\|  _| / _' |
+ |_|\\_\\___/\\__|_\\__,_|
+                      
+═══════════════════════════════════════
+AI/ML Engineer | Full Stack Developer
+Building Intelligence, One Model at a Time
+═══════════════════════════════════════`
+    },
+
+    ls: {
+        description: "List available sections",
+        response: `total 8
+drwxr-xr-x  about/
+drwxr-xr-x  education/
+drwxr-xr-x  skills/
+drwxr-xr-x  experience/
+drwxr-xr-x  projects/
+drwxr-xr-x  blog/
+drwxr-xr-x  contact/
+-rw-r--r--  resume.pdf
+-rw-r--r--  certifications.json
+
+Type any directory name to explore its contents!`
+    },
+
+    dir: {
+        description: "List available sections",
+        response: `Directory of C:\\Users\\Portfolio\\Abhinay
+
+26/01/2026  02:30 PM    <DIR>          about
+26/01/2026  02:30 PM    <DIR>          education
+26/01/2026  02:30 PM    <DIR>          skills
+26/01/2026  02:30 PM    <DIR>          experience
+26/01/2026  02:30 PM    <DIR>          projects
+26/01/2026  02:30 PM    <DIR>          blog
+26/01/2026  02:30 PM    <DIR>          contact
+26/01/2026  02:30 PM            52,148 resume.pdf
+26/01/2026  02:30 PM             8,742 certifications.json
+               2 File(s)         60,890 bytes
+               7 Dir(s)   ∞ bytes free
+
+Type any directory name to explore!`
+    },
+
+    tree: {
+        description: "Show portfolio structure",
+        response: `📁 Portfolio Structure
+│
+├── 👤 about
+│   ├── bio.txt
+│   └── summary.md
+│
+├── 🎓 education
+│   ├── masters/
+│   ├── bachelors/
+│   └── certifications/
+│
+├── 💻 skills
+│   ├── programming/
+│   ├── ml-ai/
+│   ├── web-dev/
+│   └── tools/
+│
+├── 💼 experience
+│   ├── uta-it-ops/
+│   ├── saintechinc/
+│   └── 1stopai/
+│
+├── 🚀 projects
+│   ├── edgeconnect/
+│   ├── tuneparams/
+│   ├── chatbot/
+│   ├── summarization/
+│   └── finai/
+│
+├── 📝 blog
+│   └── posts/
+│
+└── 📧 contact
+    └── socials/`
+    },
+
+    stats: {
+        description: "Portfolio statistics",
+        response: `📊 Portfolio Statistics
+═══════════════════════════════════════
+Total Projects:        5 featured
+Programming Languages: 10+
+Technologies:          30+
+Years of Experience:   3+
+Current GPA:           4.0/4.0
+GitHub Repos:          15+
+Blog Posts:            3+
+Certifications:        5+
+Coffee Consumed:       ∞ ☕
+Lines of Code:         50,000+
+Bug Fixes:             Too many to count 🐛
+═══════════════════════════════════════
+Status: Always Learning 🚀`
+    },
+
+    quote: {
+        description: "Random tech quote",
+        response: `💭 Random Tech Wisdom:
+
+"The best way to predict the future is to invent it."
+                                    - Alan Kay
+
+"Machine learning is the new electricity."
+                                    - Andrew Ng
+
+"Code is like humor. When you have to explain it, it's bad."
+                                    - Cory House
+
+Refresh with 'quote' for more inspiration!`
+    },
+
+    sudo: {
+        description: "Try it and see",
+        response: `[sudo] password for guest: ●●●●●●●●
+
+Permission denied. Nice try though! 😏
+
+You don't need sudo privileges to explore this portfolio.
+Just type 'help' to see what you CAN do!
+
+Pro tip: This isn't a real terminal, but I appreciate your spirit! 🎩`
+    },
+
+    matrix: {
+        description: "Enter the Matrix",
+        response: `Wake up, Neo...
+The Matrix has you...
+Follow the white rabbit... 🐰
+
+⠀⠀⠀⠀⢀⣴⣾⣿⣿⣶⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢠⣾⣿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠈⢿⣿⣿⣿⣿⣿⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠉⠻⠿⠿⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+01001000 01100101 01101100 01101100 01101111
+
+Reality: You're in Abhinay's portfolio
+Illusion: This is a real Matrix terminal
+Truth: Type 'projects' to see some real AI magic ✨`
+    },
+
+    ping: {
+        description: "Check system status",
+        response: `PING abhinay-portfolio.dev (192.168.1.337) 56(84) bytes of data.
+
+64 bytes from abhinay-portfolio.dev: icmp_seq=1 ttl=64 time=0.042 ms
+64 bytes from abhinay-portfolio.dev: icmp_seq=2 ttl=64 time=0.038 ms
+64 bytes from abhinay-portfolio.dev: icmp_seq=3 ttl=64 time=0.041 ms
+64 bytes from abhinay-portfolio.dev: icmp_seq=4 ttl=64 time=0.039 ms
+
+--- abhinay-portfolio.dev ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss
+round-trip min/avg/max = 0.038/0.040/0.042 ms
+
+✅ System Status: All systems operational
+🚀 Portfolio: Online and ready
+💻 Terminal: Responsive
+🎯 Mission: Help you explore my work!`
+    },
+
+    history: {
+        description: "Show command history",
+        response: `Command History:
+════════════════════════════════════════
+(History is tracked in your current session)
+
+Recent commands will appear here as you use them.
+Try running a few commands and then check back!
+
+Tip: Use the ↑ and ↓ arrow keys to navigate through
+     your command history!`
     }
 };
 
