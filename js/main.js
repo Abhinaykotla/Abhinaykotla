@@ -812,6 +812,115 @@ function drawNeuralConnections() {
     animate();
 })();
 
+// === Hero-Wide Particle System ===
+(function initHeroParticles() {
+    const canvas = document.querySelector('.hero-particles');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    const hero = document.querySelector('.hero');
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = hero.offsetHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const particles = [];
+    const particleCount = 200; // More particles for the whole hero section
+
+    class HeroParticle {
+        constructor() {
+            this.reset();
+        }
+
+        reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.8;
+            this.vy = (Math.random() - 0.5) * 0.8;
+            this.size = Math.random() * 2.5 + 0.8;
+            this.opacity = Math.random() * 0.6 + 0.2;
+            this.life = Math.random() * 200 + 150;
+            this.maxLife = this.life;
+            this.hue = Math.random() > 0.7 ? 0 : 25; // Mix of red and orange
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            this.life--;
+
+            // Wrap around edges
+            if (this.x < 0) this.x = canvas.width;
+            if (this.x > canvas.width) this.x = 0;
+            if (this.y < 0) this.y = canvas.height;
+            if (this.y > canvas.height) this.y = 0;
+
+            if (this.life <= 0) {
+                this.reset();
+            }
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 3);
+            const alpha = this.opacity * (this.life / this.maxLife);
+
+            if (this.hue === 0) {
+                gradient.addColorStop(0, `rgba(255, 71, 87, ${alpha})`);
+                gradient.addColorStop(0.5, `rgba(255, 71, 87, ${alpha * 0.5})`);
+                gradient.addColorStop(1, 'rgba(255, 71, 87, 0)');
+            } else {
+                gradient.addColorStop(0, `rgba(255, 140, 66, ${alpha})`);
+                gradient.addColorStop(0.5, `rgba(255, 140, 66, ${alpha * 0.5})`);
+                gradient.addColorStop(1, 'rgba(255, 140, 66, 0)');
+            }
+
+            ctx.fillStyle = gradient;
+            ctx.fill();
+        }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new HeroParticle());
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+
+        // Draw connecting lines between nearby particles
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < Math.min(i + 5, particles.length); j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 150) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    const alpha = 0.2 * (1 - distance / 150);
+                    ctx.strokeStyle = `rgba(255, 140, 66, ${alpha})`;
+                    ctx.lineWidth = 0.8;
+                    ctx.stroke();
+                }
+            }
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+})();
+
 // Initialize the application
 document.addEventListener('DOMContentLoaded', () => {
     window.portfolioApp = new PortfolioApp();
