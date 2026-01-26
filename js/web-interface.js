@@ -184,23 +184,35 @@ class WebInterface {
     }
 
     setupTypingAnimation() {
-        const typingElement = document.querySelector('.typing-text');
-        if (!typingElement) return;
+        const typingElements = document.querySelectorAll('.typing-text');
+        if (!typingElements.length) return;
 
-        const text = typingElement.textContent;
-        typingElement.textContent = '';
+        let elementIndex = 0;
 
-        let i = 0;
-        const typeWriter = () => {
-            if (i < text.length) {
-                typingElement.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            }
+        const typeElement = (element) => {
+            const text = element.textContent;
+            element.textContent = '';
+            let i = 0;
+
+            const typeWriter = () => {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                } else {
+                    // Move to next element after finishing current one
+                    elementIndex++;
+                    if (elementIndex < typingElements.length) {
+                        setTimeout(() => typeElement(typingElements[elementIndex]), 200);
+                    }
+                }
+            };
+
+            typeWriter();
         };
 
         // Start typing animation after a delay
-        setTimeout(typeWriter, 1000);
+        setTimeout(() => typeElement(typingElements[0]), 1000);
     }
 
     loadContent() {

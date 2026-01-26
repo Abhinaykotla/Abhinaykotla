@@ -116,41 +116,9 @@
         0 0 20px var(--accent-primary),
         0 0 40px var(--accent-primary),
         inset 0 0 10px var(--accent-primary);
-    animation: jarvisPulse 2s infinite ease-in-out;
     position: relative;
     z-index: 2;
     border: 2px solid var(--accent-primary);
-}
-
-/* JARVIS-style hexagon overlay */
-.node::before {
-    content: '';
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(0deg);
-    background: transparent;
-    border: 1px solid var(--accent-primary);
-    clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
-    opacity: 0.3;
-    animation: hexagonSpin 6s linear infinite;
-}
-
-/* Ring effect around active nodes */
-.node::after {
-    content: '';
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid var(--accent-primary);
-    border-radius: 50%;
-    opacity: 0;
-    animation: ringPulse 2s infinite ease-out;
 }
 
 /* Active node: brighter glow and energy */
@@ -166,17 +134,6 @@
     transition: all 0.3s ease;
 }
 
-.node.active::before {
-    border-color: #fff;
-    opacity: 0.8;
-    animation: hexagonSpin 3s linear infinite;
-}
-
-.node.active::after {
-    opacity: 1;
-    border-color: var(--accent-secondary);
-}
-
 /* Inactive node: dimmer */
 .node.inactive {
     background: radial-gradient(circle at center, rgba(255, 140, 66, 0.2) 0%, rgba(255, 140, 66, 0.1) 50%, transparent 100%);
@@ -184,56 +141,6 @@
     filter: brightness(0.4) grayscale(0.6);
     opacity: 0.4;
     border-color: rgba(255, 140, 66, 0.3);
-}
-
-.node.inactive::before {
-    opacity: 0.1;
-}
-
-/* JARVIS pulse animation */
-@keyframes jarvisPulse {
-
-    0%,
-    100% {
-        box-shadow:
-            0 0 20px var(--accent-primary),
-            0 0 40px var(--accent-primary),
-            inset 0 0 10px var(--accent-primary);
-        transform: scale(1);
-    }
-
-    50% {
-        box-shadow:
-            0 0 30px var(--accent-primary),
-            0 0 60px var(--accent-primary),
-            0 0 80px rgba(255, 140, 66, 0.4),
-            inset 0 0 15px var(--accent-primary);
-        transform: scale(1.05);
-    }
-}
-
-/* Hexagon spin animation */
-@keyframes hexagonSpin {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-
-    100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
-}
-
-/* Ring pulse animation */
-@keyframes ringPulse {
-    0% {
-        transform: translate(-50%, -50%) scale(0.5);
-        opacity: 1;
-    }
-
-    100% {
-        transform: translate(-50%, -50%) scale(2);
-        opacity: 0;
-    }
 }
 
 /* Connections using SVG overlay */
