@@ -41,6 +41,16 @@ const projectsData = [
         details: "669MB → 6.5MB, 97% accuracy, quantized training."
     },
     {
+        title: "FinAI – AI-Powered Personal Finance Assistant",
+        description: "Built an AI-driven finance assistant using Plaid-integrated transaction data for automated expense tracking, budgeting, and personalized insights. Applied LLM-based news summarization and sentiment analysis to contextualize financial behavior with real-world market signals. Designed a multi-agent system where specialized agents analyze spending patterns, predict budgets, and generate actionable financial recommendations.",
+        technologies: ["Python", "LLMs", "OpenAI API", "Streamlit", "Plaid", "Multi-Agent Systems", "NLP"],
+        category: "ai-ml",
+        featured: true,
+        github: "https://github.com/FinaiWorld",
+        image: "js/data/images/projects/finai.png",
+        details: "AI-powered finance management with multi-agent system, sentiment analysis, and Plaid integration."
+    },
+    {
         title: "Voice-Based Gender Recognition System",
         description: "Trained classical ML models (RFC, SVM, KNN, etc.) on 32k voice samples using 14 acoustic features. Achieved 98.5% accuracy with Random Forest Classifier. Integrated into a call center workflow for pre-call user profiling.",
         technologies: ["Python", "scikit-learn", "ML"],

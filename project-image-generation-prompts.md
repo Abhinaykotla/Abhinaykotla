@@ -112,7 +112,32 @@ Modern technical visualization showing machine learning for infrastructure maint
 
 ---
 
-## 7. TuneParams.ai Community Platform
+## 7. FinAI – AI-Powered Personal Finance Assistant
+
+**Current Image:** `finai-assistant.jpg` ❌ (needs generation)
+**Suggested Filename:** `finai-assistant.jpg`
+
+**Generation Prompt:**
+
+```
+Modern AI finance application interface visualization. Show a sleek dashboard with financial charts, budget breakdowns, and spending analytics. Include AI elements: chatbot interface, multi-agent system visualization (small icons representing different agents: budget analyzer, news summarizer, spending predictor), LLM interaction indicators. Display Plaid-connected bank transaction data flowing into the system. Central elements: expense tracking graphs, budget vs actual comparisons, financial insights cards with AI-generated recommendations. Color palette: professional finance colors (deep greens for positive, subtle reds for alerts, blues and whites for trust). Include visual elements: dollar signs, trend arrows, sentiment indicators from news. Modern fintech aesthetic, clean dashboard UI, 16:9 aspect ratio.
+```
+
+**Alternative Prompt:**
+
+```
+Professional fintech AI assistant illustration. Center: smartphone or laptop showing a personal finance dashboard with colorful charts and graphs. Surrounding visualization: multi-agent system with specialized AI agents (represented as nodes or icons) analyzing spending patterns, news sentiment, and budget predictions. Include visual data flow: bank transactions → AI processing → insights. Show elements: expense categories pie chart, budget timeline, news headlines with sentiment scores, actionable recommendations panel. Modern gradient background (green to blue), professional fintech design, trustworthy aesthetic suitable for portfolio.
+```
+
+**Simpler Alternative:**
+
+```
+Clean technical illustration of AI-powered personal finance management. Split view: left shows transaction data and spending patterns, right shows AI-generated insights and budget recommendations. Center: multi-agent system diagram with LLM processing. Include visual elements: Plaid logo integration, OpenAI/LLM indicators, financial charts, news sentiment analysis. Professional color scheme: greens, blues, and white. Modern, minimalist fintech design.
+```
+
+---
+
+## 8. TuneParams.ai Community Platform
 
 **Current Image:** `placeholder.svg` ❌ (needs replacement)
 
@@ -130,7 +155,7 @@ Professional website screenshot mockup of a tech community platform. Display mul
 
 ---
 
-## 8. Saintechinc Website
+## 9. Saintechinc Website
 
 **Current Image:** `saintechinc.jpg` ✅ (exists)
 
@@ -193,6 +218,7 @@ Modern responsive website design showcase for a technology business. Clean layou
 - `knowledge-distillation.jpg`
 - `voice-recognition.jpg`
 - `road-analysis.jpg`
+- `finai-assistant.jpg` (new - for FinAI project)
 - `tuneparams-platform.jpg` (new - replace placeholder.svg)
 - `saintechinc.jpg` (already exists)
 

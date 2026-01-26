@@ -141,6 +141,10 @@ Type 'projects' to see my technical projects.`
     Technologies: Python, CNNs, Quantization, PyTorch
     Achievement: 669MB → 6.5MB (99% smaller), 97% accuracy maintained
 
+💰 FinAI – AI-Powered Personal Finance Assistant [FEATURED]
+    Technologies: Python, LLMs, OpenAI API, Streamlit, Plaid, Multi-Agent Systems
+    Features: Automated expense tracking, AI budgeting, sentiment analysis
+
 🌐 TuneParams.ai Community Platform [FEATURED]
     Technologies: React, Firebase, Firestore, CSS3, JavaScript, React Router
     Features: User auth, real-time discussions, admin dashboard
@@ -158,7 +162,7 @@ Type 'projects' to see my technical projects.`
     Features: Responsive design, SEO optimization, secure hosting
 
 Type 'project <name>' for detailed information about any project.
-Example: 'project image inpainting' or 'project tuneparams'`
+Example: 'project image inpainting' or 'project tuneparams' or 'project finai'`
     },
     blog: {
         description: "List recent blog posts",
@@ -343,6 +347,33 @@ Key Features:
 Technologies: Python, T5, NLP, Transformers
 GitHub: github.com/Abhinaykotla/news-summarization-T5-Transformer
 Status: Featured Project | Research Complete`
+    },
+
+    "project finai": {
+        description: "FinAI Personal Finance Assistant details",
+        response: `💰 FinAI – AI-Powered Personal Finance Assistant
+
+Description:
+Built an AI-driven finance assistant using Plaid-integrated transaction data 
+for automated expense tracking, budgeting, and personalized insights. Applied 
+LLM-based news summarization and sentiment analysis to contextualize financial 
+behavior with real-world market signals.
+
+Key Features:
+• Plaid API integration for real-time transaction data
+• Automated expense tracking and categorization
+• Multi-agent system architecture with specialized agents:
+  - Budget Analyzer: Analyzes spending patterns and trends
+  - Sentiment Analyzer: Processes financial news and market signals
+  - Spending Predictor: Forecasts future expenses and budgets
+  - News Summarizer: Delivers contextual financial news insights
+• LLM-powered personalized financial recommendations
+• Real-time budget alerts and notifications
+• Sentiment-aware financial decision support
+
+Technologies: Python, LLMs, OpenAI API, Streamlit, Plaid, Multi-Agent Systems, NLP
+GitHub: github.com/FinaiWorld
+Status: Featured Project | Production Ready`
     }
 };
 
