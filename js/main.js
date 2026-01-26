@@ -605,22 +605,32 @@ function drawNeuralConnections() {
     for (let l = 0; l < layerNodes.length - 1; l++) {
         const currentLayer = layerNodes[l];
         const nextLayer = layerNodes[l + 1];
-        // For each active node in currentLayer, draw lines to all nodes in nextLayer
-        const activeCurrent = currentLayer.filter(node => node.classList.contains('active'));
-        activeCurrent.forEach(nodeA => {
+
+        currentLayer.forEach(nodeA => {
             const rectA = nodeA.getBoundingClientRect();
             const x1 = rectA.left + rectA.width / 2 - networkRect.left;
             const y1 = rectA.top + rectA.height / 2 - networkRect.top;
+            const isActiveA = nodeA.classList.contains('active');
+
             nextLayer.forEach(nodeB => {
                 const rectB = nodeB.getBoundingClientRect();
                 const x2 = rectB.left + rectB.width / 2 - networkRect.left;
                 const y2 = rectB.top + rectB.height / 2 - networkRect.top;
+                const isActiveB = nodeB.classList.contains('active');
+
                 const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
                 line.setAttribute('x1', x1);
                 line.setAttribute('y1', y1);
                 line.setAttribute('x2', x2);
                 line.setAttribute('y2', y2);
-                line.setAttribute('class', 'connection-line');
+
+                // Add active class if both nodes are active
+                if (isActiveA && isActiveB) {
+                    line.setAttribute('class', 'connection-line active');
+                } else {
+                    line.setAttribute('class', 'connection-line');
+                }
+
                 svg.appendChild(line);
             });
         });
@@ -709,6 +719,97 @@ function drawNeuralConnections() {
     }
 
     runCycle();
+})();
+
+// === JARVIS-style Particle System ===
+(function initParticleSystem() {
+    const canvas = document.querySelector('.particles-canvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    const network = document.querySelector('.neural-network');
+
+    function resizeCanvas() {
+        canvas.width = network.offsetWidth;
+        canvas.height = network.offsetHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const particles = [];
+    const particleCount = 50;
+
+    class Particle {
+        constructor() {
+            this.reset();
+        }
+
+        reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.size = Math.random() * 2 + 0.5;
+            this.opacity = Math.random() * 0.5 + 0.3;
+            this.life = Math.random() * 100 + 100;
+            this.maxLife = this.life;
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            this.life--;
+
+            if (this.life <= 0 || this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                this.reset();
+            }
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 2);
+            gradient.addColorStop(0, `rgba(255, 140, 66, ${this.opacity * (this.life / this.maxLife)})`);
+            gradient.addColorStop(1, 'rgba(255, 140, 66, 0)');
+            ctx.fillStyle = gradient;
+            ctx.fill();
+        }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+
+        // Draw connecting lines between nearby particles
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 100) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(255, 140, 66, ${0.15 * (1 - distance / 100)})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
+            }
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
 })();
 
 // Initialize the application

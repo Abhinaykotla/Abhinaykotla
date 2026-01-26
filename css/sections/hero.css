@@ -72,15 +72,16 @@
     animation: slideInRight 1s ease;
 }
 
-/* === Neural Network Visualization (4-layer) === */
+/* === Neural Network Visualization (JARVIS-style) === */
 .neural-network {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 540px;
-    height: 520px;
+    width: 600px;
+    height: 600px;
     position: relative;
+    perspective: 1000px;
 }
 
 .layer {
@@ -95,45 +96,132 @@
 }
 
 .node {
-    width: 28px;
-    height: 28px;
-    margin: 14px 0;
-    background: var(--accent-primary);
+    width: 20px;
+    height: 20px;
+    margin: 10px 0;
+    background: radial-gradient(circle at center, var(--accent-primary) 0%, rgba(255, 140, 66, 0.4) 50%, transparent 100%);
     border-radius: 50%;
-    box-shadow: 0 0 16px var(--accent-primary), 0 0 2px #fff;
-    animation: pulse 3s infinite;
+    box-shadow:
+        0 0 20px var(--accent-primary),
+        0 0 40px var(--accent-primary),
+        inset 0 0 10px var(--accent-primary);
+    animation: jarvisPulse 2s infinite ease-in-out;
     position: relative;
     z-index: 2;
+    border: 2px solid var(--accent-primary);
 }
 
-/* Active node: brighter glow */
+/* JARVIS-style hexagon overlay */
+.node::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(0deg);
+    background: transparent;
+    border: 1px solid var(--accent-primary);
+    clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+    opacity: 0.3;
+    animation: hexagonSpin 6s linear infinite;
+}
+
+/* Ring effect around active nodes */
+.node::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid var(--accent-primary);
+    border-radius: 50%;
+    opacity: 0;
+    animation: ringPulse 2s infinite ease-out;
+}
+
+/* Active node: brighter glow and energy */
 .node.active {
-    background: var(--accent-primary);
-    box-shadow: 0 0 40px 10px var(--accent-primary), 0 0 8px #fff;
-    filter: brightness(1.5);
-    transition: box-shadow 2s, filter 2s;
-    animation: pulse 3s infinite;
+    background: radial-gradient(circle at center, #fff 0%, var(--accent-primary) 30%, rgba(255, 140, 66, 0.6) 60%, transparent 100%);
+    box-shadow:
+        0 0 30px var(--accent-primary),
+        0 0 60px var(--accent-primary),
+        0 0 90px rgba(255, 140, 66, 0.5),
+        inset 0 0 15px #fff;
+    filter: brightness(1.8);
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+.node.active::before {
+    border-color: #fff;
+    opacity: 0.8;
+    animation: hexagonSpin 3s linear infinite;
+}
+
+.node.active::after {
+    opacity: 1;
+    border-color: var(--accent-secondary);
 }
 
 /* Inactive node: dimmer */
 .node.inactive {
-    background: var(--accent-primary);
-    box-shadow: 0 0 6px 0px var(--accent-primary), 0 0 1px #fff;
-    filter: brightness(0.5) grayscale(0.5);
-    opacity: 0.5;
-    transition: box-shadow 0.2s, filter 0.2s, opacity 2s;
+    background: radial-gradient(circle at center, rgba(255, 140, 66, 0.2) 0%, rgba(255, 140, 66, 0.1) 50%, transparent 100%);
+    box-shadow: 0 0 8px rgba(255, 140, 66, 0.3);
+    filter: brightness(0.4) grayscale(0.6);
+    opacity: 0.4;
+    border-color: rgba(255, 140, 66, 0.3);
 }
 
-/* Animate node pulse */
-@keyframes pulse {
+.node.inactive::before {
+    opacity: 0.1;
+}
+
+/* JARVIS pulse animation */
+@keyframes jarvisPulse {
 
     0%,
     100% {
-        box-shadow: 0 0 16px var(--accent-primary), 0 0 2px #fff;
+        box-shadow:
+            0 0 20px var(--accent-primary),
+            0 0 40px var(--accent-primary),
+            inset 0 0 10px var(--accent-primary);
+        transform: scale(1);
     }
 
     50% {
-        box-shadow: 0 0 32px var(--accent-primary), 0 0 8px #fff;
+        box-shadow:
+            0 0 30px var(--accent-primary),
+            0 0 60px var(--accent-primary),
+            0 0 80px rgba(255, 140, 66, 0.4),
+            inset 0 0 15px var(--accent-primary);
+        transform: scale(1.05);
+    }
+}
+
+/* Hexagon spin animation */
+@keyframes hexagonSpin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Ring pulse animation */
+@keyframes ringPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
     }
 }
 
@@ -150,27 +238,82 @@
 
 .neural-network .connection-line {
     stroke: var(--accent-primary);
-    stroke-width: 2;
-    opacity: 0.1;
-    stroke-dasharray: 6 6;
-    animation:
-        fadeInConnection 2.5s ease-in forwards,
-        dashmove 2.5s linear infinite;
+    stroke-width: 1.5;
+    opacity: 0.3;
+    filter: drop-shadow(0 0 4px var(--accent-primary));
+    animation: connectionPulse 3s ease-in-out infinite;
+}
 
-    @keyframes fadeInConnection {
-        from {
-            opacity: 0;
-        }
+.neural-network .connection-line.active {
+    stroke: var(--accent-primary);
+    stroke-width: 2.5;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 8px var(--accent-primary)) drop-shadow(0 0 12px var(--accent-secondary));
+    animation: dataFlow 1.5s linear infinite;
+}
 
-        to {
-            opacity: 0.5;
-        }
+/* Animated data flow along connections */
+@keyframes dataFlow {
+    0% {
+        stroke-dasharray: 10 20;
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: -30;
     }
 }
 
-@keyframes dashmove {
-    to {
-        stroke-dashoffset: -24;
+/* Connection pulse effect */
+@keyframes connectionPulse {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* Canvas for particles */
+.particles-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Circuit overlay effect */
+.circuit-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(90deg, transparent 49%, rgba(255, 140, 66, 0.05) 49%, rgba(255, 140, 66, 0.05) 51%, transparent 51%),
+        linear-gradient(0deg, transparent 49%, rgba(255, 140, 66, 0.05) 49%, rgba(255, 140, 66, 0.05) 51%, transparent 51%);
+    background-size: 40px 40px;
+    opacity: 0.3;
+    z-index: 0;
+    animation: circuitGlow 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes circuitGlow {
+
+    0%,
+    100% {
+        opacity: 0.2;
+    }
+
+    50% {
+        opacity: 0.4;
     }
 }
 
@@ -178,13 +321,23 @@
 @media (max-width: 600px) {
     .neural-network {
         width: 320px;
-        height: 240px;
+        height: 400px;
     }
 
     .node {
-        width: 18px;
-        height: 18px;
+        width: 14px;
+        height: 14px;
         margin: 6px 0;
+    }
+
+    .node::before {
+        width: 20px;
+        height: 20px;
+    }
+
+    .node::after {
+        width: 30px;
+        height: 30px;
     }
 }
 
