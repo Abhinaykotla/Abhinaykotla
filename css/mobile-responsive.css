@@ -587,8 +587,11 @@
     .blog-image {
         width: 100%;
         height: 180px;
-        object-fit: cover;
-        background: var(--bg-hover);
+        display: block;
+        background: var(--gradient-primary);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 
     .blog-content {
