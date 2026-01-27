@@ -103,17 +103,6 @@
     text-shadow: 0 0 10px rgba(255, 140, 66, 0.3);
 }
 
-.nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--accent-primary);
-    box-shadow: 0 0 10px var(--accent-primary);
-}
-
 /* Resume Download Button in Navbar */
 .nav-resume .nav-download {
     background: var(--accent-primary);

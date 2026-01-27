@@ -97,13 +97,11 @@
 }
 
 .education h3::before {
-    content: '🎓';
-    font-size: 1.2em;
+    display: none;
 }
 
 .certifications h3::before {
-    content: '🏅';
-    font-size: 1.2em;
+    display: none;
 }
 
 .education-item {

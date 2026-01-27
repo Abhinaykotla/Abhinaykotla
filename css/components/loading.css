@@ -85,7 +85,7 @@
     z-index: 10;
 }
 
-/* Animated terminal cursor */
+/* Terminal cursor */
 .terminal-cursor {
     width: 4px;
     height: 30px;
@@ -224,59 +224,5 @@
     50% {
         transform: translateY(-30px) scale(1.5);
         opacity: 1;
-    }
-}
-
-/* Logo animation container */
-.loading-logo {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto var(--space-lg);
-    position: relative;
-}
-
-.loading-logo::before {
-    content: '{ }';
-    font-family: var(--font-mono);
-    font-size: var(--font-size-3xl);
-    font-weight: 700;
-    color: var(--accent-primary);
-    text-shadow: 0 0 30px var(--accent-primary);
-    animation: logoPulse 2s ease-in-out infinite;
-}
-
-@keyframes logoPulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-        opacity: 0.8;
-    }
-
-    50% {
-        transform: scale(1.1);
-        opacity: 1;
-    }
-}
-
-/* Ring spinner around logo */
-.loading-logo::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100px;
-    height: 100px;
-    margin: -50px 0 0 -50px;
-    border: 2px solid transparent;
-    border-top-color: var(--accent-primary);
-    border-right-color: var(--accent-secondary);
-    border-radius: 50%;
-    animation: spinRing 1.5s linear infinite;
-}
-
-@keyframes spinRing {
-    to {
-        transform: rotate(360deg);
     }
 }

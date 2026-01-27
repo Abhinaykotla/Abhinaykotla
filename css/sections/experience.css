@@ -300,10 +300,15 @@
     color: var(--accent-primary);
     font-weight: 600;
     margin-bottom: var(--space-xs);
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-base);
     display: flex;
     align-items: center;
     gap: var(--space-sm);
+}
+
+/* Reverse flex direction for left-side cards */
+.timeline-item:nth-child(odd) .experience-company {
+    justify-content: flex-end;
 }
 
 .experience-company::before {
@@ -330,8 +335,7 @@
 }
 
 .experience-period::before {
-    content: '📅';
-    font-size: var(--font-size-xs);
+    display: none;
 }
 
 .experience-description {

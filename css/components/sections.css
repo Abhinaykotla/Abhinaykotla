@@ -51,10 +51,11 @@
     bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
+    width: 60px;
+    height: 2px;
     background: var(--gradient-primary);
     border-radius: 2px;
+    opacity: 0.4;
     animation: underlineGlow 2s ease-in-out infinite;
 }
 
@@ -62,13 +63,13 @@
 
     0%,
     100% {
-        box-shadow: 0 0 10px rgba(255, 140, 66, 0.3);
-        width: 80px;
+        box-shadow: 0 0 5px rgba(255, 140, 66, 0.2);
+        width: 60px;
     }
 
     50% {
-        box-shadow: 0 0 25px rgba(255, 140, 66, 0.6);
-        width: 120px;
+        box-shadow: 0 0 10px rgba(255, 140, 66, 0.3);
+        width: 80px;
     }
 }
 
