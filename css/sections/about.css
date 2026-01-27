@@ -1,53 +1,147 @@
 /* ==========================================
-   ABOUT SECTION
+   ABOUT SECTION - Premium Design
    ========================================== */
+.about-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.about-section::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 140, 66, 0.06) 0%, transparent 60%);
+    pointer-events: none;
+    animation: floatOrb1 20s ease-in-out infinite;
+}
+
 .about-content {
     max-width: 900px;
     margin: 0 auto;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.about-content.revealed {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .about-text {
     font-size: var(--font-size-base);
-    line-height: 1.7;
+    line-height: 1.8;
     color: var(--text-secondary);
 }
 
 .about-summary {
     margin-bottom: var(--space-xl);
     font-size: var(--font-size-lg);
+    position: relative;
+    padding-left: var(--space-lg);
+    border-left: 3px solid var(--accent-primary);
+}
+
+.about-summary::before {
+    content: '';
+    position: absolute;
+    left: -3px;
+    top: 0;
+    width: 3px;
+    height: 0;
+    background: var(--gradient-primary);
+    transition: height 1s ease 0.5s;
+}
+
+.about-content.revealed .about-summary::before {
+    height: 100%;
 }
 
 .education-certifications {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-2xl);
-    margin-top: var(--space-xl);
+    margin-top: var(--space-2xl);
+}
+
+.education,
+.certifications {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.education.revealed {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+
+.certifications.revealed {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
 }
 
 .education h3,
 .certifications h3 {
     color: var(--accent-primary);
-    font-size: var(--font-size-lg);
-    margin-bottom: var(--space-md);
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.education h3::before {
+    content: '🎓';
+    font-size: 1.2em;
+}
+
+.certifications h3::before {
+    content: '🏅';
+    font-size: 1.2em;
 }
 
 .education-item {
     background: var(--bg-card);
-    padding: var(--space-md);
-    border-radius: 8px;
-    margin-bottom: var(--space-sm);
-    border-left: 3px solid var(--accent-primary);
-    transition: all var(--transition-normal);
+    padding: var(--space-lg);
+    border-radius: 12px;
+    margin-bottom: var(--space-md);
+    border-left: 4px solid var(--accent-primary);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.education-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 140, 66, 0.05) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.education-item:hover::before {
+    opacity: 1;
 }
 
 .education-item:hover {
-    transform: translateX(8px);
-    box-shadow: var(--shadow-md);
+    transform: translateX(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 140, 66, 0.1);
+    border-left-color: var(--accent-secondary);
 }
 
 .degree {
     font-size: var(--font-size-base);
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text-primary);
     margin-bottom: var(--space-xs);
 }
@@ -55,6 +149,7 @@
 .institution {
     color: var(--accent-primary);
     font-size: var(--font-size-sm);
+    font-weight: 500;
 }
 
 .certification-list {
@@ -63,12 +158,13 @@
 
 .certification-list li {
     background: var(--bg-card);
-    padding: var(--space-sm) var(--space-sm) var(--space-sm) var(--space-xl);
-    border-radius: 6px;
-    margin-bottom: var(--space-xs);
+    padding: var(--space-md) var(--space-md) var(--space-md) var(--space-2xl);
+    border-radius: 10px;
+    margin-bottom: var(--space-sm);
     position: relative;
     font-size: var(--font-size-sm);
-    transition: all var(--transition-normal);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
 }
 
 .certification-list li:has(.certification-link) {
@@ -77,7 +173,7 @@
 
 .certification-list li:has(.certification-link):hover {
     border: 1px solid var(--accent-primary);
-    box-shadow: 0 2px 8px rgba(64, 224, 208, 0.2);
+    box-shadow: 0 4px 15px rgba(255, 140, 66, 0.2);
 }
 
 /* Fallback for browsers that don't support :has() */
@@ -88,15 +184,20 @@
 .certification-list li::before {
     content: '🏆';
     position: absolute;
-    left: var(--space-sm);
+    left: var(--space-md);
     top: 50%;
     transform: translateY(-50%);
-    font-size: 0.9em;
+    font-size: 1em;
+    transition: transform 0.3s ease;
+}
+
+.certification-list li:hover::before {
+    transform: translateY(-50%) scale(1.2);
 }
 
 .certification-list li:hover {
     background: var(--bg-hover);
-    transform: translateX(8px);
+    transform: translateX(10px);
 }
 
 .certification-link {

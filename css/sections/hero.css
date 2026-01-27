@@ -1,5 +1,5 @@
 /* ==========================================
-   HERO SECTION
+   HERO SECTION - Premium Design
    ========================================== */
 .hero {
     min-height: 100vh;
@@ -9,6 +9,59 @@
     position: relative;
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     overflow: hidden;
+}
+
+/* Animated gradient orbs */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 140, 66, 0.15) 0%, transparent 60%);
+    animation: floatOrb1 15s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 71, 87, 0.1) 0%, transparent 60%);
+    animation: floatOrb2 20s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes floatOrb1 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(50px, 30px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-30px, -20px) scale(0.9);
+    }
+}
+
+@keyframes floatOrb2 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(-60px, -40px) scale(1.2);
+    }
 }
 
 /* Hero-wide particle canvas */
@@ -22,8 +75,8 @@
     pointer-events: none;
 }
 
-.hero::before {
-    content: '';
+/* Grid pattern with subtle animation */
+.hero .grid-pattern {
     position: absolute;
     top: 0;
     left: 0;
@@ -31,6 +84,19 @@
     bottom: 0;
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.1" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
     opacity: 0.3;
+    animation: gridPulse 8s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+
+    0%,
+    100% {
+        opacity: 0.2;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
 }
 
 .hero-content {
@@ -46,14 +112,30 @@
 }
 
 .hero-text {
-    animation: slideInLeft 1s ease;
+    animation: heroTextReveal 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0;
+}
+
+@keyframes heroTextReveal {
+    0% {
+        opacity: 0;
+        transform: translateX(-80px);
+        filter: blur(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+        filter: blur(0);
+    }
 }
 
 .hero-title {
     font-size: var(--font-size-5xl);
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: var(--space-lg);
     line-height: 1.2;
+    overflow: hidden;
 }
 
 .typing-text {
@@ -61,26 +143,83 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    display: inline-block;
+    animation: textGlowPulse 3s ease-in-out infinite;
+}
+
+@keyframes textGlowPulse {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 5px rgba(255, 140, 66, 0.3));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 20px rgba(255, 140, 66, 0.6));
+    }
 }
 
 .hero-subtitle {
     font-size: var(--font-size-xl);
     color: var(--text-secondary);
     margin-bottom: var(--space-2xl);
-    line-height: 1.5;
+    line-height: 1.6;
+    animation: subtitleReveal 1s ease 0.3s forwards;
+    opacity: 0;
+}
+
+@keyframes subtitleReveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-buttons {
     display: flex;
     gap: var(--space-lg);
     flex-wrap: wrap;
+    animation: buttonsReveal 1s ease 0.6s forwards;
+    opacity: 0;
+}
+
+@keyframes buttonsReveal {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-visual {
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: slideInRight 1s ease;
+    animation: heroVisualReveal 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+    opacity: 0;
+}
+
+@keyframes heroVisualReveal {
+    0% {
+        opacity: 0;
+        transform: translateX(80px) scale(0.9);
+        filter: blur(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        filter: blur(0);
+    }
 }
 
 /* === Neural Network Visualization (JARVIS-style) === */

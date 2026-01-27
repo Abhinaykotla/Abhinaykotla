@@ -160,16 +160,17 @@ class WebInterface {
     }
 
     setupAnimations() {
-        // Intersection Observer for fade-in animations
+        // Enhanced Intersection Observer for scroll-reveal animations
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            rootMargin: '0px 0px -80px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('fade-in');
+                    entry.target.classList.add('revealed');
                 }
             });
         }, observerOptions);
@@ -179,8 +180,46 @@ class WebInterface {
             observer.observe(el);
         });
 
+        // Setup additional reveal animations
+        this.setupContactReveal();
+        this.setupAboutReveal();
+
         // Typing animation for hero title
         this.setupTypingAnimation();
+    }
+
+    setupContactReveal() {
+        const contactInfo = document.querySelector('.contact-info');
+        const contactForm = document.querySelector('.contact-form');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        if (contactInfo) observer.observe(contactInfo);
+        if (contactForm) observer.observe(contactForm);
+    }
+
+    setupAboutReveal() {
+        const aboutContent = document.querySelector('.about-content');
+        const education = document.querySelector('.education');
+        const certifications = document.querySelector('.certifications');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        if (aboutContent) observer.observe(aboutContent);
+        if (education) observer.observe(education);
+        if (certifications) observer.observe(certifications);
     }
 
     setupTypingAnimation() {

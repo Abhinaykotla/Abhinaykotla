@@ -1,9 +1,27 @@
 /* ==========================================
-   SECTIONS
+   SECTIONS - Premium Design
    ========================================== */
 .section {
     padding: var(--space-3xl) 0;
     position: relative;
+    overflow: hidden;
+}
+
+/* Subtle section separator */
+.section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+    opacity: 0.3;
+}
+
+.section:last-child::after {
+    display: none;
 }
 
 .container {
@@ -14,11 +32,78 @@
 
 .section-title {
     font-size: var(--font-size-4xl);
-    font-weight: 700;
+    font-weight: 800;
     text-align: center;
     margin-bottom: var(--space-3xl);
     background: var(--gradient-secondary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+/* Decorative underline */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+    animation: underlineGlow 2s ease-in-out infinite;
+}
+
+@keyframes underlineGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px rgba(255, 140, 66, 0.3);
+        width: 80px;
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(255, 140, 66, 0.6);
+        width: 120px;
+    }
+}
+
+/* Section title animation */
+@keyframes revealScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+        filter: blur(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+/* Section background decorations */
+.section.has-decoration::before {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 140, 66, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.section:nth-child(odd).has-decoration::before {
+    top: -100px;
+    left: -100px;
+}
+
+.section:nth-child(even).has-decoration::before {
+    bottom: -100px;
+    right: -100px;
 }

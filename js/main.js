@@ -23,6 +23,36 @@ class PortfolioApp {
         this.setupHamburgerMenu();
         this.setupSmoothScrolling();
         this.setupActiveNavigation();
+        this.setupNavbarScrollEffect();
+    }
+
+    setupNavbarScrollEffect() {
+        const navbar = document.querySelector('.navbar');
+        if (!navbar) return;
+
+        let lastScroll = 0;
+        let ticking = false;
+
+        const updateNavbar = () => {
+            const currentScroll = window.pageYOffset;
+
+            // Add scrolled class for styling
+            if (currentScroll > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            lastScroll = currentScroll;
+            ticking = false;
+        };
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateNavbar);
+                ticking = true;
+            }
+        });
     }
 
     setupLoadingScreen() {
@@ -273,23 +303,198 @@ class PortfolioApp {
     }
 
     setupSmoothAnimations() {
-        // Add intersection observer for smooth animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Premium scroll reveal animations with staggered timing
+        this.setupScrollReveal();
+        this.setupTimelineInteractivity();
+        this.setupCardHoverEffects();
+        this.setupSectionTitleAnimations();
+    }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+    setupScrollReveal() {
+        // Intersection observer for scroll-triggered animations
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
+                    // Add staggered delay based on element position
+                    const staggerDelay = index * 100;
+                    setTimeout(() => {
+                        entry.target.classList.add('revealed');
+                        entry.target.classList.add('animate-in');
+                    }, staggerDelay);
                 }
             });
-        }, observerOptions);
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -80px 0px'
+        });
 
-        // Observe all sections for animation
-        document.querySelectorAll('.section').forEach(section => {
-            observer.observe(section);
+        // Observe all animatable elements
+        const animatableSelectors = [
+            '.section',
+            '.skill-category',
+            '.project-card',
+            '.blog-card',
+            '.timeline-item',
+            '.about-content',
+            '.contact-form',
+            '.contact-info',
+            '.education',
+            '.certifications'
+        ];
+
+        animatableSelectors.forEach(selector => {
+            document.querySelectorAll(selector).forEach((el, i) => {
+                el.style.transitionDelay = `${i * 0.1}s`;
+                revealObserver.observe(el);
+            });
+        });
+
+        // Stagger animation for skill tags
+        document.querySelectorAll('.skill-category').forEach(category => {
+            const tags = category.querySelectorAll('.skill-tag');
+            tags.forEach((tag, i) => {
+                tag.style.opacity = '0';
+                tag.style.transform = 'translateY(20px)';
+                tag.style.transition = `all 0.4s cubic-bezier(0.4, 0, 0.2, 1) ${i * 0.05}s`;
+            });
+        });
+
+        // Reveal skill tags when category is visible
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const tags = entry.target.querySelectorAll('.skill-tag');
+                    tags.forEach(tag => {
+                        tag.style.opacity = '1';
+                        tag.style.transform = 'translateY(0)';
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.skill-category').forEach(cat => {
+            skillObserver.observe(cat);
+        });
+    }
+
+    setupTimelineInteractivity() {
+        // Make timeline items expandable with click
+        const timelineItems = document.querySelectorAll('.timeline-item');
+
+        timelineItems.forEach((item, index) => {
+            const content = item.querySelector('.timeline-content');
+            if (!content) return;
+
+            // Add expand indicator
+            const indicator = document.createElement('div');
+            indicator.className = 'expand-indicator';
+            content.appendChild(indicator);
+
+            // Click to expand/collapse
+            content.addEventListener('click', (e) => {
+                // Don't toggle if clicking on a link
+                if (e.target.tagName === 'A') return;
+
+                // Close other items
+                timelineItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('expanded', 'active');
+                    }
+                });
+
+                // Toggle current item
+                item.classList.toggle('expanded');
+                item.classList.toggle('active');
+
+                // Smooth scroll to item if expanding
+                if (item.classList.contains('expanded')) {
+                    setTimeout(() => {
+                        item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 100);
+                }
+            });
+
+            // Add hover effect for mouse position tracking
+            content.addEventListener('mousemove', (e) => {
+                const rect = content.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                content.style.setProperty('--mouse-x', `${x}%`);
+                content.style.setProperty('--mouse-y', `${y}%`);
+            });
+        });
+
+        // Reveal timeline items on scroll
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('revealed');
+                    }, index * 150);
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        });
+
+        timelineItems.forEach(item => {
+            timelineObserver.observe(item);
+        });
+    }
+
+    setupCardHoverEffects() {
+        // Add 3D tilt effect on project cards
+        const cards = document.querySelectorAll('.project-card, .blog-card');
+
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            });
+        });
+
+        // Add mouse tracking for skill categories
+        const skillCategories = document.querySelectorAll('.skill-category');
+        skillCategories.forEach(category => {
+            category.addEventListener('mousemove', (e) => {
+                const rect = category.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                category.style.setProperty('--mouse-x', `${x}%`);
+                category.style.setProperty('--mouse-y', `${y}%`);
+            });
+        });
+    }
+
+    setupSectionTitleAnimations() {
+        // Animate section titles when they come into view
+        const titles = document.querySelectorAll('.section-title');
+
+        const titleObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'revealScale 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        titles.forEach(title => {
+            title.style.opacity = '0';
+            titleObserver.observe(title);
         });
     }
 

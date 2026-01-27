@@ -1,17 +1,62 @@
 /* ==========================================
-   FOOTER
+   FOOTER - Premium Design
    ========================================== */
 .footer {
-    background: var(--bg-secondary);
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
     border-top: 1px solid var(--border-color);
-    padding: var(--space-xl) 0;
+    padding: var(--space-2xl) 0;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative line on top */
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+}
+
+/* Subtle glow effect */
+.footer::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 200px;
+    background: radial-gradient(ellipse at center bottom, rgba(255, 140, 66, 0.05) 0%, transparent 70%);
+    pointer-events: none;
 }
 
 .footer-content {
     color: var(--text-muted);
+    position: relative;
+    z-index: 1;
 }
 
 .footer-content p {
     margin-bottom: var(--space-sm);
+    transition: color 0.3s ease;
+}
+
+.footer-content p:first-child {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.footer-content p:last-child {
+    font-size: var(--font-size-sm);
+    opacity: 0.8;
+}
+
+/* Coffee emoji animation */
+.footer-content p:last-child:hover {
+    color: var(--accent-primary);
 }

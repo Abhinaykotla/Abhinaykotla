@@ -1,23 +1,26 @@
 /* ==========================================
-   BUTTONS
+   BUTTONS - Premium Design
    ========================================== */
 .btn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 28px;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     font-family: var(--font-primary);
     font-size: var(--font-size-base);
-    font-weight: 500;
+    font-weight: 600;
     text-decoration: none;
     cursor: pointer;
-    transition: all var(--transition-normal);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    letter-spacing: 0.5px;
 }
 
+/* Shine effect on hover */
 .btn::before {
     content: '';
     position: absolute;
@@ -25,33 +28,126 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transition: left 0.5s ease;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
 }
 
 .btn:hover::before {
     left: 100%;
 }
 
+/* Ripple effect */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn:active::after {
+    width: 400px;
+    height: 400px;
+}
+
 .btn-primary {
     background: var(--gradient-primary);
     color: var(--text-primary);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 15px rgba(255, 140, 66, 0.3);
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow:
+        0 10px 30px rgba(255, 140, 66, 0.4),
+        0 0 40px rgba(255, 140, 66, 0.2);
+}
+
+.btn-primary:active {
+    transform: translateY(-2px) scale(0.98);
 }
 
 .btn-secondary {
     background: transparent;
     color: var(--accent-primary);
     border: 2px solid var(--accent-primary);
+    box-shadow: 0 0 0 transparent;
+}
+
+.btn-secondary::after {
+    background: rgba(255, 140, 66, 0.2);
 }
 
 .btn-secondary:hover {
     background: var(--accent-primary);
     color: var(--bg-primary);
-    transform: translateY(-2px);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow:
+        0 10px 30px rgba(255, 140, 66, 0.4),
+        0 0 20px rgba(255, 140, 66, 0.2);
+}
+
+.btn-secondary:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+/* Icon animation */
+.btn i {
+    transition: transform 0.3s ease;
+}
+
+.btn:hover i {
+    transform: translateX(3px);
+}
+
+/* Small button variant */
+.btn-sm {
+    padding: 10px 20px;
+    font-size: var(--font-size-sm);
+}
+
+/* Large button variant */
+.btn-lg {
+    padding: 18px 36px;
+    font-size: var(--font-size-lg);
+}
+
+/* Ghost button */
+.btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-accent);
+}
+
+.btn-ghost:hover {
+    color: var(--accent-primary);
+    border-color: var(--accent-primary);
+    background: rgba(255, 140, 66, 0.1);
+}
+
+/* Loading state */
+.btn.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.btn.loading::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: btnSpin 0.8s linear infinite;
+}
+
+@keyframes btnSpin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }

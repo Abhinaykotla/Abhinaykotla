@@ -1,25 +1,53 @@
 /* ==========================================
-   SCROLLBAR STYLING
+   SCROLLBAR STYLING - Premium
    ========================================== */
+
+/* Webkit browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
+    height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--accent-primary);
-    border-radius: 4px;
+    background: linear-gradient(180deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+    border-radius: 5px;
+    border: 2px solid var(--bg-primary);
+    box-shadow: inset 0 0 5px rgba(255, 140, 66, 0.3);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-secondary);
+    background: linear-gradient(180deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
+    box-shadow:
+        inset 0 0 5px rgba(255, 140, 66, 0.5),
+        0 0 10px rgba(255, 140, 66, 0.3);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: var(--accent-primary);
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--bg-primary);
 }
 
 /* Firefox scrollbar */
 html {
     scrollbar-width: thin;
     scrollbar-color: var(--accent-primary) var(--bg-secondary);
+}
+
+/* Selection styling */
+::selection {
+    background: rgba(255, 140, 66, 0.3);
+    color: var(--text-primary);
+}
+
+::-moz-selection {
+    background: rgba(255, 140, 66, 0.3);
+    color: var(--text-primary);
 }

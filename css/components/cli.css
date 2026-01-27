@@ -1,5 +1,5 @@
 /* ==========================================
-   CLI INTERFACE
+   CLI INTERFACE - Premium Terminal
    ========================================== */
 .cli-interface {
     position: fixed;
@@ -13,80 +13,264 @@
     justify-content: center;
     z-index: var(--z-modal);
     padding: var(--space-xl);
+    overflow: hidden;
+}
+
+/* Matrix rain effect background */
+.cli-interface::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(255, 140, 66, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 0% 100%, rgba(255, 71, 87, 0.05) 0%, transparent 40%),
+        radial-gradient(ellipse at 100% 100%, rgba(16, 185, 129, 0.05) 0%, transparent 40%);
+    pointer-events: none;
+    animation: backgroundPulse 8s ease-in-out infinite;
+}
+
+@keyframes backgroundPulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Scanline effect overlay */
+.cli-interface::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.1) 2px,
+            rgba(0, 0, 0, 0.1) 4px);
+    pointer-events: none;
+    z-index: 1;
 }
 
 .cli-interface.active {
     display: flex;
+    animation: terminalOpen 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes terminalOpen {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+        filter: blur(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
 }
 
 .terminal {
     width: 100%;
-    max-width: 900px;
-    height: 80vh;
-    background: var(--bg-secondary);
-    border-radius: 12px;
+    max-width: 1000px;
+    height: 85vh;
+    background: linear-gradient(135deg, rgba(13, 13, 13, 0.98) 0%, rgba(10, 10, 10, 0.98) 100%);
+    border-radius: 16px;
     border: 1px solid var(--border-accent);
-    box-shadow: var(--shadow-xl);
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.8),
+        0 0 60px rgba(255, 140, 66, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
     overflow: hidden;
     font-family: var(--font-mono);
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(20px);
+}
+
+/* Terminal glow effect */
+.terminal::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg,
+            rgba(255, 140, 66, 0.2) 0%,
+            transparent 30%,
+            transparent 70%,
+            rgba(255, 71, 87, 0.2) 100%);
+    border-radius: 18px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.terminal:hover::before {
+    opacity: 1;
 }
 
 .terminal-header {
-    background: var(--bg-tertiary);
-    padding: 12px 16px;
+    background: linear-gradient(180deg, rgba(30, 30, 30, 0.95) 0%, rgba(18, 18, 18, 0.95) 100%);
+    padding: 14px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid var(--border-color);
+    position: relative;
+}
+
+/* Header shine effect */
+.terminal-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
 }
 
 .terminal-buttons {
     display: flex;
-    gap: 8px;
+    gap: 10px;
 }
 
 .terminal-buttons span {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
     cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.terminal-buttons span::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .btn-close {
-    background: #ef4444;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+}
+
+.btn-close::after {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+}
+
+.btn-close:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
+}
+
+.btn-close:hover::after {
+    opacity: 1;
 }
 
 .terminal-title {
     color: var(--text-secondary);
     font-size: var(--font-size-sm);
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.terminal-title::before {
+    content: '⚡';
+    animation: float 2s ease-in-out infinite;
 }
 
 .terminal-body {
     height: calc(100% - 60px);
     display: flex;
     flex-direction: column;
-    background: var(--bg-primary);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(0, 0, 0, 0.95) 100%);
+    position: relative;
+}
+
+/* CRT screen effect */
+.terminal-body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+    pointer-events: none;
+    z-index: 10;
 }
 
 .terminal-content {
     flex: 1;
-    padding: var(--space-lg);
+    padding: var(--space-xl);
     overflow-y: auto;
     font-size: var(--font-size-sm);
-    line-height: 1.6;
+    line-height: 1.8;
+    position: relative;
+}
+
+/* Smooth scrollbar */
+.terminal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+.terminal-content::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
+    border-radius: 4px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.terminal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-secondary);
+    background-clip: padding-box;
 }
 
 .terminal-line {
     margin-bottom: var(--space-sm);
     display: flex;
     flex-wrap: wrap;
+    animation: lineAppear 0.3s ease forwards;
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+@keyframes lineAppear {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .prompt {
     color: var(--accent-primary);
     margin-right: var(--space-sm);
     user-select: none;
+    text-shadow: 0 0 10px var(--accent-primary);
+    font-weight: 600;
 }
 
 .terminal-text {
@@ -96,13 +280,252 @@
 }
 
 .terminal-input-line {
-    padding: var(--space-lg);
+    padding: var(--space-lg) var(--space-xl);
     border-top: 1px solid var(--border-color);
     display: flex;
     align-items: center;
-    background: var(--bg-secondary);
+    background: linear-gradient(180deg, rgba(10, 10, 10, 0.9) 0%, rgba(0, 0, 0, 0.95) 100%);
     position: relative;
     transition: all var(--transition-normal);
+}
+
+/* Input line glow on focus */
+.terminal-input-line::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.terminal-input-line:focus-within::before {
+    opacity: 1;
+}
+
+.terminal-input-line:focus-within {
+    background: rgba(255, 140, 66, 0.05);
+}
+
+.terminal-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-base);
+    outline: none;
+    margin-left: var(--space-sm);
+    caret-color: var(--accent-primary);
+    text-shadow: 0 0 5px rgba(255, 140, 66, 0.3);
+}
+
+.terminal-input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.5;
+}
+
+.cursor {
+    color: var(--accent-primary);
+    animation: cursorBlink 1s step-end infinite;
+    margin-left: 4px;
+    text-shadow: 0 0 10px var(--accent-primary);
+    display: none;
+}
+
+@keyframes cursorBlink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* CLI specific styles with enhanced visuals */
+.cli-welcome {
+    color: var(--accent-primary);
+    text-shadow: 0 0 10px var(--accent-primary);
+}
+
+.cli-help {
+    color: var(--accent-secondary);
+    text-shadow: 0 0 8px rgba(255, 71, 87, 0.5);
+}
+
+.cli-command {
+    color: var(--accent-primary);
+    font-weight: 700;
+    text-shadow: 0 0 10px var(--accent-primary);
+}
+
+.cli-description {
+    color: var(--text-muted);
+    margin-left: var(--space-lg);
+}
+
+.cli-error {
+    color: var(--accent-danger);
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+    animation: shake 0.3s ease;
+}
+
+.cli-success {
+    color: var(--accent-success);
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+/* ASCII art styling */
+.cli-ascii {
+    color: var(--accent-primary);
+    font-size: var(--font-size-xs);
+    line-height: 1.2;
+    text-shadow: 0 0 15px var(--accent-primary);
+}
+
+/* Mobile command bar */
+.mobile-command-bar {
+    display: flex;
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--bg-tertiary);
+    border-top: 1px solid var(--border-color);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mobile-cmd-btn {
+    padding: 8px 16px;
+    background: var(--bg-hover);
+    border: 1px solid var(--border-accent);
+    border-radius: 20px;
+    color: var(--accent-primary);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mobile-cmd-btn:hover,
+.mobile-cmd-btn:active {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 140, 66, 0.4);
+}
+
+/* Terminal special effects */
+.terminal.minimized {
+    transform: scale(0.1);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    transform-origin: top left;
+}
+
+.cli-interface.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+}
+
+.cli-interface.fullscreen .terminal {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    border-radius: 0;
+}
+
+/* Button hover effects */
+.terminal-buttons span:hover {
+    transform: scale(1.2);
+    transition: all 0.2s ease;
+}
+
+/* Matrix rain animation container */
+.matrix-rain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.matrix-column {
+    position: absolute;
+    top: -100%;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--accent-primary);
+    opacity: 0.3;
+    animation: matrixFall 10s linear infinite;
+    text-shadow: 0 0 10px var(--accent-primary);
+}
+
+@keyframes matrixFall {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(calc(100vh + 100%));
+    }
+}
+
+/* Typing indicator */
+.typing-indicator {
+    display: inline-flex;
+    gap: 4px;
+    padding: 8px;
+}
+
+.typing-indicator span {
+    width: 6px;
+    height: 6px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    animation: typingBounce 1.4s ease-in-out infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typingBounce {
+
+    0%,
+    60%,
+    100% {
+        transform: translateY(0);
+    }
+
+    30% {
+        transform: translateY(-8px);
+    }
+}
+
+display: flex;
+align-items: center;
+background: var(--bg-secondary);
+position: relative;
+transition: all var(--transition-normal);
 }
 
 .terminal-input-line:focus-within {
