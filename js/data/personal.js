@@ -7,7 +7,7 @@ const personalData = {
     location: "Arlington, TX",
     linkedin: "https://linkedin.com/in/abhinaykotla",
     github: "https://github.com/abhinaykotla",
-    summary: "Software Engineer with over 3 years of experience building and deploying AI systems. Skilled in Machine Learning, Data Structures, and Algorithms. Developed AI-powered chatbots, optimized computer vision pipelines, and fine-tuned NLP models for production use. Experienced in full-stack software development, integrating ML with scalable systems, and delivering real-world business impact through data-driven automation."
+    summary: "Software Engineer with 3+ years of experience building and deploying production-grade AI systems. Proficient in Machine Learning, Deep Learning, and Full-Stack Development. Currently developing AI chatbots for IT support automation at UT Arlington OIT. Experienced in computer vision, NLP, and MLOps, with proven ability to optimize models, reduce inference time, and integrate ML solutions into scalable production systems. Passionate about leveraging AI to solve real-world problems and drive business impact through data-driven automation."
 };
 
 // Export for both browser and Node.js

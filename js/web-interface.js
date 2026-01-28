@@ -543,7 +543,7 @@ class WebInterface {
     }
 
     async downloadResume(element) {
-        const resumePath = './js/data/Abhinay_s_CV.pdf';
+        const resumePath = './js/data/Abhinay\'s_CV.pdf';
         const resumePagePath = './resume.html';
         const filename = 'Abhinay_Kotla_Resume.pdf';
 

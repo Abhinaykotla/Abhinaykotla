@@ -366,7 +366,7 @@ Type 'projects' to see all projects.`;
         // Trigger the actual download
         setTimeout(() => {
             const link = document.createElement('a');
-            link.href = 'js/data/Abhinay_s_CV.pdf';
+            link.href = 'js/data/Abhinay\'s_CV.pdf';
             link.download = 'Abhinay_Kotla_Resume.pdf';
             link.style.display = 'none';
             document.body.appendChild(link);

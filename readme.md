@@ -78,14 +78,33 @@ To run the portfolio locally:
 If you're experiencing "File wasn't available on site" errors:
 
 1. **Try the dedicated resume page:** [resume.html](./resume.html)
-2. **Direct PDF access:** [Abhinay_s_CV.pdf](./js/data/Abhinay_s_CV.pdf)
+2. **Direct PDF access:** [Abhinay's_CV.pdf](./js/data/Abhinay's_CV.pdf)
 3. **Right-click and "Save as"** on any resume link
 4. **Contact me directly** at <abhinaykotla@gmail.com>
 
-### 🚧 Tech Features
+### ✨ Portfolio Features
 
-- 🔄 **Dual Interface:** Web mode and Terminal/CLI mode
-- 📱 **Responsive Design:** Mobile-first approach
-- ⚡ **Fast Loading:** Service worker caching
-- 🎨 **Smooth Animations:** CSS and JS powered
-- 📄 **Resume Download:** Multiple fallback methods
+#### 🎨 Premium Animations & Design
+
+- **Production-level animations** with scroll-reveal effects and premium transitions
+- **Interactive timeline** experience section with expandable cards
+- **Matrix-style CLI interface** with scanlines and CRT effects
+- **Premium loading screen** with animated progress bar
+- **Smooth micro-interactions** including ripple effects, 3D tilts, and hover glows
+
+#### 🎯 Core Features
+
+- 🔄 **Dual Interface:** Elegant web mode and developer CLI/terminal mode
+- 📱 **Fully Responsive:** Optimized for all screen sizes from mobile to desktop
+- 🧠 **Neural Network Visualization:** Animated JARVIS-style network in hero section
+- ⚡ **Fast Performance:** Optimized assets with service worker caching
+- 🎪 **Interactive Elements:** Expandable experience cards with mouse-tracking glow effects
+- 📄 **Easy Resume Access:** Multiple download methods with fallbacks
+
+#### 🛠 Technical Stack
+
+- **Frontend:** Vanilla JavaScript, CSS3 with custom animations, HTML5
+- **Design:** Pitch-black theme with orange accent colors
+- **Effects:** Intersection Observer API for scroll animations, CSS transforms & filters
+- **Architecture:** Modular data-driven approach with separate JS modules
+- **Responsive:** Custom breakpoints for tablet, mobile, and small screens
