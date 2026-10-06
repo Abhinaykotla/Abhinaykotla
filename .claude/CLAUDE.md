@@ -1,133 +1,81 @@
 # CLAUDE.md
 
-Personal instructions for Claude Code in this repository.
-
-## Orientation
-
-<!-- verified 2026-10-06 -->
+## Project
 
 Abhinay's personal portfolio, live at https://abhinaykotla.com and read by recruiters and hiring
-managers. Static vanilla HTML/CSS/JS: no build step, no package.json, no framework. GitHub Pages
-serves `main` from the repo root (legacy build, `CNAME` sets the domain), so **every push to `main`
-is a production deploy**, live in about a minute. There is no staging and no other branch. The repo
-is `Abhinaykotla/Abhinaykotla`, so `readme.md` is the public GitHub profile README, not project docs.
+managers. Static vanilla HTML/CSS/JS: no build step, no package.json, no framework, no tests.
 
-Run locally with `python serve.py` (or `start-server.bat`) on http://localhost:8000. `serve.py` adds
-CORS headers and forces `Content-Disposition: attachment` on PDFs. Pages: `index.html` (main),
-`blog.html`, `blog-post.html`, `resume.html`. The service worker serves cached copies first, so
-before judging a change, open DevTools > Application > Service Workers and tick "Update on reload"
-or unregister it.
+Run locally with `python serve.py` on http://localhost:8000.
 
-## Environments
+- Every push to `main` is a production deploy: GitHub Pages serves `main` from the repo root, with
+  no staging.
+- `readme.md` is the public GitHub profile README (the repo is `Abhinaykotla/Abhinaykotla`), not
+  project docs.
+- Content lives in `js/data/*.js` as `window.<name>Data` globals. Edit it there, not in HTML.
+- Career facts are hand-copied into five places, and a change must land in all of them:
+  `js/data/*.js`, the CLI strings in `js/data/cli.js` (the CLI does not read the other data
+  files), the subtitle at `index.html:43`, `readme.md`, and the resume PDF.
+- Bump the `?v=NN` on the `<script>`/`<link>` tag of any JS/CSS file you change.
+- `sw.js` serves its precached files first (`index.html`, core JS/CSS, the resume PDF), so
+  returning visitors keep old copies until `CACHE_NAME` is bumped. Bump it whenever one of those
+  changes. Locally, tick "Update on reload" in DevTools before judging a change.
+- The resume is `js/data/Abhinay's_CV.pdf`, linked from `index.html`, `resume.html`,
+  `js/web-interface.js`, `js/cli-interface.js` and `sw.js`. Outside sites link to that exact URL,
+  so do not rename it. Its LaTeX source is not in this repo.
+- `js/blog.js` is empty (the blog script is `js/blog-new.js`), and `js/data.js` is an unused
+  legacy file.
 
-- **Local (`localhost:8000`) is the working target**: edit, reload and commit without asking.
-- **`origin/main` is production.** It moves only by a push the owner approved in that message.
-- No secrets live here. Never commit credentials, tokens or `.env` files.
+## Working with me
 
-### Approval required
+- Short and plain by default; depth only when I ask. Commit messages and plans stay thorough.
+- End every reply with a `Pending tasks` list (one line each, or "none") and a single `Next:`
+  line with your recommendation.
+- Never a bare question: give the problem, the options with their consequences, and your
+  recommendation first. Batch open questions into one `AskUserQuestion`, recommended option first.
+- Decide small, reversible calls yourself and say so. A settled question stays settled; if the
+  scope moved, say what changed instead of asking again.
+- I often dictate: infer the obvious word, and ask only where the readings change the work.
+- Report outcomes as they are: show a failed check, name a skipped step.
 
-State the exact command, effect and reversibility, then wait. Approval covers one run.
+## How work gets done
 
-- Any `git push`, and separately any force-push.
-- Renaming or deleting `js/data/Abhinay's_CV.pdf`: outside sites link to that exact URL.
-- GitHub repo settings, Pages config, the custom domain and DNS are read-only.
+- You do the work yourself, start to finish: plan, build, test, deliver.
+- A clear small fix: name the scope, do it, report. Bigger or multi-step work: plan each task
+  (problem, files, what it leaves out) and get a nod before coding.
+- Write code only where a caller needs it. A change that replaces an old path deletes it in the
+  same commit: no commented-out code, no "legacy" branches.
 
-## Git and delivery
+## Subagents
 
-- Work on the checked-out branch, which is `main`; committing to it locally is the normal flow
-  here. Never create, switch or delete a branch, and never cut a worktree, unless the owner asks.
-- Run `git status --short` before every edit and commit. A modified file you did not touch is the
-  owner's (the resume PDF often is), so never edit, revert, stage or commit it. If your task needs
-  it, ask.
-- Commit only owned paths: `git add <new files> && git commit --only -F - -- <paths>`, message on
-  stdin via a bash heredoc. Everything after `--` is a pathspec, so `-F` must precede it, and
-  `--only` cannot name an untracked file.
-- Never `git add -A`, `git add .`, `git stash`, `git reset --hard`, `git checkout -- <path>`, or
-  `--no-verify`. There is no pre-commit hook.
-- One commit per step, the moment that step is correct, never batched at the end.
-- Conventional Commit subject (`feat:`, `fix:`, `refactor:`) plus a prose body: what changed, why,
-  the detail worth knowing, how it was checked.
-- Never push unless the owner asks in that message, and one approval covers exactly one push.
+- Only to keep your context clean (a wide search, a long doc) or when I ask for a fan-out. As few
+  as the work needs, usually one.
+- Pass `model` on every dispatch, and tell me which model each one runs:
+  - `haiku` for small, cheap tasks: lookups, greps, pulling one fact from a file.
+  - `sonnet` for almost everything else: research, review, multi-file work.
+  - `opus` only when absolutely needed: sonnet tried and fell short, or a genuine dead end.
+  - Never `fable`.
+- Never `fork` delegated work: a fork always runs the session's model, whatever `model` says.
 
-## Checks
+## Git
 
-<!-- verified 2026-10-06 -->
-
-- There is no build, lint, test suite or CI. The browser is the only gate: load the changed page
-  on localhost:8000, confirm a clean console, and screenshot the web view and the CLI view
-  (Ctrl/Cmd+K) at desktop width and at ~390px. Playwright MCP is available for this.
-- A stated reason a check cannot run is itself a claim. Test it before recording it as a
-  constraint.
-
-## Architecture and domain
-
-<!-- verified 2026-10-06 -->
-
-- **Content is data.** Everything lives in `js/data/*.js` as `window.<name>Data` globals (no
-  fetch, no modules). Change content there, not in HTML or rendering code. Load order in
-  `index.html` matters: the 7 data files, then `data-loader.js` (waits for all 7, builds
-  `window.portfolioData`, fires `portfolioDataLoaded`), `data-patch.js` (`safeDataAccess`),
-  `web-interface.js`, `cli-interface.js`, `main.js`.
-- **Career facts are copied by hand into five places.** A new job, title or project must land in
-  all of them: `js/data/{personal,experience,projects,skills,education}.js`; the hand-written
-  response strings in `js/data/cli.js` (the CLI does not read the other data files); the
-  brand subtitle at `index.html:43`; `readme.md` (GitHub profile); and the resume PDF.
-- **Dual view.** `#web-interface` and `#cli-interface` swap an `active` class via
-  `PortfolioApp.toggleView()` in `js/main.js` (Ctrl/Cmd+K, Escape exits). Preference persists in
-  `localStorage.preferredView`.
-- **Two caches, both must move.** (1) Script and stylesheet tags carry per-tag `?v=NN` (`v=20` in
-  `index.html`, older on the blog pages); bump the tag of any JS/CSS file you change. (2) `sw.js`
-  is cache-first and precaches `/`, `/index.html`, `/blog.html`, core JS/CSS and the resume PDF.
-  Returning visitors get those cached copies, old `?v=` tags included, until `CACHE_NAME`
-  changes. Bump `CACHE_NAME` (currently `abhinay-portfolio-v1`) whenever a precached file
-  changes, the resume PDF included.
-- **Resume PDF** is `js/data/Abhinay's_CV.pdf` (apostrophe, underscore), referenced from
-  `index.html` (2), `resume.html` (2), `js/web-interface.js`, `js/cli-interface.js` and `sw.js`.
-  Its LaTeX source is not in this repo; the owner compiles it.
-- **CSS:** `css/main.css` is an `@import` manifest over `variables.css`, `animations.css`,
-  `utilities.css`, `components/`, `sections/`, `responsive.css`, `mobile-responsive.css`. Theme
-  tokens live in `variables.css`; blog overrides in `css/pages/`.
-- **Cruft:** `js/blog.js` is empty (the blog script is `js/blog-new.js`); `js/data.js` is the
-  unused legacy data file; `project-image-generation-prompts.md` is a prompt list, not loaded by
-  the site. Leave them unless asked.
+- The default branch is `main`, and that is usually where I work. Stay on the checked-out branch;
+  never create, switch or delete a branch or worktree unless I ask.
+- One commit per step, as soon as that step works. Never batch at the end.
+- `git status --short` before committing, then stage the files you changed by name. Never
+  `git add -A` / `.`, `git stash`, `git reset --hard` or `--no-verify`.
+- Conventional Commit subject plus a prose body: what changed, why, and anything worth knowing.
+  Pass the message on stdin through a bash heredoc (`git commit -F - <<'MSG'`), never a
+  PowerShell here-string.
+- Never push unless I ask in that message: one approval, one push. Force-push needs its own ask.
 
 ## UI and copy
 
-- Never introduce an em dash or en dash into text a person reads, the resume included (in LaTeX
-  that means no `--` or `---`).
-- Keep internal detail out of visible text: no PR numbers, ticket refs, codenames or raw
-  thresholds. Unshipped work says "coming soon", never a date.
-- Never ship a blob of text: steps and collapsibles, and walk the reader through.
-- Scope an existing control for a per-item variant instead of adding a parallel surface.
-- Screenshot visual work and judge it before calling it done.
-- Current design: pitch-black background, orange accents (`#ff8c42` / `#ff4757`), JetBrains Mono
-  and Inter. Vanilla JS only: `class`, `window.*` globals, standard browser APIs.
-
-## Working with the owner
-
-- End every reply with a `Pending tasks` list, one line each, and a single `Next:` line.
-- Never a bare question. State the problem, give concrete options with their consequences, and
-  mark a recommendation. Batch what is open into one ask.
-- Decide the small reversible ones yourself and say in the reply that you did.
-- A settled question stays settled. Where the scope moved and the old answer no longer holds, say
-  what changed rather than asking again from scratch.
-- Plan before coding. Say what you are about to do, then do it.
-- Report outcomes faithfully: if a check failed, show it; if a step was skipped, say so.
-
-### Subagents
-
-- Name the model on every dispatch. Never `fable`. `opus` for judgment such as multi-file
-  reasoning, review, architecture and debugging; `sonnet` for mechanical work such as lookups,
-  greps, extraction and bulk edits; `haiku` for pure lookups.
-- Size each fan-out to the work in front of it. One agent is the usual answer, and more only
-  where the work genuinely splits.
-- Delegate to keep your own context clean or for parallelism. Everything else you do yourself,
-  because briefing out a small change costs more than making it.
-
-### What is not ours
-
-- Ours is what the task named. Nothing else is.
-- It does not block the task: it is a finding, not a task. List findings in their own short block
-  at the end of the reply, one line each, naming where it is and roughly what it would cost.
-- It blocks the task: make the smallest unblocking fix, in its own commit, and say so.
-- A finding becomes work only when the owner takes it.
+- No em or en dashes in text a person reads (a numeric range is fine).
+- No internal detail in user text: codenames, ticket refs, thresholds or raw metrics. Give a plain
+  label and a next step. Unshipped features say "coming soon", never a date.
+- Steps and collapsibles, never a blob of text. Walk the reader through.
+- No layout shift on load, no scale or translate on hover, no skeleton loaders unless asked.
+- Use the project's theme tokens (`css/variables.css`), not raw colors. Extend an existing control
+  rather than adding a parallel one.
+- Screenshot visual work and judge it before calling it done. Browser checks and screenshots run
+  in Playwright, never in my own Chrome.
