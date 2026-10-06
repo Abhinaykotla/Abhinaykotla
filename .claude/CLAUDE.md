@@ -23,7 +23,8 @@ with `python serve.py` on http://localhost:8000 (it also forces PDFs to download
 - `js/data/`: all content, as `window.<name>Data` globals (`personal`, `education`, `skills`,
   `experience`, `projects`, `blog`, `cli`), plus `images/` and the resume PDF. Edit content here,
   not in HTML.
-- `js/data-loader.js` merges the data into `window.portfolioData`; `js/web-interface.js` renders
+- `js/data-loader.js` merges the data into `window.portfolioData` (`js/data-patch.js` adds safe
+  accessors and fallbacks over it, loaded by `index.html`); `js/web-interface.js` renders
   the web view; `js/cli-interface.js` runs the terminal; `js/main.js` runs the app shell,
   animations and service worker registration.
 - `blog.html` lists posts (script: `js/blog-new.js`). `blog-post.html?slug=<slug>` renders one.
