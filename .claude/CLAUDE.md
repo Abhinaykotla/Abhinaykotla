@@ -2,16 +2,49 @@
 
 ## Project
 
-Abhinay's personal portfolio, live at https://abhinaykotla.com and read by recruiters and hiring
-managers. Static vanilla HTML/CSS/JS: no build step, no package.json, no framework, no tests.
+This one repo, `Abhinaykotla/Abhinaykotla`, does three public jobs at once, all read by
+recruiters and hiring managers:
 
-Run locally with `python serve.py` on http://localhost:8000.
+1. **The website**, live at https://abhinaykotla.com. GitHub Pages serves `main` from the repo
+   root (`CNAME` sets the domain), so **every push to `main` is a production deploy**, with no
+   staging.
+2. **The GitHub profile page.** Because the repo name matches the username, `readme.md` renders
+   at the top of github.com/Abhinaykotla. Writing in it is writing on the public profile, not in
+   project docs.
+3. **The resume download.** The PDF ships with the site (see Resume below).
 
-- Every push to `main` is a production deploy: GitHub Pages serves `main` from the repo root, with
-  no staging.
-- `readme.md` is the public GitHub profile README (the repo is `Abhinaykotla/Abhinaykotla`), not
-  project docs.
-- Content lives in `js/data/*.js` as `window.<name>Data` globals. Edit it there, not in HTML.
+Static vanilla HTML/CSS/JS: no build step, no package.json, no framework, no tests. Run locally
+with `python serve.py` on http://localhost:8000 (it also forces PDFs to download).
+
+### Layout
+
+- `index.html`: the main page, holding two views: `#web-interface` and `#cli-interface`, a
+  terminal emulator. Ctrl/Cmd+K swaps them.
+- `js/data/`: all content, as `window.<name>Data` globals (`personal`, `education`, `skills`,
+  `experience`, `projects`, `blog`, `cli`), plus `images/` and the resume PDF. Edit content here,
+  not in HTML.
+- `js/data-loader.js` merges the data into `window.portfolioData`; `js/web-interface.js` renders
+  the web view; `js/cli-interface.js` runs the terminal; `js/main.js` runs the app shell,
+  animations and service worker registration.
+- `blog.html` lists posts (script: `js/blog-new.js`). `blog-post.html?slug=<slug>` renders one.
+  Each post is a full HTML string in `js/data/blog.js`, with images in
+  `js/data/images/blog/<slug>/`.
+- `css/main.css` only `@import`s the rest; theme tokens live in `css/variables.css`.
+- `resume.html` is a fallback download page. `serve.py` and `start-server.bat` are local only.
+- Leftover files: `js/blog.js` is empty and `js/data.js` is unused. Leave them unless asked.
+
+### Resume
+
+- The LaTeX source lives outside this repo. The owner compiles it and overwrites
+  `js/data/Abhinay's_CV.pdf` under the same name. Outside sites link to that exact URL, so never
+  rename it.
+- The web buttons fetch the PDF and save it as `Abhinay_Kotla_Resume.pdf`, falling back to
+  `resume.html`. The CLI `resume` command downloads it directly under the same name.
+- To ship a new resume: commit the PDF, bump `CACHE_NAME` in `sw.js`, then push. Without the bump,
+  returning visitors keep downloading the old PDF from the service worker cache.
+
+### Gotchas
+
 - Career facts are hand-copied into five places, and a change must land in all of them:
   `js/data/*.js`, the CLI strings in `js/data/cli.js` (the CLI does not read the other data
   files), the subtitle at `index.html:43`, `readme.md`, and the resume PDF.
@@ -19,11 +52,6 @@ Run locally with `python serve.py` on http://localhost:8000.
 - `sw.js` serves its precached files first (`index.html`, core JS/CSS, the resume PDF), so
   returning visitors keep old copies until `CACHE_NAME` is bumped. Bump it whenever one of those
   changes. Locally, tick "Update on reload" in DevTools before judging a change.
-- The resume is `js/data/Abhinay's_CV.pdf`, linked from `index.html`, `resume.html`,
-  `js/web-interface.js`, `js/cli-interface.js` and `sw.js`. Outside sites link to that exact URL,
-  so do not rename it. Its LaTeX source is not in this repo.
-- `js/blog.js` is empty (the blog script is `js/blog-new.js`), and `js/data.js` is an unused
-  legacy file.
 
 ## Working with me
 
