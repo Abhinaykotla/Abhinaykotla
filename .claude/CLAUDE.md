@@ -35,9 +35,10 @@ with `python serve.py` on http://localhost:8000 (it also forces PDFs to download
 
 ### Resume
 
-- The LaTeX source lives outside this repo. The owner compiles it and overwrites
-  `js/data/Abhinay's_CV.pdf` under the same name. Outside sites link to that exact URL, so never
-  rename it.
+- The LaTeX source lives outside this repo. The owner compiles it to `js/data/Abhinay_s_CV.pdf`
+  (renamed from `Abhinay's_CV.pdf` on 2026-10-06). A rename breaks outside links to the old URL
+  and must update every reference: `index.html` (2), `resume.html` (2), `js/web-interface.js`,
+  `js/cli-interface.js`, `sw.js` and `readme.md`.
 - The web buttons fetch the PDF and save it as `Abhinay_Kotla_Resume.pdf`, falling back to
   `resume.html`. The CLI `resume` command downloads it directly under the same name.
 - To ship a new resume: commit the PDF, bump `CACHE_NAME` in `sw.js`, then push. Without the bump,

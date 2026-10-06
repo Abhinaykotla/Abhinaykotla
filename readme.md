@@ -78,7 +78,7 @@ To run the portfolio locally:
 If you're experiencing "File wasn't available on site" errors:
 
 1. **Try the dedicated resume page:** [resume.html](./resume.html)
-2. **Direct PDF access:** [Abhinay's_CV.pdf](./js/data/Abhinay's_CV.pdf)
+2. **Direct PDF access:** [Abhinay_s_CV.pdf](./js/data/Abhinay_s_CV.pdf)
 3. **Right-click and "Save as"** on any resume link
 4. **Contact me directly** at <abhinaykotla@gmail.com>
 

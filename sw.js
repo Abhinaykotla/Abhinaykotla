@@ -1,7 +1,7 @@
 // Service Worker for Abhinay Kotla Portfolio
 // Basic service worker for offline functionality
 
-const CACHE_NAME = 'abhinay-portfolio-v1';
+const CACHE_NAME = 'abhinay-portfolio-v2';
 const urlsToCache = [
     '/',
     '/index.html',
@@ -10,7 +10,7 @@ const urlsToCache = [
     '/js/main.js',
     '/js/data-loader.js',
     '/js/web-interface.js',
-    '/js/data/Abhinay\'s_CV.pdf'
+    '/js/data/Abhinay_s_CV.pdf'
 ];
 
 // Install event - cache resources
